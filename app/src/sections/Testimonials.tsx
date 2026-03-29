@@ -90,31 +90,31 @@ const Testimonials = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.testimonials-heading',
-        { y: 50, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.5,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
 
       gsap.fromTo(
         '.testimonial-card',
-        { y: 60, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
+          duration: 0.4,
+          stagger: 0.05,
           scrollTrigger: {
             trigger: '.testimonials-container',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -160,7 +160,7 @@ const Testimonials = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 md:py-24 bg-brand-black overflow-hidden"
+      className="relative py-12 md:py-16 bg-brand-black overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -305,24 +305,6 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Client Logos Grid */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto opacity-50">
-          {testimonials.slice(0, 4).map((testimonial, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center p-4 rounded-xl bg-white/5 border border-white/10"
-            >
-              <div className="text-center">
-                <div className="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center mx-auto mb-2">
-                  <span className="text-brand-blue font-display font-bold text-sm">
-                    {testimonial.company.split(' ').map(n => n[0]).join('')}
-                  </span>
-                </div>
-                <span className="text-white/50 text-xs">{testimonial.company}</span>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, MessageCircle, Phone, Sparkles, Zap, Target, Wrench } from 'lucide-react';
+import { ArrowRight, MessageCircle, Phone } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,7 +12,6 @@ const Hero = () => {
   const subheadingRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-  const badgesRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -44,16 +43,10 @@ const Hero = () => {
           0.8
         )
         .fromTo(
-          badgesRef.current?.children || [],
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 },
-          1
-        )
-        .fromTo(
           statsRef.current?.children || [],
           { y: 40, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8, stagger: 0.1 },
-          1.2
+          1
         );
 
       // Scroll parallax
@@ -108,13 +101,6 @@ const Hero = () => {
     { value: '213+', label: 'Projects Delivered' },
     { value: '182+', label: 'Happy Clients' },
     { value: '86+', label: 'Custom Solutions' },
-  ];
-
-  const badges = [
-    { icon: Sparkles, text: 'Free Logo Design' },
-    { icon: Zap, text: 'Free Domain & Hosting' },
-    { icon: Target, text: 'Bundle Offer Available' },
-    { icon: Wrench, text: 'Free Maintenance' },
   ];
 
   return (
@@ -176,8 +162,8 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-20">
-        <div className="max-w-6xl mx-auto text-center">
+      <div className="relative z-20 w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-20 pb-16">
+        <div className="max-w-5xl mx-auto text-center">
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
@@ -199,31 +185,16 @@ const Hero = () => {
             <span className="block text-gradient">Digital Presence</span>
           </h1>
 
-          {/* Subheading */}
+          {/* Subheading - Minimal */}
           <p
             ref={subheadingRef}
-            className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-8 font-light"
+            className="text-lg sm:text-xl text-white/60 max-w-xl mx-auto mb-10 font-light"
           >
-            Award-winning digital marketing agency in Hyderabad. We craft high-performance
-            digital solutions, ROI-focused campaigns, and data-driven marketing strategies that convert visitors into customers.
+            We build high-performance websites, run ROI-focused campaigns, and craft brands that convert.
           </p>
 
-          {/* Service Tags */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {['WordPress', 'Shopify', 'E-commerce', 'Custom Development', 'SEO', 'PPC'].map(
-              (tag) => (
-                <span
-                  key={tag}
-                  className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 text-sm hover:bg-white/10 hover:text-white transition-all cursor-default"
-                >
-                  {tag}
-                </span>
-              )
-            )}
-          </div>
-
           {/* CTA Buttons */}
-          <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Button
               onClick={() => scrollToSection('contact')}
               size="lg"
@@ -242,23 +213,10 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Badges */}
-          <div ref={badgesRef} className="flex flex-wrap justify-center gap-4 mb-16">
-            {badges.map((badge, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white/80 text-sm"
-              >
-                <badge.icon className="w-4 h-4 text-brand-blue" />
-                <span>{badge.text}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Stats */}
+          {/* Stats - Compact */}
           <div
             ref={statsRef}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto"
           >
             {stats.map((stat, index) => (
               <div key={index} className="text-center">

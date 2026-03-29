@@ -46,7 +46,7 @@ const Clients = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 bg-brand-black border-y border-white/5 overflow-hidden"
+      className="relative py-10 bg-brand-black border-y border-white/5 overflow-hidden"
     >
       {/* Section Heading */}
       <div className="clients-heading text-center mb-12 px-4">
@@ -59,7 +59,7 @@ const Clients = () => {
       </div>
 
       {/* Infinite Marquee Rows */}
-      <div className="relative space-y-16 py-8">
+      <div className="relative space-y-6">
         {/* Gradient Overlays */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-black via-brand-black/80 to-transparent z-10 pointer-events-none" />
@@ -139,25 +139,6 @@ const Clients = () => {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Stats Bar */}
-      <div className="mt-16 px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { value: '100%', label: 'Client Satisfaction' },
-            { value: '50+', label: '5-Star Reviews' },
-            { value: '24/7', label: 'Support Available' },
-            { value: '15+', label: 'Industries Served' },
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-2xl md:text-3xl font-display font-bold text-brand-blue mb-1">
-                {stat.value}
-              </div>
-              <div className="text-white/50 text-sm">{stat.label}</div>
-            </div>
-          ))}
         </div>
       </div>
     </section>

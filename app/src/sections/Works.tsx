@@ -41,15 +41,15 @@ const Works = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.works-heading',
-        { y: 50, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.5,
           scrollTrigger: {
             trigger: '#works',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -59,7 +59,7 @@ const Works = () => {
   }, []);
 
   return (
-    <section id="works" className="relative py-24 bg-brand-black overflow-hidden">
+    <section id="works" className="relative py-12 md:py-16 bg-brand-black overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full bg-brand-blue/5 blur-3xl" />
@@ -68,45 +68,26 @@ const Works = () => {
 
       <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20 max-w-[100vw]">
         {/* Section Header */}
-        <div className="works-heading flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 max-w-7xl mx-auto">
-          <div className="max-w-2xl">
+        <div className="works-heading text-center max-w-3xl mx-auto mb-12">
             <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-sm font-medium mb-4">
               Featured Work
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4 leading-tight">
               Our Latest <span className="text-gradient">Projects</span>
             </h2>
             <p className="text-white/60 text-lg">
               Explore our portfolio of successful digital marketing campaigns, high-performance websites, and e-commerce solutions.
             </p>
-          </div>
-          
-          <div className="flex gap-4">
-            <button
-              onClick={scrollPrev}
-              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-blue hover:border-brand-blue transition-colors group"
-              aria-label="Previous project"
-            >
-              <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
-            </button>
-            <button
-              onClick={scrollNext}
-              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-blue hover:border-brand-blue transition-colors group"
-              aria-label="Next project"
-            >
-              <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
         </div>
 
         {/* Slider Container */}
-        <div className="max-w-7xl mx-auto mb-16">
+        <div className="max-w-6xl mx-auto mb-8">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex touch-pan-y">
               {worksData.map((project, index) => (
                 <div 
                   key={project.id} 
-                  className="flex-[0_0_100%] min-w-0 md:flex-[0_0_85%] lg:flex-[0_0_90%] pl-4 md:pl-8 first:pl-0"
+                  className="flex-[0_0_100%] min-w-0 px-2"
                 >
                   <div className={`transition-all duration-500 ease-out grid lg:grid-cols-2 gap-8 items-center bg-white/5 border border-white/10 rounded-3xl p-6 md:p-10 ${selectedIndex === index ? 'opacity-100 scale-100' : 'opacity-40 scale-[0.98]'}`}>
                     
@@ -195,20 +176,38 @@ const Works = () => {
             </div>
           </div>
           
-          {/* Slider Pagination Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {worksData.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => emblaApi && emblaApi.scrollTo(index)}
-                className={`transition-all duration-300 rounded-full h-2 ${
-                  selectedIndex === index 
-                    ? 'w-8 bg-brand-blue' 
-                    : 'w-2 bg-white/20 hover:bg-white/40'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+          {/* Navigation: Prev + Dots + Next */}
+          <div className="flex items-center justify-center gap-6 mt-8">
+            <button
+              onClick={scrollPrev}
+              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300 group flex-shrink-0"
+              aria-label="Previous project"
+            >
+              <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
+            </button>
+
+            <div className="flex gap-2">
+              {worksData.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => emblaApi && emblaApi.scrollTo(index)}
+                  className={`transition-all duration-300 rounded-full h-2 ${
+                    selectedIndex === index 
+                      ? 'w-8 bg-brand-blue' 
+                      : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={scrollNext}
+              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300 group flex-shrink-0"
+              aria-label="Next project"
+            >
+              <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </button>
           </div>
         </div>
 

@@ -74,45 +74,45 @@ const Contact = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.contact-heading',
-        { y: 50, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.5,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
 
       gsap.fromTo(
         '.contact-form',
-        { x: -50, opacity: 0 },
+        { x: -30, opacity: 0 },
         {
           x: 0,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.5,
           scrollTrigger: {
             trigger: '.contact-content',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
 
       gsap.fromTo(
         '.contact-info',
-        { x: 50, opacity: 0 },
+        { x: 30, opacity: 0 },
         {
           x: 0,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.5,
           scrollTrigger: {
             trigger: '.contact-content',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -200,7 +200,7 @@ const Contact = () => {
     {
       icon: Clock,
       label: 'Working Hours',
-      value: 'Mon - Sat: 9:00 AM - 6:00 PM',
+      value: 'Mon - Sat: 10:00 AM - 7:00 PM IST',
       href: null,
     },
   ];
@@ -212,6 +212,7 @@ const Contact = () => {
     'PPC Advertising',
     'UI/UX Design',
     'E-Commerce Solutions',
+    'SaaS Solutions & Deployment',
     'Other',
   ];
 
@@ -219,7 +220,7 @@ const Contact = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative py-16 md:py-24 bg-brand-black overflow-hidden"
+      className="relative py-12 md:py-16 bg-brand-black overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -481,7 +482,7 @@ const Contact = () => {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.8!2d78.4486!3d17.4123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb973bbc64d2c7%3A0x1f0!2sBanjara%20Hills%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: 'grayscale(100%) invert(92%)' }}
+                style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

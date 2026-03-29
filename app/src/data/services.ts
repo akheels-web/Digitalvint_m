@@ -1,4 +1,4 @@
-import { Layout, TrendingUp, Search, Paintbrush, Store } from 'lucide-react';
+import { Layout, TrendingUp, Search, Paintbrush, Store, Server } from 'lucide-react';
 
 export const servicesData = [
   {
@@ -189,15 +189,16 @@ export const servicesData = [
     id: 4,
     slug: 'brand-identity',
     number: '04',
-    title: 'Brand Identity & Design',
-    description: 'Build a powerful, recognizable brand that resonates with your audience in Hyderabad and beyond. From logo design to complete brand systems.',
+    title: 'Branding, Packaging & Identity',
+    description: 'Build a memorable brand identity with premium logo design, packaging design for pharma & FMCG products, brand strategy, and complete visual systems that stand out.',
     features: [
       'Logo Design & Visual Identity',
       'Brand Strategy & Positioning',
       'Brand Guidelines Document',
       'Social Media Kit & Templates',
       'Marketing Collateral Design',
-      'Packaging Design',
+      'Packaging Design (Pharma, FMCG, Nutraceuticals)',
+      'Product Label & Box Design',
       'Pitch Deck & Presentation Design',
       'Brand Voice & Messaging Framework',
     ],
@@ -224,6 +225,20 @@ export const servicesData = [
       <h3>4. Social Media & Marketing Assets</h3>
       <p>We create ready-to-use templates for Instagram, LinkedIn, Facebook, WhatsApp Business, email signatures, letterheads, business cards, and more—ensuring your brand looks professional across every channel.</p>
 
+      <h3>5. Packaging Design for Pharma, FMCG & Beyond</h3>
+      <p>Great packaging doesn't just protect a product—it <strong>sells it from the shelf</strong>. We design packaging that meets industry-specific regulatory requirements while creating maximum shelf impact. Our packaging design expertise spans:</p>
+      <table>
+        <thead><tr><th>Industry</th><th>What We Design</th></tr></thead>
+        <tbody>
+          <tr><td>Pharmaceuticals</td><td>Medicine boxes, blister pack labels, syrup bottles, regulatory-compliant layouts</td></tr>
+          <tr><td>FMCG</td><td>Food packaging, beverage labels, cosmetics, personal care products</td></tr>
+          <tr><td>Nutraceuticals</td><td>Supplement bottles, health product pouches, Ayurvedic packaging</td></tr>
+          <tr><td>Consumer Electronics</td><td>Product boxes, user manual design, warranty card layouts</td></tr>
+          <tr><td>Agriculture</td><td>Seed packets, fertilizer bags, pesticide labels with compliance markings</td></tr>
+        </tbody>
+      </table>
+      <p>All packaging designs include <strong>print-ready files</strong> (CMYK, bleed marks, die-cut templates) and are tested with actual print vendors to ensure colour accuracy and production feasibility.</p>
+
       <h2>What You Receive</h2>
       <ul>
         <li><strong>Primary & secondary logo</strong> variations (colour, monochrome, icon-only)</li>
@@ -231,6 +246,7 @@ export const servicesData = [
         <li><strong>Typography system</strong> with font pairings and usage rules</li>
         <li><strong>50+ social media templates</strong> (Instagram, LinkedIn, Facebook)</li>
         <li><strong>Business stationery</strong> (cards, letterhead, email signatures)</li>
+        <li><strong>Product packaging design</strong> with print-ready files and die-cut templates</li>
         <li><strong>Comprehensive brand guidelines</strong> PDF document</li>
         <li><strong>All source files</strong> (AI, PSD, Figma, SVG, PNG)</li>
       </ul>
@@ -292,6 +308,73 @@ export const servicesData = [
         <li><strong>Mobile-first:</strong> 80% of Indian e-commerce traffic comes from mobile</li>
         <li><strong>SEO built-in:</strong> Product pages optimized for Google Shopping and organic search</li>
         <li><strong>Ongoing growth:</strong> We provide ongoing CRO, marketing, and support post-launch</li>
+      </ul>
+    `,
+  },
+  {
+    id: 6,
+    slug: 'saas-solutions',
+    number: '06',
+    title: 'SaaS Solutions & Deployment',
+    description: 'Deploy, manage, and scale SaaS applications on your own infrastructure. We help businesses self-host powerful software solutions with full control over data, security, and costs.',
+    features: [
+      'On-Premise & Private Cloud Deployment',
+      'SaaS Application Setup & Configuration',
+      'Server Infrastructure & DevOps',
+      'Data Migration & Integration',
+      'Custom SaaS Development',
+      'Ongoing Maintenance & Support',
+      'Security Hardening & Compliance',
+      'Cost Optimization & Licensing',
+    ],
+    icon: Server,
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+    color: 'from-cyan-500/20 to-teal-500/20',
+    longContent: `
+      <h2>Why Self-Host SaaS Applications?</h2>
+      <p>Many businesses in India rely on cloud-based SaaS tools for CRM, project management, analytics, email marketing, and more. But monthly subscription costs add up fast, and <strong>data sovereignty concerns</strong> are real—especially for businesses handling sensitive customer or financial data.</p>
+      <p>At Digital Vint, we help businesses take control by deploying powerful open-source and commercial SaaS alternatives on their own infrastructure—whether that's an on-premise server, a private cloud (AWS, Azure, GCP), or a hybrid setup.</p>
+
+      <blockquote><p>Why pay ₹50,000+/month for SaaS subscriptions when you can own the same capabilities on your own infrastructure for a fraction of the cost?</p></blockquote>
+
+      <h2>What We Deploy & Manage</h2>
+
+      <h3>1. CRM & Sales Automation</h3>
+      <p>We deploy self-hosted CRM solutions like <strong>Twenty CRM</strong>, <strong>SuiteCRM</strong>, and <strong>ERPNext</strong> that give you full-featured customer relationship management without per-seat licensing fees. Track leads, manage pipelines, automate follow-ups, and generate reports—all on your own servers.</p>
+
+      <h3>2. Project Management & Collaboration</h3>
+      <p>Replace expensive tools like Monday.com or Asana with self-hosted alternatives like <strong>Plane</strong>, <strong>Huly</strong>, or <strong>Focalboard</strong>. Get Kanban boards, sprints, document collaboration, and team communication—fully under your control.</p>
+
+      <h3>3. Marketing & Analytics Platforms</h3>
+      <p>Deploy your own analytics stack with <strong>Plausible</strong>, <strong>Matomo</strong>, or <strong>PostHog</strong> for privacy-compliant web analytics. Set up <strong>Mautic</strong> or <strong>Listmonk</strong> for email marketing automation without per-subscriber costs. Run <strong>n8n</strong> or <strong>Activepieces</strong> for workflow automation.</p>
+
+      <h3>4. Communication & Support</h3>
+      <p>Self-host <strong>Chatwoot</strong> for customer support, <strong>Rocket.Chat</strong> for internal team communication, and <strong>Cal.com</strong> for appointment scheduling. Full data control, no vendor lock-in.</p>
+
+      <h3>5. Custom SaaS Development</h3>
+      <p>Have a unique business process that no off-the-shelf tool handles? We build custom SaaS applications tailored to your workflow using modern tech stacks (React, Node.js, PostgreSQL) and deploy them on your infrastructure.</p>
+
+      <h2>Our Deployment Process</h2>
+      <table>
+        <thead><tr><th>Phase</th><th>What We Do</th></tr></thead>
+        <tbody>
+          <tr><td>Discovery</td><td>Audit current SaaS stack, identify self-hosting candidates</td></tr>
+          <tr><td>Planning</td><td>Infrastructure sizing, security planning, migration strategy</td></tr>
+          <tr><td>Deployment</td><td>Install, configure, and harden applications on your infra</td></tr>
+          <tr><td>Migration</td><td>Migrate data from existing SaaS tools with zero downtime</td></tr>
+          <tr><td>Training</td><td>Admin and user training with documentation</td></tr>
+          <tr><td>Support</td><td>Ongoing maintenance, updates, backups, and monitoring</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Why Digital Vint for SaaS Deployment?</h2>
+      <ul>
+        <li><strong>Full data ownership:</strong> Your data stays on your servers—no third-party access</li>
+        <li><strong>Cost savings:</strong> Eliminate recurring SaaS subscriptions; pay once for setup</li>
+        <li><strong>Compliance ready:</strong> Meet Indian data localization and GDPR requirements</li>
+        <li><strong>Customizable:</strong> Modify and extend open-source tools to fit your exact needs</li>
+        <li><strong>Scalable:</strong> Start small and scale as your team grows, without per-seat pricing</li>
+        <li><strong>24/7 monitoring:</strong> We proactively monitor uptime, performance, and security</li>
       </ul>
     `,
   },

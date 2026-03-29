@@ -20,15 +20,15 @@ const Services = () => {
       // Heading animation
       gsap.fromTo(
         '.services-heading',
-        { y: 50, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.5,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -36,17 +36,17 @@ const Services = () => {
       // Cards stagger animation
       gsap.fromTo(
         '.service-card',
-        { y: 100, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: 'expo.out',
+          duration: 0.4,
+          stagger: 0.05,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: cardsRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -59,7 +59,7 @@ const Services = () => {
     <section
       id="services"
       ref={sectionRef}
-      className="relative py-16 md:py-24 bg-brand-black overflow-hidden"
+      className="relative py-12 md:py-16 bg-brand-black overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
