@@ -31,16 +31,16 @@ const Clients = () => {
   // Client logos
   const clients = [
     { name: 'Tarzee', initials: 'TZ', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/43_20250411_225642_0042.webp' },
-    { name: 'Zaid Book Depot', initials: 'ZB' },
-    { name: 'The Observer Post', initials: 'OP' },
-    { name: 'Treasure', initials: 'TR' },
-    { name: 'Agha Perfumes', initials: 'AP' },
-    { name: 'Psyke', initials: 'PS' },
-    { name: 'Based Matrimony', initials: 'BM' },
-    { name: 'Hyderabad Meri Jaan', initials: 'HM' },
-    { name: 'Crown Interiors', initials: 'CI' },
-    { name: 'BSA Gold', initials: 'BG' },
-    { name: 'Dr. Manti Nath', initials: 'MN' },
+    { name: 'Zaid Book Depot', initials: 'ZB', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/47_20250411_225643_0046.webp' },
+    { name: 'The Observer Post', initials: 'OP', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/25_20250411_225641_0024.webp' },
+    { name: 'Treasure', initials: 'TR', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/22_20250411_225641_0021.webp' },
+    { name: 'Agha Perfumes', initials: 'AP', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/3_20250411_225641_0002.webp' },
+    { name: 'Psyke', initials: 'PS', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/1_20250411_225641_0000.webp' },
+    { name: 'Joharfa', initials: 'JF', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/14_20250411_225641_0013.webp' },
+    { name: 'Viluthila Maldives', initials: 'VM', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/20_20250411_225641_0019.webp' },
+    { name: 'Saltan', initials: 'SL', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/24_20250411_225641_0023.webp' },
+    { name: 'BSA Gold', initials: 'BG', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/8_20250411_225641_0007.webp' },
+    { name: 'Residential Ease', initials: 'RE', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/5_20250411_225641_0004.webp' },
   ];
 
   return (
