@@ -59,47 +59,46 @@ const Clients = () => {
       </div>
 
       {/* Infinite Marquee Rows */}
-      <div className="relative space-y-10">
+      <div className="relative space-y-12">
         {/* Gradient Overlays */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-black via-brand-black/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-black via-brand-black/90 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-black via-brand-black/90 to-transparent z-10 pointer-events-none" />
 
         {/* Row 1: Moving Left */}
-        <div className="flex overflow-hidden group/marquee">
-          <div className="flex animate-marquee flex-shrink-0 will-change-transform">
+        <div className="flex overflow-hidden group/marquee py-4">
+          <div className="flex animate-marquee flex-shrink-0">
             {clients.map((client, index) => (
-              <div key={`row1-${index}`} className="flex-shrink-0 mx-4 md:mx-8 group/logo transition-all duration-500">
-                <div className="relative flex items-center justify-center h-14 md:h-16 grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-300">
+              <div key={`row1-${index}`} className="flex-shrink-0 mx-8 md:mx-12 group/logo transition-all duration-300">
+                <div className="relative flex items-center justify-center h-12 md:h-16 transition-all duration-300">
                   <img
                     src={client.logo || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
                     alt={`${client.name} - Digital Marketing Client India`}
-                    title={`${client.name} partnered with Digital Vint`}
-                    loading="lazy"
+                    title={`${client.name} partnership with Digital Vint`}
+                    loading="eager"
                     decoding="async"
-                    className={`h-full w-auto object-contain ${!client.logo ? 'rounded-full' : ''}`}
+                    className={`h-full w-auto object-contain grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-500 ${!client.logo ? 'rounded-full' : ''}`}
                     onError={(e) => {
                       (e.target as HTMLImageElement).style.display = 'none';
                     }}
                   />
                   {/* Subtle Glow on Hover */}
-                  <div className="absolute inset-0 bg-brand-blue/20 blur-2xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500 rounded-full" />
+                  <div className="absolute inset-0 bg-brand-blue/5 blur-2xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500 rounded-full" />
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex animate-marquee flex-shrink-0 will-change-transform" aria-hidden="true">
+          <div className="flex animate-marquee flex-shrink-0" aria-hidden="true">
             {clients.map((client, index) => (
-              <div key={`row1-dup-${index}`} className="flex-shrink-0 mx-4 md:mx-8 group/logo transition-all duration-500">
-                <div className="relative flex items-center justify-center h-14 md:h-16 grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-300">
+              <div key={`row1-dup-${index}`} className="flex-shrink-0 mx-8 md:mx-12 group/logo transition-all duration-300">
+                <div className="relative flex items-center justify-center h-12 md:h-16 transition-all duration-300">
                   <img
                     src={client.logo || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
-                    alt={`${client.name} Logo`}
-                    className={`h-full w-auto object-contain ${!client.logo ? 'rounded-full' : ''}`}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
+                    alt={`${client.name} - Digital Marketing Client India`}
+                    loading="eager"
+                    decoding="async"
+                    className={`h-full w-auto object-contain grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-500 ${!client.logo ? 'rounded-full' : ''}`}
                   />
-                  <div className="absolute inset-0 bg-brand-blue/20 blur-2xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500 rounded-full" />
+                  <div className="absolute inset-0 bg-brand-blue/5 blur-2xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500 rounded-full" />
                 </div>
               </div>
             ))}
@@ -107,37 +106,35 @@ const Clients = () => {
         </div>
 
         {/* Row 2: Moving Right */}
-        <div className="flex overflow-hidden group/marquee">
-          <div className="flex animate-marquee-reverse flex-shrink-0 will-change-transform">
-            {[...clients].reverse().map((client, index) => (
-              <div key={`row2-${index}`} className="flex-shrink-0 mx-4 md:mx-8 group/logo transition-all duration-500">
-                <div className="relative flex items-center justify-center h-14 md:h-16 grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-300">
+        <div className="flex overflow-hidden group/marquee py-4">
+          <div className="flex animate-marquee-reverse flex-shrink-0">
+            {clients.map((client, index) => (
+              <div key={`row2-${index}`} className="flex-shrink-0 mx-8 md:mx-12 group/logo transition-all duration-300">
+                <div className="relative flex items-center justify-center h-12 md:h-16 transition-all duration-300">
                   <img
                     src={client.logo || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
-                    alt={`${client.name} Logo`}
-                    className={`h-full w-auto object-contain ${!client.logo ? 'rounded-full' : ''}`}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
+                    alt={`${client.name} - Trusted Client India`}
+                    loading="eager"
+                    decoding="async"
+                    className={`h-full w-auto object-contain grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-500 ${!client.logo ? 'rounded-full' : ''}`}
                   />
-                  <div className="absolute inset-0 bg-brand-blue/20 blur-2xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500 rounded-full" />
+                  <div className="absolute inset-0 bg-purple-500/5 blur-2xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500 rounded-full" />
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex animate-marquee-reverse flex-shrink-0 will-change-transform" aria-hidden="true">
-            {[...clients].reverse().map((client, index) => (
-              <div key={`row2-dup-${index}`} className="flex-shrink-0 mx-4 md:mx-8 group/logo transition-all duration-500">
-                <div className="relative flex items-center justify-center h-14 md:h-16 grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-300">
+          <div className="flex animate-marquee-reverse flex-shrink-0" aria-hidden="true">
+            {clients.map((client, index) => (
+              <div key={`row2-dup-${index}`} className="flex-shrink-0 mx-8 md:mx-12 group/logo transition-all duration-300">
+                <div className="relative flex items-center justify-center h-12 md:h-16 transition-all duration-300">
                   <img
                     src={client.logo || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
-                    alt={`${client.name} Logo`}
-                    className={`h-full w-auto object-contain ${!client.logo ? 'rounded-full' : ''}`}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
+                    alt={`${client.name} - Trusted Client India`}
+                    loading="eager"
+                    decoding="async"
+                    className={`h-full w-auto object-contain grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-500 ${!client.logo ? 'rounded-full' : ''}`}
                   />
-                  <div className="absolute inset-0 bg-brand-blue/20 blur-2xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500 rounded-full" />
+                  <div className="absolute inset-0 bg-purple-500/5 blur-2xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500 rounded-full" />
                 </div>
               </div>
             ))}
