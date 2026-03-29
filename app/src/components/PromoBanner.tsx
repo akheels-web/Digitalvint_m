@@ -32,7 +32,7 @@ const PromoBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-[400px] z-50 animate-in slide-in-from-bottom-10 fade-in duration-700">
+    <div className="fixed bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-[400px] z-[100] animate-in slide-in-from-bottom-10 fade-in duration-700">
       <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl relative overflow-hidden group">
         
         {/* Glow Effects */}
@@ -42,9 +42,10 @@ const PromoBanner = () => {
         {/* Close Button */}
         <button 
           onClick={handleDismiss}
-          className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors z-10"
+          className="absolute top-2 right-2 p-2 text-white/50 hover:text-white transition-all z-30 cursor-pointer rounded-full hover:bg-white/10"
+          aria-label="Close offer"
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5" />
         </button>
 
         {/* Content */}
