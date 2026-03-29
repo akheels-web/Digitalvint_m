@@ -109,13 +109,14 @@ const Footer = () => {
           
           {/* Brand Column (Spans 4) */}
           <div className="lg:col-span-4 lg:pr-12">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-blue to-purple-600 flex items-center justify-center shadow-lg">
-                <span className="text-white font-display font-bold text-xl">DV</span>
-              </div>
-              <span className="text-white font-display font-bold text-2xl tracking-tight">
-                Digital Vint
-              </span>
+            <div className="mb-6">
+              <Link to="/" onClick={scrollToTop}>
+                <img 
+                  src="https://digitalvint.com/wp-content/uploads/2024/09/DV-White-2048x569.png" 
+                  alt="Digital Vint Logo" 
+                  className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                />
+              </Link>
             </div>
 
             <p className="text-white/60 text-base leading-relaxed mb-8">

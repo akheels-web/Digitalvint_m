@@ -37,7 +37,7 @@ const SEO = ({
     name: 'Digital Vint',
     alternateName: 'Digital Vint Marketing Agency',
     url: 'https://digitalvint.com',
-    logo: 'https://digitalvint.com/logo.png',
+    logo: 'https://digitalvint.com/wp-content/uploads/2024/09/DV-White-2048x569.png',
     description: 'Leading digital marketing agency in Hyderabad specializing in SEO, web development, and social media marketing.',
     foundingDate: '2018',
     founders: [

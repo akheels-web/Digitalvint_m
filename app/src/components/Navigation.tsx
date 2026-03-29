@@ -64,12 +64,11 @@ const Navigation = () => {
               }}
               className="flex items-center gap-2 group"
             >
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-blue to-brand-blue-light flex items-center justify-center">
-                <span className="text-white font-display font-bold text-xl">DV</span>
-              </div>
-              <span className="text-white font-display font-semibold text-lg hidden sm:block group-hover:text-brand-blue transition-colors">
-                Digital Vint
-              </span>
+              <img 
+                src="https://digitalvint.com/wp-content/uploads/2024/09/DV-White-2048x569.png" 
+                alt="Digital Vint Logo" 
+                className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
             </Link>
 
             {/* Desktop Navigation */}
