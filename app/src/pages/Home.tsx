@@ -4,6 +4,8 @@ import Hero from '../sections/Hero';
 import Clients from '../sections/Clients';
 import Services from '../sections/Services';
 import Works from '../sections/Works';
+import MarketingFunnel from '../sections/MarketingFunnel';
+import Industries from '../sections/Industries';
 import Process from '../sections/Process';
 import WhyUs from '../sections/WhyUs';
 import Testimonials from '../sections/Testimonials';
@@ -30,6 +32,8 @@ const Home = () => {
       <Hero />
       <Clients />
       <Services />
+      <MarketingFunnel />
+      <Industries />
       <Works />
       <Process />
       <WhyUs />

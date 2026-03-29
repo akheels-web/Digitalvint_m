@@ -207,7 +207,7 @@ const Hero = () => {
               onClick={() => scrollToSection('works')}
               variant="outline"
               size="lg"
-              className="border-white/20 text-white bg-white/10 hover:bg-white/20 px-8 py-6 rounded-full text-lg transition-all"
+              className="border-white/20 text-white bg-white/10 hover:bg-white/20 hover:text-white px-8 py-6 rounded-full text-lg transition-all"
             >
               View Our Work
             </Button>

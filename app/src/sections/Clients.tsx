@@ -46,7 +46,7 @@ const Clients = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-10 bg-brand-black border-y border-white/5 overflow-hidden"
+      className="relative py-10 bg-brand-black overflow-hidden"
     >
       {/* Section Heading */}
       <div className="clients-heading text-center mb-12 px-4">
@@ -59,7 +59,7 @@ const Clients = () => {
       </div>
 
       {/* Infinite Marquee Rows */}
-      <div className="relative space-y-6">
+      <div className="relative space-y-10">
         {/* Gradient Overlays */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-black via-brand-black/80 to-transparent z-10 pointer-events-none" />
