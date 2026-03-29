@@ -28,8 +28,9 @@ const Clients = () => {
     return () => ctx.revert();
   }, []);
 
-  // Client logos as SVG components
+  // Client logos
   const clients = [
+    { name: 'Tarzee', initials: 'TZ', logo: 'https://digitalvint.com/wp-content/uploads/2025/04/43_20250411_225642_0042.webp' },
     { name: 'Zaid Book Depot', initials: 'ZB' },
     { name: 'The Observer Post', initials: 'OP' },
     { name: 'Treasure', initials: 'TR' },
@@ -73,9 +74,9 @@ const Clients = () => {
               >
                 <div className="flex items-center justify-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-blue/30 transition-all duration-300 cursor-default grayscale opacity-70 hover:grayscale-0 hover:opacity-100 min-w-[140px] h-[80px]">
                   <img
-                    src={`https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
+                    src={client.logo || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
                     alt={`${client.name} Logo`}
-                    className="max-h-12 rounded-full object-contain"
+                    className={`max-h-12 ${!client.logo ? 'rounded-full' : ''} object-contain`}
                     onError={(e) => {
                       // Fallback if logo fails to load
                       (e.target as HTMLImageElement).style.display = 'none';
@@ -93,9 +94,9 @@ const Clients = () => {
               >
                 <div className="flex items-center justify-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-blue/30 transition-all duration-300 cursor-default grayscale opacity-70 hover:grayscale-0 hover:opacity-100 min-w-[140px] h-[80px]">
                   <img
-                    src={`https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
+                    src={client.logo || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
                     alt={`${client.name} Logo`}
-                    className="max-h-12 rounded-full object-contain"
+                    className={`max-h-12 ${!client.logo ? 'rounded-full' : ''} object-contain`}
                     onError={(e) => {
                       (e.target as HTMLImageElement).style.display = 'none';
                     }}
