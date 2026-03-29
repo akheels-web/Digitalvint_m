@@ -255,12 +255,14 @@ const Process = () => {
                       </label>
                       <input
                         id="audit-website"
+                        name="url"
                         type="url"
                         placeholder="https://yourwebsite.com"
+                        autoComplete="url"
                         value={auditWebsite}
                         onChange={(e) => setAuditWebsite(e.target.value)}
                         required
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-brand-blue/50 focus:ring-1 focus:ring-brand-blue/30 transition-all text-sm"
+                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:border-brand-blue/50 focus:ring-1 focus:ring-brand-blue/30 transition-all text-sm"
                       />
                     </div>
                     <div>
@@ -268,15 +270,17 @@ const Process = () => {
                         Email Address
                       </label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50" />
                         <input
                           id="audit-email"
+                          name="email"
                           type="email"
                           placeholder="you@company.com"
+                          autoComplete="email"
                           value={auditEmail}
                           onChange={(e) => setAuditEmail(e.target.value)}
                           required
-                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-brand-blue/50 focus:ring-1 focus:ring-brand-blue/30 transition-all text-sm"
+                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:border-brand-blue/50 focus:ring-1 focus:ring-brand-blue/30 transition-all text-sm"
                         />
                       </div>
                     </div>

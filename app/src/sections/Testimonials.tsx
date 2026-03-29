@@ -217,9 +217,10 @@ const Testimonials = () => {
                   <div className="flex items-center gap-4">
                     <img
                       src={testimonial.image}
-                      alt={testimonial.name}
+                      alt={`${testimonial.name} - Digital Marketing Client Testimonial India`}
                       className="w-14 h-14 rounded-full object-cover border-2 border-brand-blue/30"
                       loading="lazy"
+                      decoding="async"
                     />
                     <div>
                       <h4 className="text-white font-semibold">{testimonial.name}</h4>
@@ -248,9 +249,10 @@ const Testimonials = () => {
               <div className="flex items-center gap-3">
                 <img
                   src={testimonials[activeIndex].image}
-                  alt={testimonials[activeIndex].name}
+                  alt={`${testimonials[activeIndex].name} - Digital Marketing Client Testimonial India`}
                   className="w-12 h-12 rounded-full object-cover border-2 border-brand-blue/30"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div>
                   <h4 className="text-white font-semibold text-sm">{testimonials[activeIndex].name}</h4>

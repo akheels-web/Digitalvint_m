@@ -96,7 +96,13 @@ const Works = () => {
                       <div className="flex items-center gap-4">
                         {project.logo && (
                           <div className="w-16 h-16 rounded-xl overflow-hidden bg-brand-black border border-white/10 flex items-center justify-center shadow-lg">
-                            <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-cover" />
+                            <img 
+                              src={project.logo} 
+                              alt={`${project.title} - Digital Marketing client logo`} 
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-cover" 
+                            />
                           </div>
                         )}
                         <div>
@@ -138,7 +144,8 @@ const Works = () => {
 
                       <Button
                         onClick={() => navigate(`/works/${project.slug}`)}
-                        className="bg-transparent hover:bg-white/10 text-white border border-white/20 font-medium px-8 py-6 rounded-full transition-all duration-300 group inline-flex items-center gap-2"
+                        aria-label={`View full case study for ${project.title} digital marketing project`}
+                        className="bg-transparent hover:bg-white/10 text-white border border-white/20 font-medium px-8 py-6 rounded-full focus-visible:ring-2 focus-visible:ring-brand-blue focus:outline-none transition-all duration-300 group inline-flex items-center gap-2"
                       >
                         Read Case Study
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -154,9 +161,11 @@ const Works = () => {
                           <div className="absolute inset-0 bg-brand-darker">
                             <img
                               src={project.image}
-                              alt={project.title}
-                              className="w-full h-full object-cover object-top"
+                              alt={`${project.title} - Digital Marketing Case Study Preview`}
+                              title={`Digital Vint work for ${project.title}`}
                               loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-cover scale-[1.02] group-hover:scale-100 transition-transform duration-[1000ms]"
                             />
                             {/* Inner Screen Shadow/Glass Effect */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
@@ -180,8 +189,8 @@ const Works = () => {
           <div className="flex items-center justify-center gap-6 mt-8">
             <button
               onClick={scrollPrev}
-              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300 group flex-shrink-0"
-              aria-label="Previous project"
+              aria-label="Previous Project Sidebar"
+              className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-brand-blue hover:border-brand-blue hover:text-white transition-all group focus-visible:ring-2 focus-visible:ring-brand-blue focus:outline-none"
             >
               <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
             </button>
@@ -203,8 +212,8 @@ const Works = () => {
 
             <button
               onClick={scrollNext}
-              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300 group flex-shrink-0"
-              aria-label="Next project"
+              aria-label="Next Project Sidebar"
+              className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-brand-blue hover:border-brand-blue hover:text-white transition-all group focus-visible:ring-2 focus-visible:ring-brand-blue focus:outline-none"
             >
               <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </button>

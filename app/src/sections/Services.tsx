@@ -103,9 +103,10 @@ const Services = () => {
               >
                 <img
                   src={service.image}
-                  alt={service.title}
+                  alt={`${service.title} - Digital Marketing Services India`}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent" />
               </div>

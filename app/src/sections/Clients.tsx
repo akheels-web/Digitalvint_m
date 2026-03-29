@@ -72,7 +72,10 @@ const Clients = () => {
                 <div className="relative flex items-center justify-center h-14 md:h-16 grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-300">
                   <img
                     src={client.logo || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
-                    alt={`${client.name} Logo`}
+                    alt={`${client.name} - Digital Marketing Client India`}
+                    title={`${client.name} partnered with Digital Vint`}
+                    loading="lazy"
+                    decoding="async"
                     className={`h-full w-auto object-contain ${!client.logo ? 'rounded-full' : ''}`}
                     onError={(e) => {
                       (e.target as HTMLImageElement).style.display = 'none';

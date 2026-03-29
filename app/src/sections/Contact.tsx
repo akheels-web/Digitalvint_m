@@ -272,8 +272,9 @@ const Contact = () => {
                     <Input
                       id="name"
                       {...register('name')}
+                      autoComplete="name"
                       placeholder="John Doe"
-                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-brand-blue ${
+                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue ${
                         errors.name ? 'border-red-500' : ''
                       }`}
                     />
@@ -291,8 +292,9 @@ const Contact = () => {
                       id="email"
                       type="email"
                       {...register('email')}
+                      autoComplete="email"
                       placeholder="john@example.com"
-                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-brand-blue ${
+                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue ${
                         errors.email ? 'border-red-500' : ''
                       }`}
                     />
@@ -312,8 +314,9 @@ const Contact = () => {
                       id="phone"
                       type="tel"
                       {...register('phone')}
+                      autoComplete="tel"
                       placeholder="+91 98765 43210"
-                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-brand-blue ${
+                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue ${
                         errors.phone ? 'border-red-500' : ''
                       }`}
                     />
@@ -330,8 +333,9 @@ const Contact = () => {
                     <Input
                       id="company"
                       {...register('company')}
+                      autoComplete="organization"
                       placeholder="Your Company"
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-brand-blue"
+                      className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue"
                     />
                   </div>
                 </div>
