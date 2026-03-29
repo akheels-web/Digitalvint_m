@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
-  Monitor,
+  Globe,
   Zap,
-  Settings,
-  Layers,
+  Target,
+  BarChart3,
   Users,
   Headphones,
 } from 'lucide-react';
@@ -17,39 +17,39 @@ const WhyUs = () => {
 
   const features = [
     {
-      icon: Monitor,
-      title: 'Responsive Design',
-      description: 'Flawless experiences across all devices and screen sizes. Your website looks perfect on mobile, tablet, and desktop.',
+      icon: Globe,
+      title: 'Full-Service Digital Marketing',
+      description: 'SEO, PPC, social media, content marketing, and web development under one roof. A unified strategy across every digital channel your customers use.',
       gradient: 'from-blue-500/20 to-cyan-500/20',
     },
     {
       icon: Zap,
-      title: 'Lightning Fast',
-      description: 'Optimized code for speedy load times and smooth interactions. Core Web Vitals optimized for better rankings.',
+      title: 'Performance-Driven Results',
+      description: 'Every campaign is optimized for measurable KPIs — traffic, leads, conversions, and revenue. We track, test, and scale what works.',
       gradient: 'from-yellow-500/20 to-orange-500/20',
     },
     {
-      icon: Settings,
-      title: 'Custom Solutions',
-      description: 'Tailor-made solutions to match your unique requirements. No cookie-cutter templates, every project is unique.',
+      icon: Target,
+      title: 'Local SEO Expertise',
+      description: 'Deep knowledge of the Hyderabad and Telangana market. We rank local businesses in Google\'s top 3 for neighbourhood-level searches.',
       gradient: 'from-green-500/20 to-emerald-500/20',
     },
     {
-      icon: Layers,
-      title: 'Modern Frameworks',
-      description: 'Expertise in both code and no-code frameworks. React, Next.js, WordPress, Shopify, and more.',
+      icon: BarChart3,
+      title: 'Data-Driven Strategy',
+      description: 'We use Google Analytics, Search Console, Ahrefs, and real-time dashboards to make decisions backed by data — not guesswork.',
       gradient: 'from-purple-500/20 to-pink-500/20',
     },
     {
       icon: Users,
-      title: 'Collaborative Approach',
-      description: 'We work closely with your team for seamless integration. Regular updates and transparent communication.',
+      title: 'Dedicated Account Team',
+      description: 'A personal strategist, designer, and developer assigned to your project. Weekly check-ins, transparent reporting, and direct communication.',
       gradient: 'from-red-500/20 to-rose-500/20',
     },
     {
       icon: Headphones,
-      title: 'Ongoing Support',
-      description: 'Continuous maintenance and updates to keep your digital presence fresh and secure. 24/7 support available.',
+      title: '24/7 Support & Maintenance',
+      description: 'Continuous website maintenance, security updates, performance monitoring, and priority support so your digital presence never goes offline.',
       gradient: 'from-indigo-500/20 to-blue-500/20',
     },
   ];
@@ -119,7 +119,7 @@ const WhyUs = () => {
     <section
       id="why-us"
       ref={sectionRef}
-      className="relative py-20 md:py-32 bg-brand-black overflow-hidden"
+      className="relative py-16 md:py-24 bg-brand-black overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -134,10 +134,10 @@ const WhyUs = () => {
             Why Choose Us
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
-            Why Choose Us?
+            Why Businesses in Hyderabad Choose Digital Vint
           </h2>
           <p className="text-white/60 text-lg">
-            We run behind results. Our focus is on delivering measurable outcomes that help your business grow.
+            We deliver measurable growth through data-driven digital marketing, conversion-focused web design, and relentless performance optimization.
           </p>
         </div>
 
@@ -187,10 +187,10 @@ const WhyUs = () => {
         {/* Bottom Stats */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {[
-            { value: '99%', label: 'Client Retention' },
-            { value: '4.9/5', label: 'Average Rating' },
-            { value: '24h', label: 'Avg. Response Time' },
-            { value: '100%', label: 'Project Delivery' },
+            { value: '150+', label: 'Projects Delivered' },
+            { value: '4.9/5', label: 'Client Rating' },
+            { value: '3-5x', label: 'Avg. Client ROI' },
+            { value: '98%', label: 'Client Retention' },
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl md:text-4xl font-display font-bold text-brand-blue mb-1">

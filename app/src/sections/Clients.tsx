@@ -71,15 +71,16 @@ const Clients = () => {
                 key={index}
                 className="flex-shrink-0 mx-8 group"
               >
-                <div className="flex items-center gap-4 px-8 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-blue/30 transition-all duration-300 cursor-default">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-brand-blue/20 to-brand-blue-light/20 flex items-center justify-center">
-                    <span className="text-brand-blue font-display font-bold text-lg">
-                      {client.initials}
-                    </span>
-                  </div>
-                  <span className="text-white/70 font-medium whitespace-nowrap group-hover:text-white transition-colors">
-                    {client.name}
-                  </span>
+                <div className="flex items-center justify-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-blue/30 transition-all duration-300 cursor-default grayscale opacity-70 hover:grayscale-0 hover:opacity-100 min-w-[140px] h-[80px]">
+                  <img
+                    src={`https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
+                    alt={`${client.name} Logo`}
+                    className="max-h-12 rounded-full object-contain"
+                    onError={(e) => {
+                      // Fallback if logo fails to load
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
                 </div>
               </div>
             ))}
@@ -90,15 +91,15 @@ const Clients = () => {
                 key={`duplicate-${index}`}
                 className="flex-shrink-0 mx-8 group"
               >
-                <div className="flex items-center gap-4 px-8 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-blue/30 transition-all duration-300 cursor-default">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-brand-blue/20 to-brand-blue-light/20 flex items-center justify-center">
-                    <span className="text-brand-blue font-display font-bold text-lg">
-                      {client.initials}
-                    </span>
-                  </div>
-                  <span className="text-white/70 font-medium whitespace-nowrap group-hover:text-white transition-colors">
-                    {client.name}
-                  </span>
+                <div className="flex items-center justify-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-blue/30 transition-all duration-300 cursor-default grayscale opacity-70 hover:grayscale-0 hover:opacity-100 min-w-[140px] h-[80px]">
+                  <img
+                    src={`https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`}
+                    alt={`${client.name} Logo`}
+                    className="max-h-12 rounded-full object-contain"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
                 </div>
               </div>
             ))}

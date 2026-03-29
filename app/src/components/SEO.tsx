@@ -1,6 +1,23 @@
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
-const SEO = () => {
+interface SEOProps {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  article?: boolean;
+}
+
+const SEO = ({ 
+  title = "Digital Vint | Best Digital Marketing Agency in Hyderabad | SEO & Web Development",
+  description = "Digital Vint creates high‑converting websites that turn visitors into customers. Trusted by 200+ brands, we offer expert web design, custom development, and digital marketing services in Hyderabad. Get a free quote today!",
+  keywords = "digital marketing agency hyderabad, seo services hyderabad, web development hyderabad, social media marketing, digital marketing telangana, best digital marketing company hyderabad, website design hyderabad, online marketing agency",
+  image = "https://digitalvint.com/og-image.jpg",
+  article = false
+}: SEOProps) => {
+  const location = useLocation();
+  const currentUrl = `https://digitalvint.com${location.pathname}`;
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -210,8 +227,8 @@ const SEO = () => {
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Pricing',
-        item: 'https://digitalvint.com/#pricing',
+        name: 'Our Process',
+        item: 'https://digitalvint.com/#process',
       },
       {
         '@type': 'ListItem',
@@ -225,22 +242,16 @@ const SEO = () => {
   return (
     <Helmet>
       {/* Primary Meta Tags */}
-      <title>Digital Vint | Best Digital Marketing Agency in Hyderabad | SEO & Web Development</title>
-      <meta
-        name="description"
-        content="Digital Vint is Hyderabad's leading digital marketing agency. We offer SEO, web development, social media marketing & PPC services. 200+ clients trust us. Get a free quote!"
-      />
-      <meta
-        name="keywords"
-        content="digital marketing agency hyderabad, seo services hyderabad, web development hyderabad, social media marketing, ppc services, digital marketing telangana, best digital marketing company hyderabad, website design hyderabad, online marketing agency, digital marketing packages"
-      />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
       <meta name="author" content="Digital Vint" />
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="googlebot" content="index, follow" />
       <meta name="bingbot" content="index, follow" />
       
       {/* Canonical URL */}
-      <link rel="canonical" href="https://digitalvint.com" />
+      <link rel="canonical" href={currentUrl} />
       
       {/* Language and Region */}
       <html lang="en-IN" />
@@ -251,14 +262,11 @@ const SEO = () => {
       <meta name="ICBM" content="17.4123, 78.4486" />
       
       {/* Open Graph / Facebook */}
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://digitalvint.com" />
-      <meta property="og:title" content="Digital Vint | Best Digital Marketing Agency in Hyderabad" />
-      <meta
-        property="og:description"
-        content="Award-winning digital marketing agency in Hyderabad. SEO, web development, social media marketing & more. 200+ happy clients. Get your free quote today!"
-      />
-      <meta property="og:image" content="https://digitalvint.com/og-image.jpg" />
+      <meta property="og:type" content={article ? "article" : "website"} />
+      <meta property="og:url" content={currentUrl} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={image} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_IN" />
@@ -266,13 +274,10 @@ const SEO = () => {
       
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://digitalvint.com" />
-      <meta property="twitter:title" content="Digital Vint | Best Digital Marketing Agency in Hyderabad" />
-      <meta
-        property="twitter:description"
-        content="Award-winning digital marketing agency in Hyderabad. SEO, web development, social media marketing & more. 200+ happy clients."
-      />
-      <meta property="twitter:image" content="https://digitalvint.com/og-image.jpg" />
+      <meta property="twitter:url" content={currentUrl} />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
+      <meta property="twitter:image" content={image} />
       
       {/* Mobile Optimization */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />

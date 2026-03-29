@@ -1,81 +1,44 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight, ExternalLink } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { ArrowRight, ExternalLink, ChevronRight, ChevronLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { worksData } from '../data/works';
+import { Button } from '@/components/ui/button';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Works = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const navigate = useNavigate();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: 'center',
+    skipSnaps: false,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const projects = [
-    {
-      id: 1,
-      title: 'Zaid Book Depot',
-      category: 'E-Commerce',
-      description: 'We built a user-friendly eCommerce website for Zaid Book Depot, an online bookstore offering a wide range of academic and general books. The platform ensures smooth browsing, easy checkout, and a seamless shopping experience.',
-      image: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1200&q=80',
-      tags: ['Shopify', 'E-Commerce', 'UI/UX'],
-      stats: { traffic: '+150%', conversion: '+85%' },
-      link: '#',
-    },
-    {
-      id: 2,
-      title: 'The Observer Post',
-      category: 'News Portal',
-      description: 'We developed a clean and fast-loading news website for The Observer Post, ensuring easy navigation and real-time content updates for a seamless reading experience.',
-      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=80',
-      tags: ['WordPress', 'Custom CMS', 'SEO'],
-      stats: { traffic: '+200%', engagement: '+120%' },
-      link: '#',
-    },
-    {
-      id: 3,
-      title: 'Treasure Jewelry',
-      category: 'E-Commerce',
-      description: 'We built an elegant and responsive website for Treasure, a jewelry brand, highlighting their collections with stunning visuals and a smooth shopping experience.',
-      image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&q=80',
-      tags: ['React', 'E-Commerce', '3D Configurator'],
-      stats: { sales: '+180%', bounce: '-40%' },
-      link: '#',
-    },
-    {
-      id: 4,
-      title: 'Agha Perfumes',
-      category: 'Brand Website',
-      description: 'Digital Vint delivered a beautiful, responsive website for this tech company. It is fast, clean, and represents their brand perfectly.',
-      image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1200&q=80',
-      tags: ['Web Design', 'Branding', 'Animation'],
-      stats: { leads: '+250%', load: '0.8s' },
-      link: '#',
-    },
-    {
-      id: 5,
-      title: 'Psyke Tech',
-      category: 'Corporate',
-      description: 'From design to deployment, everything was smooth. The website looks stunning and functions flawlessly. Great job!',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
-      tags: ['Next.js', 'SaaS', 'Dashboard'],
-      stats: { signups: '+300%', retention: '+90%' },
-      link: '#',
-    },
-    {
-      id: 6,
-      title: 'Based Matrimony',
-      category: 'Web Application',
-      description: 'The team brought our vision to life with a vibrant and user-focused website. Excellent design sense and execution.',
-      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80',
-      tags: ['React', 'Node.js', 'Real-time'],
-      stats: { users: '+500%', matches: '+400%' },
-      link: '#',
-    },
-  ];
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi, setSelectedIndex]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+  }, [emblaApi, onSelect]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Heading animation
       gsap.fromTo(
         '.works-heading',
         { y: 50, opacity: 0 },
@@ -84,204 +47,182 @@ const Works = () => {
           opacity: 1,
           duration: 0.8,
           scrollTrigger: {
-            trigger: sectionRef.current,
+            trigger: '#works',
             start: 'top 80%',
             toggleActions: 'play none none reverse',
           },
         }
       );
-
-      // Project cards animation
-      gsap.fromTo(
-        '.project-card',
-        { y: 80, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: '.projects-grid',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    }, sectionRef);
+    });
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      id="works"
-      ref={sectionRef}
-      className="relative py-20 md:py-32 bg-brand-black overflow-hidden"
-    >
+    <section id="works" className="relative py-24 bg-brand-black overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full bg-brand-blue/5 blur-3xl" />
         <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] rounded-full bg-brand-blue-light/5 blur-3xl" />
       </div>
 
-      <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20 max-w-[100vw]">
         {/* Section Header */}
-        <div className="works-heading flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div>
+        <div className="works-heading flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 max-w-7xl mx-auto">
+          <div className="max-w-2xl">
             <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-sm font-medium mb-4">
-              Our Portfolio
+              Featured Work
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
-              Our Works
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight">
+              Our Latest <span className="text-gradient">Projects</span>
             </h2>
-            <p className="text-white/60 text-lg max-w-xl">
-              Made to stand out. Explore our latest projects and see how we have helped businesses transform their digital presence.
+            <p className="text-white/60 text-lg">
+              Explore our portfolio of successful digital marketing campaigns, high-performance websites, and e-commerce solutions.
             </p>
           </div>
-          <button className="flex items-center gap-2 text-brand-blue hover:text-brand-blue-light font-medium group self-start md:self-auto">
-            View All Projects
-            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </button>
-        </div>
-
-        {/* Projects Grid */}
-        <div className="projects-grid grid md:grid-cols-2 gap-6 lg:gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`project-card group relative rounded-2xl overflow-hidden cursor-pointer ${
-                index === 0 || index === 3 ? 'md:row-span-2' : ''
-              }`}
-              onClick={() => setSelectedProject(project)}
+          
+          <div className="flex gap-4">
+            <button
+              onClick={scrollPrev}
+              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-blue hover:border-brand-blue transition-colors group"
+              aria-label="Previous project"
             >
-              {/* Image Container */}
-              <div
-                className={`relative overflow-hidden ${
-                  index === 0 || index === 3 ? 'h-[500px] md:h-[600px]' : 'h-[300px] md:h-[350px]'
-                }`}
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                
-                {/* RGB Split Effect on Hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="absolute inset-0 bg-red-500/10 mix-blend-screen translate-x-1" />
-                  <div className="absolute inset-0 bg-blue-500/10 mix-blend-screen -translate-x-1" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                {/* Category */}
-                <span className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-white/80 text-xs font-medium mb-3">
-                  {project.category}
-                </span>
-
-                {/* Title */}
-                <h3 className="text-xl md:text-2xl font-display font-semibold text-white mb-2 group-hover:text-brand-blue transition-colors">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-white/60 text-sm line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                  {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-75">
-                  {project.tags.map((tag, tIndex) => (
-                    <span
-                      key={tIndex}
-                      className="px-2 py-0.5 rounded bg-white/5 text-white/50 text-xs"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* View Project Button */}
-                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300">
-                  <ExternalLink className="w-5 h-5 text-white" />
-                </div>
-              </div>
-            </div>
-          ))}
+              <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
+            </button>
+            <button
+              onClick={scrollNext}
+              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-blue hover:border-brand-blue transition-colors group"
+              aria-label="Next project"
+            >
+              <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Project Detail Dialog */}
-      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-4xl bg-brand-darker border-white/10 text-white max-h-[90vh] overflow-y-auto">
-          {selectedProject && (
-            <>
-              <div className="relative h-64 md:h-80 rounded-lg overflow-hidden mb-6">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-darker to-transparent" />
-              </div>
-              
-              <DialogHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="px-3 py-1 rounded-full bg-brand-blue/20 text-brand-blue text-sm">
-                    {selectedProject.category}
-                  </span>
-                </div>
-                <DialogTitle className="text-2xl md:text-3xl font-display font-bold text-white">
-                  {selectedProject.title}
-                </DialogTitle>
-                <DialogDescription className="text-white/60 text-base">
-                  {selectedProject.description}
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="mt-6 space-y-6">
-                {/* Stats */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {Object.entries(selectedProject.stats).map(([key, value]) => (
-                    <div key={key} className="p-4 rounded-xl bg-white/5">
-                      <div className="text-2xl font-display font-bold text-brand-blue">
-                        {value}
+        {/* Slider Container */}
+        <div className="max-w-7xl mx-auto mb-16">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex touch-pan-y">
+              {worksData.map((project, index) => (
+                <div 
+                  key={project.id} 
+                  className="flex-[0_0_100%] min-w-0 md:flex-[0_0_85%] lg:flex-[0_0_90%] pl-4 md:pl-8 first:pl-0"
+                >
+                  <div className={`transition-all duration-500 ease-out grid lg:grid-cols-2 gap-8 items-center bg-white/5 border border-white/10 rounded-3xl p-6 md:p-10 ${selectedIndex === index ? 'opacity-100 scale-100' : 'opacity-40 scale-[0.98]'}`}>
+                    
+                    {/* Project Info */}
+                    <div className="order-2 lg:order-1 space-y-8">
+                      <div className="flex items-center gap-4">
+                        {project.logo && (
+                          <div className="w-16 h-16 rounded-xl overflow-hidden bg-brand-black border border-white/10 flex items-center justify-center shadow-lg">
+                            <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-cover" />
+                          </div>
+                        )}
+                        <div>
+                          <span className="text-brand-blue text-sm font-medium tracking-wider uppercase mb-1 block">
+                            {project.category}
+                          </span>
+                          <h3 className="text-3xl font-display font-bold text-white">
+                            {project.title}
+                          </h3>
+                        </div>
                       </div>
-                      <div className="text-white/50 text-sm capitalize">{key}</div>
-                    </div>
-                  ))}
-                </div>
 
-                {/* Tags */}
-                <div>
-                  <h4 className="text-white font-medium mb-3">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1.5 rounded-full bg-white/10 text-white/80 text-sm"
+                      <p className="text-lg text-white/70 leading-relaxed">
+                        {project.description}
+                      </p>
+
+                      {/* Display a key stat if available */}
+                      {project.stats && (
+                        <div className="grid grid-cols-2 gap-4">
+                          {Object.entries(project.stats).slice(0, 2).map(([key, value]) => (
+                            <div key={key} className="bg-white/5 rounded-xl p-4 border border-white/5">
+                              <div className="text-2xl font-bold text-white mb-1">{value}</div>
+                              <div className="text-sm text-white/50 capitalize">{key}</div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 text-sm hover:text-white transition-colors"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <Button
+                        onClick={() => navigate(`/works/${project.slug}`)}
+                        className="bg-transparent hover:bg-white/10 text-white border border-white/20 font-medium px-8 py-6 rounded-full transition-all duration-300 group inline-flex items-center gap-2"
                       >
-                        {tag}
-                      </span>
-                    ))}
+                        Read Case Study
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </div>
+
+                    {/* Laptop Mockup Image */}
+                    <div className="order-1 lg:order-2 perspective-1000">
+                      <div className="relative w-full max-w-2xl mx-auto transform transition-transform duration-700 hover:scale-[1.02] hover:rotate-y-[-5deg]">
+                        {/* Laptop Frame */}
+                        <div className="relative rounded-[2rem] bg-gray-900 border-[8px] md:border-[12px] border-gray-800 shadow-2xl aspect-[16/10] overflow-hidden">
+                          {/* Screen Content */}
+                          <div className="absolute inset-0 bg-brand-darker">
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              className="w-full h-full object-cover object-top"
+                              loading="lazy"
+                            />
+                            {/* Inner Screen Shadow/Glass Effect */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
+                          </div>
+                        </div>
+                        {/* Laptop Base Base */}
+                        <div className="relative h-4 md:h-6 bg-gray-300 rounded-b-[2rem] w-[110%] -ml-[5%] shadow-xl flex items-center justify-center">
+                          {/* Trackpad Indent */}
+                          <div className="w-1/4 h-1 md:h-2 bg-gray-400 rounded-b-md" />
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Slider Pagination Dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {worksData.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => emblaApi && emblaApi.scrollTo(index)}
+                className={`transition-all duration-300 rounded-full h-2 ${
+                  selectedIndex === index 
+                    ? 'w-8 bg-brand-blue' 
+                    : 'w-2 bg-white/20 hover:bg-white/40'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
 
-                {/* CTA */}
-                <button className="w-full py-3 rounded-xl bg-brand-blue hover:bg-brand-blue-light text-white font-medium transition-colors flex items-center justify-center gap-2">
-                  View Live Project
-                  <ExternalLink className="w-4 h-4" />
-                </button>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
+        {/* View All CTA */}
+        <div className="text-center mt-12">
+           <Button
+              className="bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white font-medium px-8 py-6 rounded-full text-lg shadow-glow transition-all duration-300 hover:scale-105"
+              onClick={() => navigate('/#works')} // Replace with actual works page if exists, or contact
+            >
+              View All Projects
+              <ExternalLink className="ml-2 w-5 h-5" />
+           </Button>
+        </div>
+      </div>
     </section>
   );
 };

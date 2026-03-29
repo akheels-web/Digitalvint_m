@@ -2,14 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
-  Palette, 
-  Layout, 
-  Code, 
-  Globe, 
-  ShoppingCart,
   ArrowRight,
   Check
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { servicesData as services } from '../data/services';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,59 +14,6 @@ const Services = () => {
   const [activeService, setActiveService] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
-
-  const services = [
-    {
-      id: 1,
-      number: '01',
-      title: 'Custom UI/UX Design',
-      description: 'We create stunning, user-centric designs that captivate your audience and drive conversions. Our design process focuses on understanding your target audience and business goals.',
-      features: ['User Research', 'Wireframing', 'Prototyping', 'Visual Design', 'Usability Testing'],
-      icon: Palette,
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
-      color: 'from-purple-500/20 to-pink-500/20',
-    },
-    {
-      id: 2,
-      number: '02',
-      title: 'Website Designing',
-      description: 'Creative and responsive designs that ensure a unique and engaging user experience across all devices and screen sizes.',
-      features: ['Responsive Design', 'Mobile-First', 'Cross-Browser', 'Fast Loading', 'SEO Friendly'],
-      icon: Layout,
-      image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80',
-      color: 'from-blue-500/20 to-cyan-500/20',
-    },
-    {
-      id: 3,
-      number: '03',
-      title: 'Website Development',
-      description: 'Custom-built websites with cutting-edge technology to meet your business objectives. From simple landing pages to complex web applications.',
-      features: ['React/Next.js', 'Node.js', 'Python/Django', 'Custom CMS', 'API Integration'],
-      icon: Code,
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-      color: 'from-green-500/20 to-emerald-500/20',
-    },
-    {
-      id: 4,
-      number: '04',
-      title: 'Portal Development',
-      description: 'Dynamic and scalable portals tailored to enhance communication and functionality for your users, employees, or customers.',
-      features: ['B2B Portals', 'B2C Portals', 'Employee Portals', 'Customer Portals', 'Vendor Management'],
-      icon: Globe,
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-      color: 'from-orange-500/20 to-yellow-500/20',
-    },
-    {
-      id: 5,
-      number: '05',
-      title: 'E-Commerce Solutions',
-      description: 'Comprehensive e-commerce solutions with secure payment gateways, inventory management, and intuitive navigation for seamless shopping experiences.',
-      features: ['Shopify', 'WooCommerce', 'Magento', 'Custom Store', 'Payment Integration'],
-      icon: ShoppingCart,
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
-      color: 'from-red-500/20 to-rose-500/20',
-    },
-  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -115,7 +59,7 @@ const Services = () => {
     <section
       id="services"
       ref={sectionRef}
-      className="relative py-20 md:py-32 bg-brand-black overflow-hidden"
+      className="relative py-16 md:py-24 bg-brand-black overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -153,8 +97,8 @@ const Services = () => {
             >
               {/* Background Image */}
               <div
-                className={`absolute inset-0 transition-opacity duration-500 ${
-                  activeService === index ? 'opacity-100' : 'opacity-0'
+                className={`absolute inset-0 transition-all duration-700 ${
+                  activeService === index ? 'opacity-100' : 'opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-75'
                 }`}
               >
                 <img
@@ -168,12 +112,12 @@ const Services = () => {
 
               {/* Background Gradient (when collapsed) */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${service.color} transition-opacity duration-500 ${
-                  activeService === index ? 'opacity-0' : 'opacity-100'
+                className={`absolute inset-0 bg-gradient-to-br ${service.color} mix-blend-overlay pointer-events-none transition-opacity duration-500 ${
+                  activeService === index ? 'opacity-0' : 'opacity-60'
                 }`}
               />
               <div
-                className={`absolute inset-0 bg-brand-darker/90 transition-opacity duration-500 ${
+                className={`absolute inset-0 bg-brand-darker/80 pointer-events-none transition-opacity duration-500 ${
                   activeService === index ? 'opacity-0' : 'opacity-100'
                 }`}
               />
@@ -234,10 +178,10 @@ const Services = () => {
                   </ul>
 
                   {/* CTA */}
-                  <button className="mt-auto flex items-center gap-2 text-brand-blue hover:text-brand-blue-light font-medium group">
+                  <Link to={`/services/${service.slug}`} className="mt-auto flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light font-medium group">
                     Learn More
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -289,10 +233,10 @@ const Services = () => {
                 </ul>
 
                 {/* CTA */}
-                <button className="flex items-center gap-2 text-brand-blue hover:text-brand-blue-light text-sm font-medium group/btn">
+                <Link to={`/services/${service.slug}`} className="flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light text-sm font-medium group/btn">
                   Learn More
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                </Link>
               </div>
             </div>
           ))}

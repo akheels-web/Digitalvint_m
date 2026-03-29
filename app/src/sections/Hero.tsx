@@ -159,7 +159,7 @@ const Hero = () => {
             transition: 'transform 0.5s ease-out',
           }}
         />
-        
+
         {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div
@@ -205,7 +205,7 @@ const Hero = () => {
             className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-8 font-light"
           >
             Award-winning digital marketing agency in Hyderabad. We craft high-performance
-            websites and data-driven marketing strategies that convert visitors into customers.
+            digital solutions, ROI-focused campaigns, and data-driven marketing strategies that convert visitors into customers.
           </p>
 
           {/* Service Tags */}
@@ -227,7 +227,7 @@ const Hero = () => {
             <Button
               onClick={() => scrollToSection('contact')}
               size="lg"
-              className="bg-brand-blue hover:bg-brand-blue-light text-white font-semibold px-8 py-6 rounded-full text-lg transition-all duration-300 hover:shadow-glow-lg group"
+              className="bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white font-semibold px-8 py-6 rounded-full text-lg transition-all duration-300 hover:shadow-glow-lg group"
             >
               Get Free Quote
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -236,7 +236,7 @@ const Hero = () => {
               onClick={() => scrollToSection('works')}
               variant="outline"
               size="lg"
-              className="border-white/20 text-white hover:bg-white/10 px-8 py-6 rounded-full text-lg"
+              className="border-white/20 text-white bg-white/10 hover:bg-white/20 px-8 py-6 rounded-full text-lg transition-all"
             >
               View Our Work
             </Button>
@@ -288,7 +288,7 @@ const Hero = () => {
         </a>
         <a
           href="tel:+919391795320"
-          className="w-14 h-14 rounded-full bg-brand-blue hover:bg-brand-blue-light flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+          className="w-14 h-14 rounded-full bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
           aria-label="Call us"
         >
           <Phone className="w-6 h-6 text-white" />

@@ -6,17 +6,32 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import SEO from './components/SEO';
 import Navigation from './components/Navigation';
-import Hero from './sections/Hero';
-import Clients from './sections/Clients';
-import Services from './sections/Services';
-import Works from './sections/Works';
-import Pricing from './sections/Pricing';
-import WhyUs from './sections/WhyUs';
-import Testimonials from './sections/Testimonials';
-import Contact from './sections/Contact';
+import Home from './pages/Home';
+import ServiceDetail from './pages/ServiceDetail';
+import WorkDetail from './pages/WorkDetail';
+import BlogPage from './pages/Blog';
+import FAQPage from './pages/FAQ';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import BlogDetail from './pages/BlogDetail';
 import Footer from './sections/Footer';
+import PromoBanner from './components/PromoBanner';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 import './App.css';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    // Wrap in timeout to let Lenis settle if active
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 10);
+  }, [pathname]);
+  return null;
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,21 +68,27 @@ function App() {
 
   return (
     <HelmetProvider>
-      <SEO />
-      <div className="relative min-h-screen bg-brand-black noise-overlay">
-        <Navigation />
-        <main>
-          <Hero />
-          <Clients />
-          <Services />
-          <Works />
-          <Pricing />
-          <WhyUs />
-          <Testimonials />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      <BrowserRouter>
+        <ScrollToTop />
+        <SEO />
+        <div className="relative min-h-screen bg-brand-black noise-overlay">
+          <Navigation />
+          <PromoBanner />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services/:slug" element={<ServiceDetail />} />
+              <Route path="/works/:slug" element={<WorkDetail />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogDetail />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </BrowserRouter>
     </HelmetProvider>
   );
 }

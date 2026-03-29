@@ -160,7 +160,7 @@ const Testimonials = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 md:py-32 bg-brand-black overflow-hidden"
+      className="relative py-16 md:py-24 bg-brand-black overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -268,9 +268,9 @@ const Testimonials = () => {
               variant="outline"
               size="icon"
               onClick={goToPrev}
-              className="w-12 h-12 rounded-full border-white/20 text-white hover:bg-white/10"
+              className="w-12 h-12 rounded-full border-white/20 bg-white/10 text-white hover:bg-white/20 transition-all"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6 text-white" />
             </Button>
 
             {/* Dots */}
@@ -298,9 +298,9 @@ const Testimonials = () => {
               variant="outline"
               size="icon"
               onClick={goToNext}
-              className="w-12 h-12 rounded-full border-white/20 text-white hover:bg-white/10"
+              className="w-12 h-12 rounded-full border-white/20 bg-white/10 text-white hover:bg-white/20 transition-all"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6 text-white" />
             </Button>
           </div>
         </div>

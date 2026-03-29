@@ -7,15 +7,26 @@ import {
   ArrowUp,
   Mail,
   Phone,
-  MapPin
+  MapPin,
+  ArrowRight
 } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
   };
 
   const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      navigate(`/#${sectionId}`);
+      return;
+    }
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -24,125 +35,155 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: 'Website Development', id: 'services' },
-      { name: 'SEO Services', id: 'services' },
-      { name: 'Social Media Marketing', id: 'services' },
-      { name: 'PPC Advertising', id: 'services' },
-      { name: 'UI/UX Design', id: 'services' },
+      { name: 'Digital Strategy', id: 'services' },
+      { name: 'SEO & Content', id: 'services' },
+      { name: 'Performance Marketing', id: 'services' },
+      { name: 'Web Design & Dev', id: 'services' },
       { name: 'E-Commerce Solutions', id: 'services' },
     ],
     company: [
-      { name: 'About Us', id: 'hero' },
-      { name: 'Our Work', id: 'works' },
-      { name: 'Pricing', id: 'pricing' },
-      { name: 'Testimonials', id: 'why-us' },
+      { name: 'About Us', id: 'why-us' },
+      { name: 'Portfolio', id: 'works' },
+      { name: 'Our Process', id: 'process' },
+      { name: 'Testimonials', id: 'testimonials' },
       { name: 'Contact', id: 'contact' },
     ],
     resources: [
-      { name: 'Blog', href: '#' },
+      { name: 'Blog', href: '/blog' },
       { name: 'Case Studies', id: 'works' },
-      { name: 'FAQs', href: '#' },
-      { name: 'Privacy Policy', href: '#' },
-      { name: 'Terms of Service', href: '#' },
+      { name: 'FAQs', href: '/faq' },
+      { name: 'Privacy Policy', href: '/privacy-policy' },
+      { name: 'Terms of Service', href: '/terms' },
     ],
   };
 
   const socialLinks = [
-    { icon: Facebook, href: 'https://facebook.com/digitalvint', label: 'Facebook' },
-    { icon: Instagram, href: 'https://instagram.com/digitalvint', label: 'Instagram' },
-    { icon: Linkedin, href: 'https://linkedin.com/company/digitalvint', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com/digitalvint', label: 'Twitter' },
-    { icon: Youtube, href: 'https://youtube.com/digitalvint', label: 'YouTube' },
+    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Youtube, href: '#', label: 'YouTube' },
   ];
 
   return (
-    <footer className="relative bg-brand-darker border-t border-white/10">
-      {/* Main Footer */}
-      <div className="px-4 sm:px-6 lg:px-12 xl:px-20 py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
-            {/* Brand Column */}
-            <div className="lg:col-span-2">
-              {/* Logo */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-blue to-brand-blue-light flex items-center justify-center">
-                  <span className="text-white font-display font-bold text-xl">DV</span>
-                </div>
-                <span className="text-white font-display font-semibold text-xl">
-                  Digital Vint
-                </span>
-              </div>
+    <footer className="relative bg-brand-black overflow-hidden pt-20">
+      {/* Background Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-brand-blue/10 rounded-full blur-[120px] pointer-events-none opacity-50" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-              <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-sm">
-                Hyderabad&apos;s leading digital marketing agency. We transform businesses through innovative web solutions and data-driven marketing strategies.
-              </p>
+      {/* Top CTA Section (Modern Trend) */}
+      <div className="px-4 sm:px-6 lg:px-12 xl:px-20 mb-20">
+        <div className="max-w-7xl mx-auto bg-white/5 border border-white/10 rounded-[2.5rem] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden group hover:border-brand-blue/30 transition-colors duration-500">
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          <div className="relative z-10 max-w-2xl text-center md:text-left">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4 leading-tight">
+              Ready to grow your revenue?
+            </h2>
+            <p className="text-white/60 text-lg">
+              Let's talk about how our digital marketing strategies can scale your business.
+            </p>
+          </div>
+          
+          <div className="relative z-10 flex-shrink-0">
+            <Button 
+              onClick={() => scrollToSection('contact')} 
+              className="bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white px-8 py-7 rounded-full text-lg shadow-glow transition-all hover:scale-105 inline-flex items-center gap-2 group/btn"
+            >
+              Start Your Project
+              <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+        </div>
+      </div>
 
-              {/* Contact Info */}
-              <div className="space-y-3 mb-6">
-                <a
-                  href="tel:+919391795320"
-                  className="flex items-center gap-3 text-white/60 hover:text-white transition-colors text-sm"
-                >
-                  <Phone className="w-4 h-4 text-brand-blue" />
-                  +91 93917 95320
-                </a>
-                <a
-                  href="mailto:info@digitalvint.com"
-                  className="flex items-center gap-3 text-white/60 hover:text-white transition-colors text-sm"
-                >
-                  <Mail className="w-4 h-4 text-brand-blue" />
-                  info@digitalvint.com
-                </a>
-                <div className="flex items-center gap-3 text-white/60 text-sm">
-                  <MapPin className="w-4 h-4 text-brand-blue" />
-                  Banjara Hills, Hyderabad, Telangana
-                </div>
+      {/* Main Footer Links */}
+      <div className="px-4 sm:px-6 lg:px-12 xl:px-20 pb-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+          
+          {/* Brand Column (Spans 4) */}
+          <div className="lg:col-span-4 lg:pr-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-blue to-purple-600 flex items-center justify-center shadow-lg">
+                <span className="text-white font-display font-bold text-xl">DV</span>
               </div>
-
-              {/* Social Links */}
-              <div className="flex gap-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue/20 hover:border-brand-blue/30 transition-all"
-                    aria-label={social.label}
-                  >
-                    <social.icon className="w-4 h-4" />
-                  </a>
-                ))}
-              </div>
+              <span className="text-white font-display font-bold text-2xl tracking-tight">
+                Digital Vint
+              </span>
             </div>
 
-            {/* Services Column */}
+            <p className="text-white/60 text-base leading-relaxed mb-8">
+              Hyderabad's premier digital marketing agency. We specialize in high-converting web design, robust development, and aggressive local SEO strategies for businesses across India.
+            </p>
+
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300 hover:-translate-y-1"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact Details (Spans 3) */}
+          <div className="lg:col-span-3">
+            <h3 className="text-white font-display font-bold text-lg mb-6 tracking-wide">Contact Us</h3>
+            <ul className="space-y-4">
+              <li>
+                <a href="tel:+919391795320" className="flex items-start gap-3 text-white/60 hover:text-white transition-colors group">
+                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors shrink-0">
+                    <Phone className="w-4 h-4 text-brand-blue" />
+                  </div>
+                  <span className="pt-1">+91 93917 95320</span>
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@digitalvint.com" className="flex items-start gap-3 text-white/60 hover:text-white transition-colors group">
+                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors shrink-0">
+                    <Mail className="w-4 h-4 text-brand-blue" />
+                  </div>
+                  <span className="pt-1 break-all">info@digitalvint.com</span>
+                </a>
+              </li>
+              <li>
+                <div className="flex items-start gap-3 text-white/60 group">
+                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4 text-brand-blue" />
+                  </div>
+                  <span className="pt-1">Banjara Hills, Hyderabad,<br/>Telangana, India</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Navigation Columns (Spans 5) */}
+          <div className="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-white font-semibold mb-6">Services</h3>
+              <h3 className="text-white font-display font-bold text-lg mb-6 tracking-wide">Services</h3>
               <ul className="space-y-3">
                 {footerLinks.services.map((link) => (
                   <li key={link.name}>
-                    <button
-                      onClick={() => scrollToSection(link.id)}
-                      className="text-white/60 hover:text-white text-sm transition-colors"
-                    >
+                    <button onClick={() => scrollToSection(link.id)} className="block w-full text-left text-white/50 hover:text-white hover:pl-1 text-sm transition-all duration-300">
                       {link.name}
                     </button>
                   </li>
                 ))}
               </ul>
             </div>
-
-            {/* Company Column */}
+            
             <div>
-              <h3 className="text-white font-semibold mb-6">Company</h3>
+              <h3 className="text-white font-display font-bold text-lg mb-6 tracking-wide">Company</h3>
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.name}>
-                    <button
-                      onClick={() => scrollToSection(link.id)}
-                      className="text-white/60 hover:text-white text-sm transition-colors"
-                    >
+                    <button onClick={() => scrollToSection(link.id)} className="block w-full text-left text-white/50 hover:text-white hover:pl-1 text-sm transition-all duration-300">
                       {link.name}
                     </button>
                   </li>
@@ -150,52 +191,43 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Resources Column */}
-            <div>
-              <h3 className="text-white font-semibold mb-6">Resources</h3>
+            <div className="col-span-2 sm:col-span-1">
+              <h3 className="text-white font-display font-bold text-lg mb-6 tracking-wide">Legal</h3>
               <ul className="space-y-3">
                 {footerLinks.resources.map((link) => (
                   <li key={link.name}>
                     {'id' in link ? (
-                      <button
-                        onClick={() => scrollToSection(link.id!)}
-                        className="text-white/60 hover:text-white text-sm transition-colors"
-                      >
+                      <button onClick={() => scrollToSection(link.id!)} className="text-left text-white/50 hover:text-white hover:pl-1 text-sm transition-all duration-300">
                         {link.name}
                       </button>
                     ) : (
-                      <a
-                        href={link.href}
-                        className="text-white/60 hover:text-white text-sm transition-colors"
-                      >
+                      <Link to={link.href!} onClick={scrollToTop} className="block text-left text-white/50 hover:text-white hover:pl-1 text-sm transition-all duration-300">
                         {link.name}
-                      </a>
+                      </Link>
                     )}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
+
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10 px-4 sm:px-6 lg:px-12 xl:px-20 py-6">
+      <div className="border-t border-white/5 px-4 sm:px-6 lg:px-12 xl:px-20 py-6 bg-black/20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-sm text-center md:text-left">
-            &copy; {new Date().getFullYear()} Digital Vint. All rights reserved. Made with passion in Hyderabad, India.
+          <p className="text-white/40 text-sm font-medium">
+            &copy; {new Date().getFullYear()} Digital Vint. All rights reserved.
           </p>
 
           <div className="flex items-center gap-6">
-            {/* Local SEO Keywords */}
-            <span className="text-white/30 text-xs hidden lg:block">
-              Digital Marketing Agency Hyderabad | SEO Services Telangana
+            <span className="text-white/30 text-xs hidden lg:block tracking-wide">
+              Top Digital Marketing Agency Hyderabad | Expert SEO Services Telangana
             </span>
-
-            {/* Back to Top */}
             <button
               onClick={scrollToTop}
-              className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue/20 hover:border-brand-blue/30 transition-all"
+              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300"
               aria-label="Back to top"
             >
               <ArrowUp className="w-4 h-4" />

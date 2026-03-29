@@ -219,7 +219,7 @@ const Contact = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative py-20 md:py-32 bg-brand-black overflow-hidden"
+      className="relative py-16 md:py-24 bg-brand-black overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">

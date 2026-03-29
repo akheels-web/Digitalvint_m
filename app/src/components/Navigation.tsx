@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +20,12 @@ const Navigation = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      navigate(`/#${sectionId}`);
+      setIsMobileMenuOpen(false);
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -27,7 +37,7 @@ const Navigation = () => {
     { name: 'Home', id: 'hero' },
     { name: 'Services', id: 'services' },
     { name: 'Works', id: 'works' },
-    { name: 'Pricing', id: 'pricing' },
+    { name: 'Process', id: 'process' },
     { name: 'Why Us', id: 'why-us' },
     { name: 'Contact', id: 'contact' },
   ];
@@ -44,11 +54,13 @@ const Navigation = () => {
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <a
-              href="#hero"
+            <Link
+              to="/"
               onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('hero');
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  scrollToSection('hero');
+                }
               }}
               className="flex items-center gap-2 group"
             >
@@ -58,7 +70,7 @@ const Navigation = () => {
               <span className="text-white font-display font-semibold text-lg hidden sm:block group-hover:text-brand-blue transition-colors">
                 Digital Vint
               </span>
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">

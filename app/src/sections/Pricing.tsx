@@ -1,106 +1,60 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Check, X, Sparkles, Zap, Crown, ArrowRight, HelpCircle } from 'lucide-react';
+import { Search, Lightbulb, Rocket, TrendingUp, ArrowRight, CheckCircle2, Mail, Phone, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Pricing = () => {
+const Process = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
-  const [selectedPlan, setSelectedPlan] = useState<typeof plans[0] | null>(null);
+  const [auditEmail, setAuditEmail] = useState('');
+  const [auditWebsite, setAuditWebsite] = useState('');
+  const [auditSubmitted, setAuditSubmitted] = useState(false);
 
-  const plans = [
+  const steps = [
     {
-      id: 'starter',
-      name: 'Starter',
-      description: 'Perfect for small businesses and startups beginning their digital journey',
-      monthlyPrice: 8000,
-      yearlyPrice: 80000, // 2 months free
-      icon: Sparkles,
+      number: '01',
+      icon: Search,
+      title: 'Discovery & Audit',
+      description: 'We deep-dive into your business, competitors, and target market. A comprehensive audit reveals hidden opportunities and fixes quick wins.',
+      details: ['Competitor analysis', 'Website health audit', 'Keyword research', 'Market positioning'],
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-500/10',
-      borderColor: 'border-blue-500/30',
-      popular: false,
-      features: [
-        { name: 'Basic SEO Optimization', included: true, tooltip: 'On-page SEO, meta tags, and basic keyword optimization' },
-        { name: '5-Page Website', included: true, tooltip: 'Responsive website with up to 5 pages' },
-        { name: 'Social Media Setup (2 platforms)', included: true, tooltip: 'Facebook and Instagram business setup' },
-        { name: '8 Social Media Posts/Month', included: true, tooltip: 'Custom designed posts with captions' },
-        { name: 'Google Business Profile Setup', included: true, tooltip: 'Complete GMB optimization' },
-        { name: 'Monthly Performance Report', included: true, tooltip: 'Detailed analytics and insights' },
-        { name: 'Basic Google Ads Setup', included: true, tooltip: 'Campaign setup with ₹5K ad budget management' },
-        { name: 'Email Support', included: true, tooltip: '48-hour response time' },
-        { name: 'Content Creation (2 blogs)', included: false, tooltip: 'SEO-optimized blog posts' },
-        { name: 'Advanced Analytics', included: false, tooltip: 'Custom dashboards and deep insights' },
-        { name: 'Dedicated Account Manager', included: false, tooltip: 'Personal point of contact' },
-        { name: 'Priority Support', included: false, tooltip: '24-hour response time' },
-      ],
-      cta: 'Get Started',
     },
     {
-      id: 'growth',
-      name: 'Growth',
-      description: 'Ideal for growing businesses seeking to expand their digital presence',
-      monthlyPrice: 18000,
-      yearlyPrice: 180000, // 2 months free
-      icon: Zap,
-      color: 'from-brand-blue to-brand-blue-light',
-      bgColor: 'bg-brand-blue/10',
-      borderColor: 'border-brand-blue/50',
-      popular: true,
-      features: [
-        { name: 'Advanced SEO (On-page + Off-page)', included: true, tooltip: 'Complete SEO with backlink building' },
-        { name: '10-Page Website', included: true, tooltip: 'Responsive website with up to 10 pages' },
-        { name: 'Social Media Management (4 platforms)', included: true, tooltip: 'FB, IG, LinkedIn, Twitter management' },
-        { name: '16 Social Media Posts/Month', included: true, tooltip: 'Custom designed posts with captions' },
-        { name: 'Google Business Profile Optimization', included: true, tooltip: 'Advanced GMB with posts and reviews' },
-        { name: 'Weekly Performance Reports', included: true, tooltip: 'Detailed analytics with recommendations' },
-        { name: 'Google Ads + Facebook Ads', included: true, tooltip: 'Campaign management with ₹15K ad budget' },
-        { name: 'Priority Email & Chat Support', included: true, tooltip: '24-hour response time' },
-        { name: 'Content Creation (4 blogs)', included: true, tooltip: 'SEO-optimized blog posts' },
-        { name: 'Advanced Analytics Dashboard', included: true, tooltip: 'Real-time custom dashboards' },
-        { name: 'Dedicated Account Manager', included: false, tooltip: 'Personal point of contact' },
-        { name: 'Video Content Creation', included: false, tooltip: 'Short-form video content for social media' },
-      ],
-      cta: 'Start Growing',
-    },
-    {
-      id: 'agency',
-      name: 'Agency',
-      description: 'Complete digital solution for enterprises and marketing agencies',
-      monthlyPrice: 35000,
-      yearlyPrice: 350000, // 2 months free
-      icon: Crown,
+      number: '02',
+      icon: Lightbulb,
+      title: 'Strategy & Planning',
+      description: 'We craft a data-backed digital strategy tailored to your goals — whether that\'s leads, sales, visibility, or all three.',
+      details: ['Custom roadmap', 'Channel selection', 'Budget allocation', 'KPI definition'],
       color: 'from-purple-500 to-pink-500',
       bgColor: 'bg-purple-500/10',
-      borderColor: 'border-purple-500/30',
-      popular: false,
-      features: [
-        { name: 'Enterprise SEO (Full Suite)', included: true, tooltip: 'Complete SEO with technical audits' },
-        { name: 'Unlimited Pages Website', included: true, tooltip: 'Custom web application or large website' },
-        { name: 'All Social Media Platforms', included: true, tooltip: 'Management of all major platforms' },
-        { name: '30+ Social Media Posts/Month', included: true, tooltip: 'Daily posts with stories and reels' },
-        { name: 'Multi-location GMB Management', included: true, tooltip: 'Manage multiple business locations' },
-        { name: 'Real-time Analytics & Reporting', included: true, tooltip: 'Live dashboards and weekly calls' },
-        { name: 'Full PPC Management', included: true, tooltip: 'Google, FB, LinkedIn, YouTube ads with ₹50K budget' },
-        { name: '24/7 Priority Support', included: true, tooltip: 'Phone, email, and chat support' },
-        { name: 'Content Creation (8+ blogs)', included: true, tooltip: 'SEO-optimized content strategy' },
-        { name: 'Custom Analytics & BI', included: true, tooltip: 'Business intelligence dashboards' },
-        { name: 'Dedicated Account Manager', included: true, tooltip: 'Personal point of contact' },
-        { name: 'Video Content & Reels', included: true, tooltip: 'Professional video content creation' },
-      ],
-      cta: 'Go Enterprise',
+    },
+    {
+      number: '03',
+      icon: Rocket,
+      title: 'Execution & Launch',
+      description: 'Our team builds, designs, writes, and deploys. From SEO-optimized websites to ad campaigns — executed to perfection.',
+      details: ['Design & development', 'Content creation', 'Campaign setup', 'Quality assurance'],
+      color: 'from-orange-500 to-yellow-500',
+      bgColor: 'bg-orange-500/10',
+    },
+    {
+      number: '04',
+      icon: TrendingUp,
+      title: 'Growth & Optimization',
+      description: 'We monitor, test, and refine continuously. Monthly reports, A/B testing, and scaling what delivers the highest ROI.',
+      details: ['Performance tracking', 'A/B testing', 'Monthly reporting', 'Continuous scaling'],
+      color: 'from-green-500 to-emerald-500',
+      bgColor: 'bg-green-500/10',
     },
   ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.pricing-heading',
+        '.process-heading',
         { y: 50, opacity: 0 },
         {
           y: 0,
@@ -115,17 +69,32 @@ const Pricing = () => {
       );
 
       gsap.fromTo(
-        '.pricing-card',
-        { y: 80, opacity: 0 },
+        '.process-step',
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.15,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: '.process-grid',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '.audit-cta',
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          stagger: 0.15,
-          ease: 'expo.out',
           scrollTrigger: {
-            trigger: '.pricing-grid',
-            start: 'top 80%',
+            trigger: '.audit-cta',
+            start: 'top 85%',
             toggleActions: 'play none none reverse',
           },
         }
@@ -135,28 +104,26 @@ const Pricing = () => {
     return () => ctx.revert();
   }, []);
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0,
-    }).format(price);
+  const handleAuditSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Send to contact / Google Sheets integration
+    setAuditSubmitted(true);
+    setTimeout(() => {
+      const contactEl = document.getElementById('contact');
+      contactEl?.scrollIntoView({ behavior: 'smooth' });
+    }, 2000);
   };
 
-  const scrollToContact = (planName: string) => {
+  const scrollToContact = () => {
     const element = document.getElementById('contact');
-    if (element) {
-      // Store selected plan in session storage for the contact form
-      sessionStorage.setItem('selectedPlan', planName);
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    element?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section
-      id="pricing"
+      id="process"
       ref={sectionRef}
-      className="relative py-20 md:py-32 bg-brand-black overflow-hidden"
+      className="relative py-16 md:py-24 bg-brand-black overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -165,204 +132,195 @@ const Pricing = () => {
       </div>
 
       <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20">
-        {/* Section Header */}
-        <div className="pricing-heading text-center max-w-3xl mx-auto mb-12">
+
+        {/* ===== SECTION 1: HOW WE WORK ===== */}
+        <div className="process-heading text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-sm font-medium mb-4">
-            Pricing Plans
+            Our Process
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
-            Transparent Pricing
+            How We Deliver Results
           </h2>
           <p className="text-white/60 text-lg">
-            Choose the perfect plan for your business. All plans include our core features with no hidden fees.
+            A proven 4-step framework that transforms businesses in Hyderabad and beyond into digital market leaders.
           </p>
         </div>
 
-        {/* Billing Toggle */}
-        <div className="flex items-center justify-center gap-4 mb-12">
-          <span
-            className={`text-sm font-medium transition-colors ${
-              billingCycle === 'monthly' ? 'text-white' : 'text-white/50'
-            }`}
-          >
-            Monthly
-          </span>
-          <button
-            onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
-            className="relative w-16 h-8 rounded-full bg-white/10 p-1 transition-colors"
-          >
-            <div
-              className={`absolute top-1 w-6 h-6 rounded-full bg-brand-blue transition-all duration-300 ${
-                billingCycle === 'yearly' ? 'left-9' : 'left-1'
-              }`}
-            />
-          </button>
-          <span
-            className={`text-sm font-medium transition-colors ${
-              billingCycle === 'yearly' ? 'text-white' : 'text-white/50'
-            }`}
-          >
-            Yearly
-          </span>
-          {billingCycle === 'yearly' && (
-            <span className="px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-xs font-medium">
-              Save 17%
-            </span>
-          )}
+        {/* Process Steps */}
+        <div className="process-grid grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-24">
+          {steps.map((step, index) => (
+            <div key={index} className="process-step group relative">
+              <div className="relative h-full p-6 lg:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm overflow-hidden hover:border-white/20 transition-all duration-300">
+                {/* Step number watermark */}
+                <div className="absolute top-4 right-4 text-6xl font-display font-bold text-white/[0.03] select-none">
+                  {step.number}
+                </div>
+
+                {/* Gradient on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-[0.07] transition-opacity duration-500`} />
+
+                {/* Icon */}
+                <div className={`relative w-14 h-14 rounded-xl ${step.bgColor} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                  <step.icon className="w-7 h-7 text-white" />
+                </div>
+
+                {/* Step Label */}
+                <div className="relative">
+                  <span className={`text-xs font-bold uppercase tracking-widest bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-2 block`}>
+                    STEP {step.number}
+                  </span>
+                  <h3 className="text-xl font-display font-semibold text-white mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-white/55 text-sm leading-relaxed mb-5">
+                    {step.description}
+                  </p>
+
+                  {/* Detail bullets */}
+                  <ul className="space-y-2">
+                    {step.details.map((detail, i) => (
+                      <li key={i} className="flex items-center gap-2 text-sm text-white/50">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-brand-blue flex-shrink-0" />
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Connector arrow (between cards on desktop) */}
+              {index < steps.length - 1 && (
+                <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20">
+                  <ArrowRight className="w-6 h-6 text-white/15" />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Pricing Cards */}
-        <TooltipProvider>
-          <div className="pricing-grid grid md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
-            {plans.map((plan) => (
-              <div
-                key={plan.id}
-                className={`pricing-card relative rounded-2xl overflow-hidden ${
-                  plan.popular ? 'md:-mt-4 md:mb-4' : ''
-                }`}
-              >
-                {/* Popular Badge */}
-                {plan.popular && (
-                  <div className="absolute top-0 left-0 right-0 py-2 bg-gradient-to-r from-brand-blue to-brand-blue-light text-center">
-                    <span className="text-white text-sm font-medium">Most Popular</span>
+        {/* ===== SECTION 2: FREE SEO AUDIT CTA ===== */}
+        <div className="audit-cta relative rounded-3xl overflow-hidden max-w-5xl mx-auto">
+          {/* Background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 via-purple-600/15 to-pink-500/10" />
+          <div className="absolute inset-0 border border-brand-blue/20 rounded-3xl" />
+
+          {/* Decorative orbs */}
+          <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-brand-blue/20 blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-purple-500/20 blur-3xl" />
+
+          <div className="relative p-8 md:p-14">
+            <div className="grid lg:grid-cols-2 gap-10 items-center">
+              
+              {/* Left Content */}
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <Sparkles className="w-5 h-5 text-yellow-400" />
+                  <span className="text-yellow-400 text-sm font-semibold uppercase tracking-wider">
+                    100% Free — No Strings Attached
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 leading-tight">
+                  Get Your Free<br />
+                  <span className="bg-gradient-to-r from-brand-blue to-purple-500 bg-clip-text text-transparent">
+                    Website & SEO Audit
+                  </span>
+                </h2>
+                <p className="text-white/60 mb-6 leading-relaxed">
+                  Discover exactly what's holding your website back from ranking on Google.
+                  Our experts will analyze your site and deliver a detailed report with actionable fixes.
+                </p>
+                <ul className="space-y-3 mb-6">
+                  {[
+                    'Core Web Vitals & speed analysis',
+                    'Keyword ranking opportunities',
+                    'Competitor gap analysis',
+                    'Technical SEO health check',
+                    'Local SEO readiness score',
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-white/70 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Right: Form */}
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-md">
+                {!auditSubmitted ? (
+                  <form onSubmit={handleAuditSubmit} className="space-y-4">
+                    <div>
+                      <label htmlFor="audit-website" className="text-white/80 text-sm font-medium mb-1.5 block">
+                        Website URL
+                      </label>
+                      <input
+                        id="audit-website"
+                        type="url"
+                        placeholder="https://yourwebsite.com"
+                        value={auditWebsite}
+                        onChange={(e) => setAuditWebsite(e.target.value)}
+                        required
+                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-brand-blue/50 focus:ring-1 focus:ring-brand-blue/30 transition-all text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="audit-email" className="text-white/80 text-sm font-medium mb-1.5 block">
+                        Email Address
+                      </label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                        <input
+                          id="audit-email"
+                          type="email"
+                          placeholder="you@company.com"
+                          value={auditEmail}
+                          onChange={(e) => setAuditEmail(e.target.value)}
+                          required
+                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-brand-blue/50 focus:ring-1 focus:ring-brand-blue/30 transition-all text-sm"
+                        />
+                      </div>
+                    </div>
+                    <Button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white py-6 rounded-xl text-base font-semibold shadow-glow inline-flex items-center justify-center gap-2"
+                    >
+                      Get My Free Audit Report
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                    <p className="text-white/30 text-xs text-center">
+                      No spam. We'll send your audit report within 24 hours.
+                    </p>
+                  </form>
+                ) : (
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 mx-auto rounded-full bg-green-500/20 flex items-center justify-center mb-4">
+                      <CheckCircle2 className="w-8 h-8 text-green-400" />
+                    </div>
+                    <h3 className="text-xl font-display font-bold text-white mb-2">Audit Request Received!</h3>
+                    <p className="text-white/60 text-sm">
+                      Our SEO team will analyze your site and send a detailed report to your email within 24 hours.
+                    </p>
                   </div>
                 )}
-
-                {/* Card Background */}
-                <div
-                  className={`h-full p-6 lg:p-8 rounded-2xl border ${plan.borderColor} ${plan.bgColor} backdrop-blur-sm`}
-                >
-                  {/* Icon & Name */}
-                  <div className={`pt-${plan.popular ? '6' : '0'} mb-6`}>
-                    <div
-                      className={`w-14 h-14 rounded-xl bg-gradient-to-br ${plan.color} flex items-center justify-center mb-4`}
-                    >
-                      <plan.icon className="w-7 h-7 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-display font-bold text-white mb-2">
-                      {plan.name}
-                    </h3>
-                    <p className="text-white/60 text-sm">{plan.description}</p>
-                  </div>
-
-                  {/* Price */}
-                  <div className="mb-6">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl lg:text-5xl font-display font-bold text-white">
-                        {formatPrice(billingCycle === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice)}
-                      </span>
-                      <span className="text-white/50 text-sm">/{billingCycle === 'monthly' ? 'mo' : 'yr'}</span>
-                    </div>
-                    {billingCycle === 'yearly' && (
-                      <p className="text-green-400 text-sm mt-1">
-                        Save {formatPrice(plan.monthlyPrice * 2)}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* CTA Button */}
-                  <Button
-                    onClick={() => scrollToContact(plan.name)}
-                    className={`w-full mb-8 py-6 rounded-xl font-semibold transition-all duration-300 group ${
-                      plan.popular
-                        ? 'bg-brand-blue hover:bg-brand-blue-light text-white hover:shadow-glow'
-                        : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
-                    }`}
-                  >
-                    {plan.cta}
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-
-                  {/* Features */}
-                  <div className="space-y-3">
-                    <p className="text-white/50 text-sm font-medium mb-3">What&apos;s included:</p>
-                    {plan.features.map((feature, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        {feature.included ? (
-                          <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                        ) : (
-                          <X className="w-5 h-5 text-white/20 flex-shrink-0 mt-0.5" />
-                        )}
-                        <span
-                          className={`text-sm ${
-                            feature.included ? 'text-white/80' : 'text-white/30'
-                          }`}
-                        >
-                          {feature.name}
-                        </span>
-                        {feature.tooltip && (
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <button className="text-white/30 hover:text-white/50">
-                                <HelpCircle className="w-4 h-4" />
-                              </button>
-                            </TooltipTrigger>
-                            <TooltipContent className="bg-brand-darker border-white/10 text-white max-w-xs">
-                              <p>{feature.tooltip}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Trust line */}
+            <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-white/30 text-xs">
+              <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> Or call us: +91 91000 00000</span>
+              <span>•</span>
+              <span>Trusted by 150+ businesses in Hyderabad</span>
+              <span>•</span>
+              <button onClick={scrollToContact} className="text-brand-blue hover:text-brand-blue-light transition-colors">
+                Prefer to chat? Contact us →
+              </button>
+            </div>
           </div>
-        </TooltipProvider>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-12">
-          <p className="text-white/50 mb-4">
-            Need a custom solution? Contact us for enterprise pricing.
-          </p>
-          <button
-            onClick={() => {
-              const element = document.getElementById('contact');
-              element?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="text-brand-blue hover:text-brand-blue-light font-medium inline-flex items-center gap-2 group"
-          >
-            Contact Sales
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
         </div>
-      </div>
 
-      {/* Plan Details Dialog */}
-      <Dialog open={!!selectedPlan} onOpenChange={() => setSelectedPlan(null)}>
-        <DialogContent className="max-w-2xl bg-brand-darker border-white/10 text-white">
-          {selectedPlan && (
-            <>
-              <DialogHeader>
-                <div className="flex items-center gap-4">
-                  <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${selectedPlan.color} flex items-center justify-center`}
-                  >
-                    <selectedPlan.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <DialogTitle className="text-2xl font-display font-bold text-white">
-                      {selectedPlan.name} Plan
-                    </DialogTitle>
-                    <DialogDescription className="text-white/60">
-                      {selectedPlan.description}
-                    </DialogDescription>
-                  </div>
-                </div>
-              </DialogHeader>
-              <div className="mt-6">
-                <p className="text-white/80 leading-relaxed">
-                  Our {selectedPlan.name} plan is designed to help businesses like yours achieve their digital marketing goals.
-                  With comprehensive features and dedicated support, you&apos;ll have everything you need to succeed online.
-                </p>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
+      </div>
     </section>
   );
 };
 
-export default Pricing;
+export default Process;
