@@ -1,7 +1,7 @@
-import { 
-  Facebook, 
-  Instagram, 
-  Linkedin, 
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
   Youtube,
   ArrowUp,
   Mail,
@@ -81,7 +81,7 @@ const Footer = () => {
       <div className="px-4 sm:px-6 lg:px-12 xl:px-20 mb-20">
         <div className="max-w-7xl mx-auto bg-white/5 border border-white/10 rounded-[2.5rem] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden group hover:border-brand-blue/30 transition-colors duration-500">
           <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          
+
           <div className="relative z-10 max-w-2xl text-center md:text-left">
             <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4 leading-tight">
               Ready to grow your revenue?
@@ -90,10 +90,10 @@ const Footer = () => {
               Let's talk about how our digital marketing strategies can scale your business.
             </p>
           </div>
-          
+
           <div className="relative z-10 flex-shrink-0">
-            <Button 
-              onClick={() => scrollToSection('contact')} 
+            <Button
+              onClick={() => scrollToSection('contact')}
               className="bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white px-8 py-7 rounded-full text-lg shadow-glow transition-all hover:scale-105 inline-flex items-center gap-2 group/btn"
             >
               Start Your Project
@@ -106,14 +106,14 @@ const Footer = () => {
       {/* Main Footer Links */}
       <div className="px-4 sm:px-6 lg:px-12 xl:px-20 pb-16">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
-          
+
           {/* Brand Column (Spans 4) */}
           <div className="lg:col-span-4 lg:pr-12">
             <div className="mb-6">
               <Link to="/" onClick={scrollToTop}>
-                <img 
-                  src="https://digitalvint.com/wp-content/uploads/2024/09/DV-White-2048x569.png" 
-                  alt="Digital Vint Logo" 
+                <img
+                  src="https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Digitalvint.png"
+                  alt="Digital Vint Logo"
                   className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
                 />
               </Link>
@@ -164,7 +164,7 @@ const Footer = () => {
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
                     <MapPin className="w-4 h-4 text-brand-blue" />
                   </div>
-                  <span className="pt-1">Banjara Hills, Hyderabad,<br/>Telangana, India</span>
+                  <span className="pt-1">Banjara Hills, Hyderabad,<br />Telangana, India</span>
                 </div>
               </li>
             </ul>
@@ -184,7 +184,7 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-            
+
             <div>
               <h3 className="text-white font-display font-bold text-lg mb-6 tracking-wide">Company</h3>
               <ul className="space-y-3">

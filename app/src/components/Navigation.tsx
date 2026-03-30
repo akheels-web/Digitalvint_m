@@ -25,7 +25,7 @@ const Navigation = () => {
       setIsMobileMenuOpen(false);
       return;
     }
-    
+
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -45,11 +45,10 @@ const Navigation = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-500 ease-expo ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-500 ease-expo ${isScrolled
             ? 'bg-brand-black/90 backdrop-blur-lg border-b border-white/10'
             : 'bg-transparent'
-        }`}
+          }`}
       >
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="flex items-center justify-between h-16 lg:h-20">
@@ -64,9 +63,9 @@ const Navigation = () => {
               }}
               className="flex items-center gap-2 group"
             >
-              <img 
-                src="https://digitalvint.com/wp-content/uploads/2024/09/DV-White-2048x569.png" 
-                alt="Digital Vint Logo" 
+              <img
+                src="https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Digitalvint.png"
+                alt="Digital Vint Logo"
                 className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
@@ -113,15 +112,13 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
-          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
       >
         <div className="absolute inset-0 bg-brand-black/95 backdrop-blur-xl" onClick={() => setIsMobileMenuOpen(false)} />
         <div
-          className={`absolute top-20 left-0 right-0 p-6 transition-transform duration-500 ${
-            isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
-          }`}
+          className={`absolute top-20 left-0 right-0 p-6 transition-transform duration-500 ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
+            }`}
         >
           <div className="flex flex-col gap-4">
             {navLinks.map((link, index) => (
