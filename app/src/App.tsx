@@ -18,6 +18,9 @@ import Footer from './sections/Footer';
 import PromoBanner from './components/PromoBanner';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
+import Chatbot from './components/Chatbot';
+import FloatingActions from './components/FloatingActions';
+
 import './App.css';
 
 function ScrollToTop() {
@@ -87,6 +90,8 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <Chatbot />
+          <FloatingActions />
         </div>
       </BrowserRouter>
     </HelmetProvider>

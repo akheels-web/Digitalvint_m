@@ -444,3 +444,20 @@ html {
     padding: 1rem 1.25rem;
   }
 }
+
+/* Flowise Chatbot Custom Styles */
+flowise-chatbot {
+  --chatbot-mobile-width: 100vw !important;
+  --chatbot-mobile-height: 100vh !important;
+}
+
+@media (max-width: 768px) {
+  flowise-chatbot {
+    position: fixed !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    height: 85vh !important;
+    z-index: 99999 !important;
+  }
+}
