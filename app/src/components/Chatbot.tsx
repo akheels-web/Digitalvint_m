@@ -44,7 +44,7 @@ const Chatbot = () => {
               iconColor: "white",
             },
             tooltip: {
-              showTooltip: true,
+              showTooltip: false,
               tooltipMessage: "Chat with Vint 👋",
               tooltipBackgroundColor: "#000000",
               tooltipTextColor: "white",
