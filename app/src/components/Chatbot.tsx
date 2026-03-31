@@ -2,30 +2,22 @@ import { useEffect } from 'react';
 
 const Chatbot = () => {
   useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.innerHTML = [
-      'import Chatbot from "https',
-      '://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js";',
-      'window.Chatbot = Chatbot;',
-      "window.dispatchEvent(new Event('chatbot-loaded'));"
-    ].join('');
-    document.body.appendChild(script);
-
-    const handleChatbotLoaded = () => {
-      initializeChatbot();
+    const loadChatbot = async () => {
+      try {
+        // Use new Function to hide the dynamic import from TSC and solve build errors
+        const module = await new Function('return import("https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js")')();
+        // @ts-ignore
+        window.Chatbot = module.default;
+        initializeChatbot();
+      } catch (error) {
+        console.error('Failed to load Flowise Chatbot:', error);
+      }
     };
 
-    window.addEventListener('chatbot-loaded', handleChatbotLoaded);
-    
-    // Check if it's already there (though unlikely with this script method)
-    // @ts-ignore
-    if (window.Chatbot) {
-      initializeChatbot();
-    }
+    loadChatbot();
 
     return () => {
-      window.removeEventListener('chatbot-loaded', handleChatbotLoaded);
+      // Any cleanup needed
     };
 
     function initializeChatbot() {
