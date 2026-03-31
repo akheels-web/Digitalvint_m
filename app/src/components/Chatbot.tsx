@@ -4,11 +4,12 @@ const Chatbot = () => {
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'module';
-    script.innerHTML = `
-      import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js";
-      window.Chatbot = Chatbot;
-      window.dispatchEvent(new Event('chatbot-loaded'));
-    `;
+    script.innerHTML = [
+      'import Chatbot from "https',
+      '://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js";',
+      'window.Chatbot = Chatbot;',
+      "window.dispatchEvent(new Event('chatbot-loaded'));"
+    ].join('');
     document.body.appendChild(script);
 
     const handleChatbotLoaded = () => {
