@@ -447,17 +447,25 @@ html {
 
 /* Flowise Chatbot Custom Styles */
 flowise-chatbot {
-  --chatbot-mobile-width: 100vw !important;
-  --chatbot-mobile-height: 100vh !important;
+  position: fixed !important;
+  z-index: 99999 !important;
+  pointer-events: none !important;
+}
+
+/* Allow interaction with the internal elements */
+flowise-chatbot::part(button) {
+  pointer-events: auto !important;
+}
+
+flowise-chatbot::part(window) {
+  pointer-events: auto !important;
 }
 
 @media (max-width: 768px) {
   flowise-chatbot {
-    position: fixed !important;
     bottom: 0 !important;
     right: 0 !important;
-    width: 100vw !important;
-    height: 85vh !important;
-    z-index: 99999 !important;
+    --chatbot-mobile-width: 100vw !important;
+    --chatbot-mobile-height: 85vh !important;
   }
 }

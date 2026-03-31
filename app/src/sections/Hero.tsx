@@ -107,7 +107,7 @@ const Hero = () => {
     <section
       id="hero"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-black"
+      className="relative min-h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden bg-brand-black"
     >
       {/* Background Image with Parallax */}
       <div
@@ -127,8 +127,8 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-brand-black/80 via-transparent to-brand-black/80" />
       </div>
 
-      {/* 3D Floating Elements */}
-      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+      {/* 3D Floating Elements - Optimized for Mobile */}
+      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden hidden md:block">
         {/* Floating Orbs */}
         <div
           className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-brand-blue/20 blur-3xl animate-float"
