@@ -3,6 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Analytics } from '@vercel/analytics/react';
 
 import SEO from './components/SEO';
 import Navigation from './components/Navigation';
@@ -93,6 +94,7 @@ function App() {
           <Chatbot />
           <FloatingActions />
         </div>
+        <Analytics />
       </BrowserRouter>
     </HelmetProvider>
   );
