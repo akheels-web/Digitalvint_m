@@ -2,16 +2,30 @@ import { useEffect } from 'react';
 
 const Chatbot = () => {
   useEffect(() => {
-    // Dynamically import the module
-    import('https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js')
-      .then((module) => {
-        // @ts-ignore
-        window.Chatbot = module.default;
-        initializeChatbot();
-      })
-      .catch((error) => {
-        console.error('Error loading chatbot:', error);
-      });
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.innerHTML = `
+      import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js";
+      window.Chatbot = Chatbot;
+      window.dispatchEvent(new Event('chatbot-loaded'));
+    `;
+    document.body.appendChild(script);
+
+    const handleChatbotLoaded = () => {
+      initializeChatbot();
+    };
+
+    window.addEventListener('chatbot-loaded', handleChatbotLoaded);
+    
+    // Check if it's already there (though unlikely with this script method)
+    // @ts-ignore
+    if (window.Chatbot) {
+      initializeChatbot();
+    }
+
+    return () => {
+      window.removeEventListener('chatbot-loaded', handleChatbotLoaded);
+    };
 
     function initializeChatbot() {
       // @ts-ignore
