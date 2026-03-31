@@ -2,10 +2,38 @@ import { MessageCircle, Phone, MessageSquare } from 'lucide-react';
 
 const FloatingActions = () => {
   const toggleChatbot = () => {
+    // Attempt 1: Using the global API
     // @ts-ignore
     if (window.Chatbot) {
-      // @ts-ignore
-      window.Chatbot.toggle();
+      try {
+        // @ts-ignore
+        window.Chatbot.toggle();
+        return;
+      } catch (e) {
+        console.error('Chatbot.toggle() failed, trying alternative...', e);
+      }
+    }
+
+    // Attempt 2: Direct element interaction (for web components)
+    const chatbotElement = document.querySelector('flowise-chatbot');
+    if (chatbotElement) {
+      try {
+        // Many web components expose a toggle/open method or trigger on click
+        // @ts-ignore
+        if (typeof chatbotElement.toggle === 'function') {
+          // @ts-ignore
+          chatbotElement.toggle();
+        } else {
+          // @ts-ignore
+          const shadowRoot = chatbotElement.shadowRoot;
+          if (shadowRoot) {
+            const button = shadowRoot.querySelector('button');
+            if (button) button.click();
+          }
+        }
+      } catch (e) {
+        console.error('Direct interaction failed:', e);
+      }
     }
   };
 
