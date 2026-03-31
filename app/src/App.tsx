@@ -3,6 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import SEO from './components/SEO';
 import Navigation from './components/Navigation';
@@ -92,6 +93,7 @@ function App() {
           <Footer />
           <Chatbot />
           <FloatingActions />
+          <SpeedInsights />
         </div>
       </BrowserRouter>
     </HelmetProvider>
