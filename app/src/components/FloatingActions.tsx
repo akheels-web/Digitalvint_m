@@ -32,9 +32,9 @@ const FloatingActions = () => {
         <div className="absolute 
           bottom-[calc(100%+12px)] left-1/2 -translate-x-1/2 
           md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:right-[calc(100%+12px)] md:left-auto md:translate-x-0
-          whitespace-nowrap px-4 py-2 bg-brand-black/90 backdrop-blur-xl border border-white/10 text-white text-sm rounded-xl shadow-2xl opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none after:content-[''] after:absolute 
+          whitespace-nowrap px-4 py-2 bg-brand-black/90 backdrop-blur-xl border border-white/10 text-white text-sm rounded-xl shadow-2xl transition-all pointer-events-none after:content-[''] after:absolute 
           after:top-full after:left-1/2 after:-translate-x-1/2 after:border-[6px] after:border-transparent after:border-t-brand-black/90
-          md:after:top-1/2 md:after:left-full md:after:-translate-y-1/2 md:after:translate-x-0 md:after:border-l-brand-black/90 md:after:border-t-transparent">
+          md:after:top-1/2 md:after:left-full md:after:-translate-y-1/2 md:after:translate-x-0 md:after:border-l-brand-black/90 md:after:border-t-transparent animate-float">
           Chat with Vint 👋
         </div>
         <button

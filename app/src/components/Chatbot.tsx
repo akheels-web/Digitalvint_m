@@ -2,31 +2,16 @@ import { useEffect } from 'react';
 
 const Chatbot = () => {
   useEffect(() => {
-    // Check if the script is already present
-    const existingScript = document.querySelector('script[src*="flowise-embed"]');
-    
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js';
-      script.async = true;
-      script.onload = () => {
-        initializeChatbot();
-      };
-      document.body.appendChild(script);
-    } else {
-      // If script exists, just re-initialize
-      // Wait a bit for the module to be ready
-      const checkAndInit = setInterval(() => {
+    // Dynamically import the module
+    import('https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js')
+      .then((module) => {
         // @ts-ignore
-        if (window.Chatbot) {
-          initializeChatbot();
-          clearInterval(checkAndInit);
-        }
-      }, 500);
-      
-      return () => clearInterval(checkAndInit);
-    }
+        window.Chatbot = module.default;
+        initializeChatbot();
+      })
+      .catch((error) => {
+        console.error('Error loading chatbot:', error);
+      });
 
     function initializeChatbot() {
       // @ts-ignore
