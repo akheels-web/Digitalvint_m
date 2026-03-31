@@ -32,7 +32,7 @@ const PromoBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-[400px] z-[100] animate-in slide-in-from-bottom-10 fade-in duration-700">
+    <div className="fixed bottom-6 left-6 right-6 md:left-6 md:right-auto md:w-[400px] z-[100] animate-in slide-in-from-bottom-10 fade-in duration-700">
       <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl relative overflow-hidden group">
         
         {/* Glow Effects */}

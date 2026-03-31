@@ -210,7 +210,7 @@ const Process = () => {
 
           <div className="relative p-8 md:p-14">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
-              
+
               {/* Left Content */}
               <div>
                 <div className="flex items-center gap-2 mb-4">
@@ -311,7 +311,7 @@ const Process = () => {
 
             {/* Trust line */}
             <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-white/30 text-xs">
-              <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> Or call us: +91 91000 00000</span>
+              <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> Or call us: +91 9391795320</span>
               <span>•</span>
               <span>Trusted by 150+ businesses in Hyderabad</span>
               <span>•</span>
