@@ -64,11 +64,11 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: XIcon, href: '#', label: 'X (Twitter)' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
+    { icon: Facebook, href: 'https://www.facebook.com/DigitalVint/', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/digital.vint/', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://in.linkedin.com/company/digitalvint', label: 'LinkedIn' },
+    { icon: XIcon, href: 'https://x.com/DigitalVint', label: 'X (Twitter)' },
+    { icon: Youtube, href: 'https://www.youtube.com/channel/UC5Kgd9Y7fMoFUZxgpeSSE7g', label: 'YouTube' },
   ];
 
   return (
