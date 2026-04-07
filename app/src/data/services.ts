@@ -48,24 +48,23 @@ export const servicesData = [
 
       <h2>Industries We Work With</h2>
       <ul>
-        <li>Real Estate & Construction companies in Telangana</li>
-        <li>Healthcare clinics and hospitals</li>
-        <li>IT & Software companies in HITEC City</li>
-        <li>Restaurants, cafes, and F&B businesses</li>
-        <li>Educational institutions and coaching centres</li>
-        <li>E-commerce and D2C brands</li>
-        <li>Professional services (law firms, CA firms, consultancies)</li>
+        <li>Real estate & construction businesses</li>
+        <li>Clinics & healthcare practices</li>
+        <li>Professional service providers</li>
+        <li>Restaurants, cafés & local brands</li>
+        <li>Educational & training institutes</li>
+        <li>E‑commerce & direct‑to‑consumer businesses</li>
       </ul>
 
       <h2>Results You Can Expect</h2>
       <table>
         <thead><tr><th>Metric</th><th>Typical Results (6 Months)</th></tr></thead>
         <tbody>
-          <tr><td>Organic Traffic Growth</td><td>150-300% increase</td></tr>
-          <tr><td>Keyword Rankings (Page 1)</td><td>20-50+ keywords</td></tr>
-          <tr><td>Domain Authority</td><td>+10-20 points</td></tr>
-          <tr><td>Lead Generation</td><td>3-5x more qualified leads</td></tr>
-          <tr><td>Local Pack Visibility</td><td>Top 3 for target areas</td></tr>
+          <tr><td>Organic Traffic Growth</td><td>Sustainable improvement over time</td></tr>
+          <tr><td>Search Visibility</td><td>Stronger presence for relevant customer searches</td></tr>
+          <tr><td>Trust & Engagement</td><td>Better on‑site engagement and clarity</td></tr>
+          <tr><td>Lead Quality</td><td>More relevant enquiries, fewer time‑wasters</td></tr>
+          <tr><td>Local Discovery</td><td>Improved visibility in nearby searches and maps</td></tr>
         </tbody>
       </table>
     `,
