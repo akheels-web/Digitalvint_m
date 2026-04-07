@@ -10,12 +10,12 @@ export const servicesData = [
     features: [
       'Website & Technical SEO Audit',
       'Keyword Research & Opportunity Analysis',
-      'On-Page & Content Optmization',
+      'On-Page & Content Optimization',
       'Local Visibility & Google Business Profile Setup',
       'SEO-Focused Blog & Content Creation',
       'Performance Monitoring & Reporting',
       'Schema Markup for Better Search Appearance',
-      'Continuos SEO Improvements',
+      'Continuous SEO Improvements',
     ],
     icon: Search,
     image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
@@ -73,66 +73,78 @@ export const servicesData = [
     id: 2,
     slug: 'website-designing',
     number: '02',
-    title: 'Website Design & Development',
-    description: 'Premium, high-converting websites built for businesses in Hyderabad. Mobile-first, blazing-fast, and designed to turn visitors into customers.',
+    title: 'Website Design &amp; Development',
+    description:
+      'Websites built to generate trust, enquiries, and real business growth. We design fast, conversion-focused websites that help visitors take action—serving businesses across Hyderabad and India.',
     features: [
-      'Custom UI/UX Design',
-      'Mobile-First Responsive Layouts',
-      'React & Next.js Development',
-      'WordPress & CMS Solutions',
-      'Landing Page Design',
-      'Speed & Performance Optimization',
-      'Cross-Browser Compatibility',
-      'Ongoing Maintenance & Support',
+      'Custom Conversion‑Focused UI/UX',
+      'Mobile‑First Responsive Design',
+      'Business Website &amp; Landing Pages',
+      'SEO‑Ready Website Architecture',
+      'Speed &amp; Performance Optimization',
+      'Clear Call‑to‑Action &amp; Lead Flows',
+      'Cross‑Browser &amp; Device Compatibility',
+      'Ongoing Support &amp; Improvements',
     ],
     icon: Layout,
-    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&amp;q=80',
     color: 'from-blue-500/20 to-cyan-500/20',
     longContent: `
-      <h2>Websites That Work as Hard as You Do</h2>
-      <p>Your website is your most powerful salesperson—it works 24/7, never takes a day off, and is the first impression for 75% of your potential customers. At Digital Vint, we design and develop premium websites for businesses in Hyderabad, Telangana, and across India that don't just look beautiful—they <strong>convert visitors into paying customers</strong>.</p>
+	&lt;h2&gt;Websites Built to Generate Enquiries — Not Just Look Good&lt;/h2&gt;
+	&lt;p&gt;Your website is often the first place customers decide whether to contact you or move on. A good-looking website is important, but a &lt;strong&gt;clear, fast, and conversion‑focused website&lt;/strong&gt; is what actually drives business.&lt;/p&gt;
+	&lt;p&gt;At Digital Vint, we design and develop websites that help visitors understand your value quickly, trust your business, and take action—whether that’s calling, messaging, or submitting an enquiry.&lt;/p&gt;
 
-      <blockquote><p>A professionally designed website increases credibility by 75% and generates 3x more leads than a generic template site. Your website IS your brand online.</p></blockquote>
+	&lt;blockquote&gt;&lt;p&gt;A well‑structured website builds credibility, improves engagement, and can generate significantly more enquiries than generic template‑based sites.&lt;/p&gt;&lt;/blockquote&gt;
 
-      <h2>Our Web Design & Development Approach</h2>
+	&lt;h2&gt;Our Website Design &amp;amp; Development Approach&lt;/h2&gt;
 
-      <h3>1. Discovery & Strategy</h3>
-      <p>Before a single pixel is designed, we deeply research your industry, competitors, and target audience. We map out user journeys, define conversion goals, and create detailed wireframes that serve as the blueprint for your website.</p>
+	&lt;h3&gt;1. Discovery &amp;amp; Clarity&lt;/h3&gt;
+	&lt;p&gt;We begin by understanding your business, customers, and goals. This helps us decide what information matters most, how users should navigate the site, and where calls‑to‑action should appear.&lt;/p&gt;
+	&lt;p&gt;The goal here is clarity—so visitors immediately understand what you do and why they should contact you.&lt;/p&gt;
 
-      <h3>2. UI/UX Design</h3>
-      <p>Our designers create stunning, user-centric interfaces using modern design principles—clean typography, strategic use of white space, premium colour palettes, and micro-interactions that make your site feel alive. Every element is intentionally placed to guide users toward your conversion goal.</p>
+	&lt;h3&gt;2. UX‑Focused Design&lt;/h3&gt;
+	&lt;p&gt;Design is not decoration. We create clean, modern layouts that guide visitors naturally—using spacing, typography, and structure to reduce confusion and increase engagement.&lt;/p&gt;
+	&lt;p&gt;Every section is designed to support trust and decision‑making, not distract from it.&lt;/p&gt;
 
-      <h3>3. Modern Development Stack</h3>
-      <p>We build with cutting-edge technologies like <strong>React, Next.js, Vite, and TypeScript</strong> for web applications, and <strong>WordPress with custom themes</strong> for content-managed sites. Our code is clean, SEO-friendly, accessible, and optimized for Core Web Vitals from day one.</p>
+	&lt;h3&gt;3. Robust, Modern Development&lt;/h3&gt;
+	&lt;p&gt;We build websites using modern, reliable technologies suited to your needs—whether that’s a custom‑built site or a content‑managed solution. Our code is clean, secure, accessible, and easy to scale.&lt;/p&gt;
+	&lt;p&gt;We focus on long‑term maintainability rather than quick hacks.&lt;/p&gt;
 
-      <h3>4. Performance Engineering</h3>
-      <p>Speed kills—slow speed kills conversions. We engineer every site to load in under 2 seconds with techniques like image optimization (WebP/AVIF), code splitting, lazy loading, edge caching, and CDN deployment.</p>
+	&lt;h3&gt;4. Performance &amp;amp; Speed Optimization&lt;/h3&gt;
+	&lt;p&gt;Slow websites cost enquiries. We optimize every website for speed and mobile usability, ensuring fast load times, smooth interactions, and a strong experience across devices.&lt;/p&gt;
+	&lt;p&gt;Performance is treated as a conversion factor, not a technical afterthought.&lt;/p&gt;
 
-      <h3>5. SEO-Ready Architecture</h3>
-      <p>Unlike most web design agencies in Hyderabad, we build SEO into the architecture from the start—semantic HTML, proper heading hierarchy, schema markup, optimized meta tags, XML sitemaps, and clean URL structures.</p>
+	&lt;h3&gt;5. SEO‑Ready Architecture&lt;/h3&gt;
+	&lt;p&gt;Every website is built with search visibility in mind—clean structure, proper headings, optimized metadata, and layouts that make it easy for search engines and users to understand your content.&lt;/p&gt;
+	&lt;p&gt;This ensures your website supports SEO efforts from day one.&lt;/p&gt;
 
-      <h2>Types of Websites We Build</h2>
-      <table>
-        <thead><tr><th>Website Type</th><th>Best For</th><th>Starting Price</th></tr></thead>
-        <tbody>
-          <tr><td>Business Website</td><td>Local businesses, startups</td><td>Contact for quote</td></tr>
-          <tr><td>E-Commerce Store</td><td>Product-based businesses</td><td>Contact for quote</td></tr>
-          <tr><td>Portfolio Website</td><td>Freelancers, agencies</td><td>Contact for quote</td></tr>
-          <tr><td>Landing Pages</td><td>Ad campaigns, launches</td><td>Contact for quote</td></tr>
-          <tr><td>SaaS / Web Application</td><td>Tech companies</td><td>Contact for quote</td></tr>
-          <tr><td>Corporate Website</td><td>Enterprises, MNCs</td><td>Contact for quote</td></tr>
-        </tbody>
-      </table>
+	&lt;h2&gt;Types of Websites We Build&lt;/h2&gt;
+	&lt;p&gt;We build websites based on what your business actually needs—no unnecessary complexity.&lt;/p&gt;
+	&lt;table&gt;
+  	&lt;thead&gt;
+    	&lt;tr&gt;
+      	&lt;th&gt;Website Type&lt;/th&gt;
+      	&lt;th&gt;Best For&lt;/th&gt;
+    	&lt;/tr&gt;
+  	&lt;/thead&gt;
+  	&lt;tbody&gt;
+    	&lt;tr&gt;&lt;td&gt;Business Websites&lt;/td&gt;&lt;td&gt;Service businesses, local companies, startups&lt;/td&gt;&lt;/tr&gt;
+    	&lt;tr&gt;&lt;td&gt;Lead‑Focused Landing Pages&lt;/td&gt;&lt;td&gt;Campaigns, launches, promotions&lt;/td&gt;&lt;/tr&gt;
+    	&lt;tr&gt;&lt;td&gt;E‑Commerce Websites&lt;/td&gt;&lt;td&gt;Product‑based businesses&lt;/td&gt;&lt;/tr&gt;
+    	&lt;tr&gt;&lt;td&gt;Portfolio Websites&lt;/td&gt;&lt;td&gt;Professionals, creators, agencies&lt;/td&gt;&lt;/tr&gt;
+    	&lt;tr&gt;&lt;td&gt;Web Applications&lt;/td&gt;&lt;td&gt;Growing and tech‑enabled businesses&lt;/td&gt;&lt;/tr&gt;
+  	&lt;/tbody&gt;
+	&lt;/table&gt;
 
-      <h2>Why Choose Digital Vint for Web Design in Hyderabad?</h2>
-      <ul>
-        <li><strong>Local expertise:</strong> We understand the Hyderabad market, culture, and business landscape</li>
-        <li><strong>SEO built-in:</strong> Every site is optimized for Google from day one</li>
-        <li><strong>Modern tech:</strong> React, Next.js, TypeScript—no outdated WordPress themes</li>
-        <li><strong>Performance-first:</strong> Sub-2-second load times guaranteed</li>
-        <li><strong>Ongoing support:</strong> We don't disappear after launch</li>
-      </ul>
-    `,
+	&lt;h2&gt;Why Businesses Choose Digital Vint for Website Development&lt;/h2&gt;
+	&lt;ul&gt;
+  	&lt;li&gt;&lt;strong&gt;Conversion‑first approach:&lt;/strong&gt; We design for enquiries, not just aesthetics&lt;/li&gt;
+  	&lt;li&gt;&lt;strong&gt;Clear communication:&lt;/strong&gt; No technical confusion, no hidden steps&lt;/li&gt;
+  	&lt;li&gt;&lt;strong&gt;Performance‑driven:&lt;/strong&gt; Fast, mobile‑friendly websites by default&lt;/li&gt;
+  	&lt;li&gt;&lt;strong&gt;SEO‑ready builds:&lt;/strong&gt; Websites that support long‑term visibility&lt;/li&gt;
+  	&lt;li&gt;&lt;strong&gt;Ongoing support:&lt;/strong&gt; We continue improving after launch&lt;/li&gt;
+	&lt;/ul&gt;
+  `,
   },
   {
     id: 3,
