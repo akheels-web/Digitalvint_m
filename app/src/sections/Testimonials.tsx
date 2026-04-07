@@ -175,10 +175,10 @@ const Testimonials = () => {
             Testimonials
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
-            First Impression, Our Clients
+            What Businesses Say After Working With Us
           </h2>
           <p className="text-white/60 text-lg">
-            Do not just take our word for it. Here is what our clients have to say about working with us.
+            Do not just take our word for it - here's what our clients experienced after working with us.
           </p>
         </div>
 
@@ -189,13 +189,12 @@ const Testimonials = () => {
             {getVisibleTestimonials().map((testimonial, index) => (
               <div
                 key={`${testimonial.id}-${index}`}
-                className={`testimonial-card absolute top-1/2 left-1/2 w-full max-w-2xl transition-all duration-500 ease-expo ${
-                  testimonial.position === 0
-                    ? 'opacity-100 scale-100 z-20 translate-x-[-50%] translate-y-[-50%]'
-                    : testimonial.position === -1
+                className={`testimonial-card absolute top-1/2 left-1/2 w-full max-w-2xl transition-all duration-500 ease-expo ${testimonial.position === 0
+                  ? 'opacity-100 scale-100 z-20 translate-x-[-50%] translate-y-[-50%]'
+                  : testimonial.position === -1
                     ? 'opacity-40 scale-90 z-10 translate-x-[-120%] translate-y-[-50%]'
                     : 'opacity-40 scale-90 z-10 translate-x-[20%] translate-y-[-50%]'
-                }`}
+                  }`}
               >
                 <div className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                   {/* Quote Icon */}
@@ -287,11 +286,10 @@ const Testimonials = () => {
                       setTimeout(() => setIsAnimating(false), 500);
                     }
                   }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === activeIndex
-                      ? 'w-8 bg-brand-blue'
-                      : 'bg-white/30 hover:bg-white/50'
-                  }`}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${index === activeIndex
+                    ? 'w-8 bg-brand-blue'
+                    : 'bg-white/30 hover:bg-white/50'
+                    }`}
                 />
               ))}
             </div>

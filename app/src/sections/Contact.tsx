@@ -4,13 +4,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { 
-  Send, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
-  CheckCircle, 
+import {
+  Send,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  CheckCircle,
   AlertCircle,
   Loader2,
   MessageCircle,
@@ -199,7 +199,7 @@ const Contact = () => {
     },
     {
       icon: Clock,
-      label: 'Working Hours',
+      label: 'Business Hours',
       value: 'Mon - Sat: 10:00 AM - 7:00 PM IST',
       href: null,
     },
@@ -235,10 +235,10 @@ const Contact = () => {
             Get In Touch
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
-            Ready to Transform Your Business?
+            Let's Talk About Growing Your Business Online
           </h2>
           <p className="text-white/60 text-lg">
-            Get a free consultation and quote. Fill out the form below and our team will get back to you within 24 hours.
+            Tell us a bit about your business and goals, We'll review it and get back to you with clear next steps.
           </p>
         </div>
 
@@ -274,9 +274,8 @@ const Contact = () => {
                       {...register('name')}
                       autoComplete="name"
                       placeholder="John Doe"
-                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue ${
-                        errors.name ? 'border-red-500' : ''
-                      }`}
+                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue ${errors.name ? 'border-red-500' : ''
+                        }`}
                     />
                     {errors.name && (
                       <p className="text-red-500 text-xs">{errors.name.message}</p>
@@ -294,9 +293,8 @@ const Contact = () => {
                       {...register('email')}
                       autoComplete="email"
                       placeholder="john@example.com"
-                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue ${
-                        errors.email ? 'border-red-500' : ''
-                      }`}
+                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue ${errors.email ? 'border-red-500' : ''
+                        }`}
                     />
                     {errors.email && (
                       <p className="text-red-500 text-xs">{errors.email.message}</p>
@@ -316,9 +314,8 @@ const Contact = () => {
                       {...register('phone')}
                       autoComplete="tel"
                       placeholder="+91 98765 43210"
-                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue ${
-                        errors.phone ? 'border-red-500' : ''
-                      }`}
+                      className={`bg-white/5 border-white/10 text-white placeholder:text-white/50 focus:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue ${errors.phone ? 'border-red-500' : ''
+                        }`}
                     />
                     {errors.phone && (
                       <p className="text-red-500 text-xs">{errors.phone.message}</p>
@@ -348,9 +345,8 @@ const Contact = () => {
                   <select
                     id="service"
                     {...register('service')}
-                    className={`w-full h-10 px-3 rounded-md bg-white/5 border border-white/10 text-white focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue ${
-                      errors.service ? 'border-red-500' : ''
-                    }`}
+                    className={`w-full h-10 px-3 rounded-md bg-white/5 border border-white/10 text-white focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue ${errors.service ? 'border-red-500' : ''
+                      }`}
                   >
                     <option value="" className="bg-brand-darker">Select a service</option>
                     {services.map((service) => (
@@ -374,9 +370,8 @@ const Contact = () => {
                     {...register('message')}
                     placeholder="Tell us about your project..."
                     rows={5}
-                    className={`bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-brand-blue resize-none ${
-                      errors.message ? 'border-red-500' : ''
-                    }`}
+                    className={`bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-brand-blue resize-none ${errors.message ? 'border-red-500' : ''
+                      }`}
                   />
                   {errors.message && (
                     <p className="text-red-500 text-xs">{errors.message.message}</p>
@@ -386,11 +381,10 @@ const Contact = () => {
                 {/* Status Messages */}
                 {submitStatus !== 'idle' && (
                   <Alert
-                    className={`${
-                      submitStatus === 'success'
-                        ? 'bg-green-500/10 border-green-500/30'
-                        : 'bg-red-500/10 border-red-500/30'
-                    }`}
+                    className={`${submitStatus === 'success'
+                      ? 'bg-green-500/10 border-green-500/30'
+                      : 'bg-red-500/10 border-red-500/30'
+                      }`}
                   >
                     {submitStatus === 'success' ? (
                       <CheckCircle className="w-4 h-4 text-green-500" />
@@ -468,6 +462,7 @@ const Contact = () => {
               </div>
               <p className="text-white/70 text-sm mb-4">
                 Reach out to us on WhatsApp for instant responses during business hours.
+                Ideal for quick questions and initial guidance.
               </p>
               <a
                 href="https://wa.me/919391795320"

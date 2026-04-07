@@ -18,38 +18,38 @@ const WhyUs = () => {
   const features = [
     {
       icon: Globe,
-      title: 'Full-Service Digital Marketing',
-      description: 'SEO, PPC, social media, content marketing, and web development under one roof. A unified strategy across every digital channel your customers use.',
+      title: 'End-to-End Website & Growth Support',
+      description: 'From website creation to visibility and ongoing improvements, everything works together - no scattered efforts, no confusion.',
       gradient: 'from-blue-500/20 to-cyan-500/20',
     },
     {
       icon: Zap,
       title: 'Performance-Driven Results',
-      description: 'Every campaign is optimized for measurable KPIs — traffic, leads, conversions, and revenue. We track, test, and scale what works.',
+      description: 'We focus on outcomes you can see - enquiries, calls, engagement and real business growth - not just traffic.',
       gradient: 'from-yellow-500/20 to-orange-500/20',
     },
     {
       icon: Target,
       title: 'Local SEO Expertise',
-      description: 'Deep knowledge of the Hyderabad and Telangana market. We rank local businesses in Google\'s top 3 for neighbourhood-level searches.',
+      description: 'We help businesses appear where customers are actually searching - on Google Search and Maps - so the right people find you first.',
       gradient: 'from-green-500/20 to-emerald-500/20',
     },
     {
       icon: BarChart3,
-      title: 'Data-Driven Strategy',
-      description: 'We use Google Analytics, Search Console, Ahrefs, and real-time dashboards to make decisions backed by data — not guesswork.',
+      title: 'Clear, Goal-Focused Planning',
+      description: 'Every decision is tied to your business goals, backed by insights - not assumptions or guesswork.',
       gradient: 'from-purple-500/20 to-pink-500/20',
     },
     {
       icon: Users,
       title: 'Dedicated Account Team',
-      description: 'A personal strategist, designer, and developer assigned to your project. Weekly check-ins, transparent reporting, and direct communication.',
+      description: 'You work with a consistent team who understands your business - with regular updates and direct communication.',
       gradient: 'from-red-500/20 to-rose-500/20',
     },
     {
       icon: Headphones,
       title: '24/7 Support & Maintenance',
-      description: 'Continuous website maintenance, security updates, performance monitoring, and priority support so your digital presence never goes offline.',
+      description: 'Continuos monitoring, updates and support to ensure your website stays fast, secure and reliable.',
       gradient: 'from-indigo-500/20 to-blue-500/20',
     },
   ];
@@ -97,16 +97,16 @@ const WhyUs = () => {
   // 3D tilt effect
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, cardRef: HTMLDivElement | null) => {
     if (!cardRef) return;
-    
+
     const rect = cardRef.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = (y - centerY) / 10;
     const rotateY = (centerX - x) / 10;
-    
+
     cardRef.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
   };
 
@@ -137,7 +137,7 @@ const WhyUs = () => {
             Why Businesses in Hyderabad Choose Digital Vint
           </h2>
           <p className="text-white/60 text-lg">
-            We deliver measurable growth through data-driven digital marketing, conversion-focused web design, and relentless performance optimization.
+            We focus on clarity, conversions and consistent results - not just digital services.
           </p>
         </div>
 

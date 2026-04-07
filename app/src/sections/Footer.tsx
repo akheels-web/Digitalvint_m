@@ -41,10 +41,10 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: 'Digital Strategy', id: 'services' },
+      { name: 'Website Design & Development', id: 'services' },
       { name: 'SEO & Content', id: 'services' },
       { name: 'Performance Marketing', id: 'services' },
-      { name: 'Web Design & Dev', id: 'services' },
+      { name: 'Digital Strategy', id: 'services' },
       { name: 'E-Commerce Solutions', id: 'services' },
     ],
     company: [
@@ -84,10 +84,10 @@ const Footer = () => {
 
           <div className="relative z-10 max-w-2xl text-center md:text-left">
             <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4 leading-tight">
-              Ready to grow your revenue?
+              Ready to get more customers online?
             </h2>
             <p className="text-white/60 text-lg">
-              Let's talk about how our digital marketing strategies can scale your business.
+              Let's talk about how we can help you get more enquiries, leads and customers online.
             </p>
           </div>
 
@@ -96,7 +96,7 @@ const Footer = () => {
               onClick={() => scrollToSection('contact')}
               className="bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white px-8 py-7 rounded-full text-lg shadow-glow transition-all hover:scale-105 inline-flex items-center gap-2 group/btn"
             >
-              Start Your Project
+              Talk to Our Team
               <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
             </Button>
           </div>
@@ -120,7 +120,7 @@ const Footer = () => {
             </div>
 
             <p className="text-white/60 text-base leading-relaxed mb-8">
-              Hyderabad's premier digital marketing agency. We specialize in high-converting web design, robust development, and aggressive local SEO strategies for businesses across India.
+              Hyderabad-based digital growth studio. We help businesses build high-converting websites and generate consistent online enquiries.
             </p>
 
             <div className="flex gap-3">
@@ -230,7 +230,7 @@ const Footer = () => {
 
           <div className="flex items-center gap-6">
             <span className="text-white/30 text-xs hidden lg:block tracking-wide">
-              Top Digital Marketing Agency Hyderabad | Expert SEO Services Telangana
+              Serving businesses across Hyderabad and Telangana.
             </span>
             <button
               onClick={scrollToTop}
