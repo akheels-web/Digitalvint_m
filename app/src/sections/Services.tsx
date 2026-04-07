@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
+import {
   ArrowRight,
   Check
 } from 'lucide-react';
@@ -74,10 +74,10 @@ const Services = () => {
             Our Services
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
-            What We Offer
+            How We Help Local Businesses grow Online
           </h2>
           <p className="text-white/60 text-lg">
-            From concept to launch, we provide end-to-end digital solutions that help your business grow and succeed online.
+            Everything we do is focused on helping businesses get online, attract customers and generate consistent leads.
           </p>
         </div>
 
@@ -89,17 +89,15 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`service-card relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 ease-expo ${
-                activeService === index ? 'flex-[3]' : 'flex-1'
-              }`}
+              className={`service-card relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 ease-expo ${activeService === index ? 'flex-[3]' : 'flex-1'
+                }`}
               onClick={() => setActiveService(index)}
               onMouseEnter={() => setActiveService(index)}
             >
               {/* Background Image */}
               <div
-                className={`absolute inset-0 transition-all duration-700 ${
-                  activeService === index ? 'opacity-100' : 'opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-75'
-                }`}
+                className={`absolute inset-0 transition-all duration-700 ${activeService === index ? 'opacity-100' : 'opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-75'
+                  }`}
               >
                 <img
                   src={service.image}
@@ -113,14 +111,12 @@ const Services = () => {
 
               {/* Background Gradient (when collapsed) */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${service.color} mix-blend-overlay pointer-events-none transition-opacity duration-500 ${
-                  activeService === index ? 'opacity-0' : 'opacity-60'
-                }`}
+                className={`absolute inset-0 bg-gradient-to-br ${service.color} mix-blend-overlay pointer-events-none transition-opacity duration-500 ${activeService === index ? 'opacity-0' : 'opacity-60'
+                  }`}
               />
               <div
-                className={`absolute inset-0 bg-brand-darker/80 pointer-events-none transition-opacity duration-500 ${
-                  activeService === index ? 'opacity-0' : 'opacity-100'
-                }`}
+                className={`absolute inset-0 bg-brand-darker/80 pointer-events-none transition-opacity duration-500 ${activeService === index ? 'opacity-0' : 'opacity-100'
+                  }`}
               />
 
               {/* Content */}
@@ -131,19 +127,17 @@ const Services = () => {
                     {service.number}
                   </span>
                   <service.icon
-                    className={`w-8 h-8 transition-colors duration-300 ${
-                      activeService === index ? 'text-brand-blue' : 'text-white/40'
-                    }`}
+                    className={`w-8 h-8 transition-colors duration-300 ${activeService === index ? 'text-brand-blue' : 'text-white/40'
+                      }`}
                   />
                 </div>
 
                 {/* Title */}
                 <h3
-                  className={`font-display font-semibold text-white transition-all duration-500 ${
-                    activeService === index
-                      ? 'text-2xl mb-4'
-                      : 'text-lg writing-mode-vertical transform rotate-180'
-                  }`}
+                  className={`font-display font-semibold text-white transition-all duration-500 ${activeService === index
+                    ? 'text-2xl mb-4'
+                    : 'text-lg writing-mode-vertical transform rotate-180'
+                    }`}
                   style={
                     activeService !== index
                       ? { writingMode: 'vertical-rl' }
@@ -155,11 +149,10 @@ const Services = () => {
 
                 {/* Expanded Content */}
                 <div
-                  className={`flex-1 flex flex-col transition-all duration-500 ${
-                    activeService === index
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-4 pointer-events-none'
-                  }`}
+                  className={`flex-1 flex flex-col transition-all duration-500 ${activeService === index
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-4 pointer-events-none'
+                    }`}
                 >
                   <p className="text-white/70 mb-6 line-clamp-3">
                     {service.description}

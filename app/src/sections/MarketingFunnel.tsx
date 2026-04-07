@@ -10,37 +10,37 @@ const MarketingFunnel = () => {
 
   const funnelSteps = [
     {
-      title: 'Attract (Top of Funnel)',
+      title: 'Attract (Awareness)',
       icon: Magnet,
-      description: 'We drive high-intent traffic to your website using Data-Driven SEO, Google Ads, and targeted Social Media campaigns.',
-      metrics: 'Traffic & Awareness',
+      description: 'We bring the right people to your website through search visibility, Google Maps Presence and targeted campaigns - so you are found when customers are actively looking.',
+      metrics: 'Qualified traffic',
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-500/10',
       width: 'w-full md:w-[100%]',
     },
     {
-      title: 'Engage (Middle of Funnel)',
+      title: 'Engage (Trust & Interest)',
       icon: Users,
-      description: 'We capture your audience\'s interest with high-converting UI/UX design, compelling Lead Magnets, and valuable Content Marketing.',
-      metrics: 'Leads & Engagement',
+      description: 'Once they land, we guide them with clear messaging, fast pages, strong design and proof(reviews, work, results) - so they stay, explore and take action.',
+      metrics: 'Engagement + Intent',
       color: 'from-purple-500 to-pink-500',
       bgColor: 'bg-purple-500/10',
       width: 'w-full md:w-[85%]',
     },
     {
-      title: 'Convert (Bottom of Funnel)',
+      title: 'Convert (Enquiries & Sales)',
       icon: Handshake,
-      description: 'We turn prospects into paying customers through Retargeting Ads, automated Email Sequences, and Conversion Rate Optimization (CRO).',
-      metrics: 'Sales & Revenue',
+      description: 'We turn visitors into enquiries with high-converting layouts, strong calls-to-action, WhatsApp/call flows and frictionless forms - so you get more calls, messages and bookings.',
+      metrics: 'Leads + Conversions',
       color: 'from-orange-500 to-yellow-500',
       bgColor: 'bg-orange-500/10',
       width: 'w-full md:w-[70%]',
     },
     {
-      title: 'Scale (Post-Purchase)',
+      title: 'Retain (Repeat Customers & Referrals)',
       icon: LineChart,
-      description: 'We maximize Customer Lifetime Value (LTV) through loyalty loops, upselling strategies, and deploying scalable SaaS solutions.',
-      metrics: 'Retention & Growth',
+      description: 'After the first enquiry, we help you follow up and stay top-of-mind using simple automation, remarketing and review generation - bringing repeat customers and referrals over time.',
+      metrics: 'Retention + Growth',
       color: 'from-green-500 to-emerald-500',
       bgColor: 'bg-green-500/10',
       width: 'w-full md:w-[55%]',
@@ -106,10 +106,10 @@ const MarketingFunnel = () => {
             <Filter className="w-4 h-4" /> Strategy & Funnels
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
-            Our Proven Growth Funnel
+            Our Growth System (Built to Generate Leads)
           </h2>
           <p className="text-white/60 text-lg">
-            We don't just run ads or build websites. We craft end-to-end digital marketing funnels designed to systematically attract, convert, and scale your customer base.
+            We don't just build websites or run ads. We build a complete journey that attracts the right audience, earns trust and converts interest into enquiries and sales
           </p>
         </div>
 
