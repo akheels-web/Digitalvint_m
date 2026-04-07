@@ -9,7 +9,7 @@ interface SEOProps {
   article?: boolean;
 }
 
-const SEO = ({ 
+const SEO = ({
   title = "Digital Vint | Best Digital Marketing Agency in Hyderabad | SEO & Web Development",
   description = "Digital Vint creates high‑converting websites that turn visitors into customers. Trusted by 200+ brands, we offer expert web design, custom development, and digital marketing services in Hyderabad. Get a free quote today!",
   keywords = "digital marketing agency hyderabad, seo services hyderabad, web development hyderabad, social media marketing, digital marketing telangana, best digital marketing company hyderabad, website design hyderabad, online marketing agency",
@@ -37,7 +37,7 @@ const SEO = ({
     name: 'Digital Vint',
     alternateName: 'Digital Vint Marketing Agency',
     url: 'https://digitalvint.com',
-    logo: 'https://digitalvint.com/wp-content/uploads/2024/09/DV-White-2048x569.png',
+    logo: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Digitalvint.png',
     description: 'Leading digital marketing agency in Hyderabad specializing in SEO, web development, and social media marketing.',
     foundingDate: '2018',
     founders: [
@@ -249,10 +249,10 @@ const SEO = ({
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="googlebot" content="index, follow" />
       <meta name="bingbot" content="index, follow" />
-      
+
       {/* Canonical URL */}
       <link rel="canonical" href={currentUrl} />
-      
+
       {/* Language and Region */}
       <html lang="en-IN" />
       <meta name="language" content="English" />
@@ -260,7 +260,7 @@ const SEO = ({
       <meta name="geo.placename" content="Hyderabad" />
       <meta name="geo.position" content="17.4123;78.4486" />
       <meta name="ICBM" content="17.4123, 78.4486" />
-      
+
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={article ? "article" : "website"} />
       <meta property="og:url" content={currentUrl} />
@@ -271,14 +271,14 @@ const SEO = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_IN" />
       <meta property="og:site_name" content="Digital Vint" />
-      
+
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={currentUrl} />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
-      
+
       {/* Mobile Optimization */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
       <meta name="theme-color" content="#000000" />
@@ -286,17 +286,17 @@ const SEO = ({
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       <meta name="apple-mobile-web-app-title" content="Digital Vint" />
-      
+
       {/* Verification Tags (placeholder - replace with actual values) */}
       <meta name="google-site-verification" content="your-google-verification-code" />
       <meta name="msvalidate.01" content="your-bing-verification-code" />
-      
+
       {/* Preconnect for Performance */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-      
+
       {/* Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify(websiteSchema)}
@@ -313,7 +313,7 @@ const SEO = ({
       <script type="application/ld+json">
         {JSON.stringify(breadcrumbSchema)}
       </script>
-      
+
       {/* Additional SEO Meta Tags */}
       <meta name="revisit-after" content="7 days" />
       <meta name="rating" content="general" />
@@ -322,15 +322,15 @@ const SEO = ({
       <meta name="target" content="all" />
       <meta name="HandheldFriendly" content="True" />
       <meta name="MobileOptimized" content="320" />
-      
+
       {/* PWA Manifest */}
       <link rel="manifest" href="/manifest.json" />
-      
+
       {/* Favicon */}
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       <link rel="alternate icon" href="/favicon.ico" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      
+
       {/* Alternate Languages */}
       <link rel="alternate" hrefLang="en-in" href="https://digitalvint.com" />
       <link rel="alternate" hrefLang="x-default" href="https://digitalvint.com" />
