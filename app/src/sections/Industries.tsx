@@ -19,7 +19,7 @@ const Industries = () => {
     {
       name: 'Retail & Local Brands',
       icon: Coffee,
-      description: 'Shops, showrooms and consumer brands looking to improve visibility, attract customers and drive more walk-ins or enquiries.'
+      description: 'Shops, showrooms and consumer brands looking to improve visibility, attract customers and drive more walk-ins or enquiries.',
       color: 'from-orange-500 to-yellow-500',
       bgColor: 'bg-orange-500/10',
     },
