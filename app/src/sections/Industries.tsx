@@ -10,30 +10,30 @@ const Industries = () => {
 
   const industries = [
     {
-      name: 'Pharmaceuticals & Healthcare',
+      name: 'Service-Based Businesses',
       icon: Pill,
-      description: 'Regulatory-compliant digital marketing, packaging design, and lead generation for clinics, hospitals, and pharma brands.',
+      description: 'Builders, consultants, agencies, repair services and professionals who rely on calls, messages and enquiries to grow.',
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-500/10',
     },
     {
-      name: 'FMCG & Retail',
+      name: 'Retail & Local Brands',
       icon: Coffee,
-      description: 'High-impact branding, packaging, and performance marketing to dominate shelves and online marketplaces.',
+      description: 'Shops, showrooms and consumer brands looking to improve visibility, attract customers and drive more walk-ins or enquiries.'
       color: 'from-orange-500 to-yellow-500',
       bgColor: 'bg-orange-500/10',
     },
     {
       name: 'Real Estate & Construction',
       icon: Building2,
-      description: 'Qualified lead generation funnels, virtual tours, and brand positioning for builders and real estate agencies.',
+      description: 'Builders and real estate firms that depend on qualified leads, project visibility and strong brand credebility.',
       color: 'from-purple-500 to-pink-500',
       bgColor: 'bg-purple-500/10',
     },
     {
       name: 'E-Commerce & D2C',
       icon: ShoppingCart,
-      description: 'Shopify development and ROAS-focused ad campaigns designed to scale online sales rapidly.',
+      description: 'Businesses ready to sell products online through fast, reliable and conversion-focused websites.',
       color: 'from-green-500 to-emerald-500',
       bgColor: 'bg-green-500/10',
     },
@@ -43,13 +43,6 @@ const Industries = () => {
       description: 'B2B lead generation, scalable web applications, and inbound content marketing for tech startups and enterprises.',
       color: 'from-indigo-500 to-blue-500',
       bgColor: 'bg-indigo-500/10',
-    },
-    {
-      name: 'Hospitals & Clinics',
-      icon: Stethoscope,
-      description: 'Patient-centric local SEO, appointment booking systems, and reputation management for healthcare providers.',
-      color: 'from-red-500 to-pink-500',
-      bgColor: 'bg-red-500/10',
     },
   ];
 
@@ -99,8 +92,8 @@ const Industries = () => {
       ref={sectionRef}
       className="relative py-12 md:py-16 bg-brand-black overflow-hidden border-t border-white/5"
     >
-       {/* Background Elements */}
-       <div className="absolute inset-0 pointer-events-none">
+      {/* Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-purple-500/5 blur-3xl" />
       </div>
 
@@ -111,10 +104,10 @@ const Industries = () => {
             <ShieldCheck className="w-4 h-4" /> Specialized Expertise
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
-            Industries We Serve
+            Businesses We Help Grow Online
           </h2>
           <p className="text-white/60 text-lg">
-            Generic marketing doesn't work. We bring deep, industry-specific knowledge to ensure your campaigns resonate with your exact target audience.
+            We work with businesses that depend on visibility, trust and steady enquiries to grow.
           </p>
         </div>
 
@@ -127,13 +120,13 @@ const Industries = () => {
             >
               {/* Hover Gradient Overlay */}
               <div className={`absolute inset-0 bg-gradient-to-br ${industry.color} opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500`} />
-              
+
               <div className="relative">
                 {/* Icon Wrapper */}
                 <div className={`w-14 h-14 rounded-xl ${industry.bgColor} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300`}>
                   <industry.icon className="w-7 h-7 text-white" />
                 </div>
-                
+
                 {/* Content */}
                 <h3 className="text-xl font-display font-bold text-white mb-3">
                   {industry.name}
