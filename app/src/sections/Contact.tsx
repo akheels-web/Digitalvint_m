@@ -153,17 +153,24 @@ const Contact = () => {
     setSubmitStatus('idle');
 
     try {
-      // n8n webhook integration
-      // In production, replace the simulation below with actual fetch call:
-      // const webhookUrl = 'https://your-n8n-instance.com/webhook/contact-form';
-      // const payload = { ...data, timestamp: new Date().toISOString(), source: window.location.href, userAgent: navigator.userAgent, selectedPlan: sessionStorage.getItem('selectedPlan') || 'Not specified' };
-      // const response = await fetch(webhookUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-      // if (!response.ok) throw new Error('Failed to submit form');
+      // Replace this URL with your Google Apps Script Web App URL
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymXtTfHMJrQoz2nxoDaz9tCdNguciL75bPTxXSzuOhqfskYQE6o-vgpYxlRe0tlwax/exec';
 
-      // Simulate API delay for demo
+      // Using text/plain to bypass Google Apps Script CORS preflight issues
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify({
+          ...data,
+          timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        }),
+      });
 
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (!response.ok && response.type !== 'opaque') {
+        throw new Error('Failed to submit form');
+      }
 
       setSubmitStatus('success');
       setSubmitMessage('Thank you! We have received your message and will contact you shortly.');
