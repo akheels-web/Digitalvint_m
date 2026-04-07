@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Works = () => {
   const navigate = useNavigate();
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+  const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: 'center',
     skipSnaps: false,
@@ -69,15 +69,15 @@ const Works = () => {
       <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20 max-w-[100vw]">
         {/* Section Header */}
         <div className="works-heading text-center max-w-3xl mx-auto mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-sm font-medium mb-4">
-              Featured Work
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4 leading-tight">
-              Our Latest <span className="text-gradient">Projects</span>
-            </h2>
-            <p className="text-white/60 text-lg">
-              Explore our portfolio of successful digital marketing campaigns, high-performance websites, and e-commerce solutions.
-            </p>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-sm font-medium mb-4">
+            Featured Work
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4 leading-tight">
+            Real Projects <span className="text-gradient">Real Results</span>
+          </h2>
+          <p className="text-white/60 text-lg">
+            Here's how we've helped businesses improve visibility, engagement and enquiries.
+          </p>
         </div>
 
         {/* Slider Container */}
@@ -85,23 +85,23 @@ const Works = () => {
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex touch-pan-y">
               {worksData.map((project, index) => (
-                <div 
-                  key={project.id} 
+                <div
+                  key={project.id}
                   className="flex-[0_0_100%] min-w-0 px-2"
                 >
                   <div className={`transition-all duration-500 ease-out grid lg:grid-cols-2 gap-8 items-center bg-white/5 border border-white/10 rounded-3xl p-6 md:p-10 ${selectedIndex === index ? 'opacity-100 scale-100' : 'opacity-40 scale-[0.98]'}`}>
-                    
+
                     {/* Project Info */}
                     <div className="order-2 lg:order-1 space-y-8">
                       <div className="flex items-center gap-4">
                         {project.logo && (
                           <div className="w-16 h-16 rounded-xl overflow-hidden bg-brand-black border border-white/10 flex items-center justify-center shadow-lg">
-                            <img 
-                              src={project.logo} 
-                              alt={`${project.title} - Digital Marketing client logo`} 
+                            <img
+                              src={project.logo}
+                              alt={`${project.title} - Digital Marketing client logo`}
                               loading="lazy"
                               decoding="async"
-                              className="w-full h-full object-cover" 
+                              className="w-full h-full object-cover"
                             />
                           </div>
                         )}
@@ -184,7 +184,7 @@ const Works = () => {
               ))}
             </div>
           </div>
-          
+
           {/* Navigation: Prev + Dots + Next */}
           <div className="flex items-center justify-center gap-6 mt-8">
             <button
@@ -200,11 +200,10 @@ const Works = () => {
                 <button
                   key={index}
                   onClick={() => emblaApi && emblaApi.scrollTo(index)}
-                  className={`transition-all duration-300 rounded-full h-2 ${
-                    selectedIndex === index 
-                      ? 'w-8 bg-brand-blue' 
-                      : 'w-2 bg-white/20 hover:bg-white/40'
-                  }`}
+                  className={`transition-all duration-300 rounded-full h-2 ${selectedIndex === index
+                    ? 'w-8 bg-brand-blue'
+                    : 'w-2 bg-white/20 hover:bg-white/40'
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
@@ -222,13 +221,13 @@ const Works = () => {
 
         {/* View All CTA */}
         <div className="text-center mt-12">
-           <Button
-              className="bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white font-medium px-8 py-6 rounded-full text-lg shadow-glow transition-all duration-300 hover:scale-105"
-              onClick={() => navigate('/#works')} // Replace with actual works page if exists, or contact
-            >
-              View All Projects
-              <ExternalLink className="ml-2 w-5 h-5" />
-           </Button>
+          <Button
+            className="bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white font-medium px-8 py-6 rounded-full text-lg shadow-glow transition-all duration-300 hover:scale-105"
+            onClick={() => navigate('/#works')} // Replace with actual works page if exists, or contact
+          >
+            View All Projects
+            <ExternalLink className="ml-2 w-5 h-5" />
+          </Button>
         </div>
       </div>
     </section>
