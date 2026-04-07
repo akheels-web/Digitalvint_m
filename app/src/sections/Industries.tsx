@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Building2, Pill, ShoppingCart, Cloud, Coffee, ShieldCheck } from 'lucide-react';
+import { Building2, Pill, ShoppingCart, Stethoscope, Cloud, Coffee, ShieldCheck } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,6 +44,14 @@ const Industries = () => {
       color: 'from-indigo-500 to-blue-500',
       bgColor: 'bg-indigo-500/10',
     },
+    {
+      name: 'Hospitals & Clinics',
+      icon: Stethoscope,
+      description: 'Patient-centric local SEO, appointment booking systems, and reputation management for healthcare providers.',
+      color: 'from-red-500 to-pink-500',
+      bgColor: 'bg-red-500/10',
+    },
+
   ];
 
   useEffect(() => {
