@@ -6,45 +6,47 @@ export const servicesData = [
     slug: 'seo-optimization',
     number: '01',
     title: 'SEO & Content Marketing',
-    description: 'Dominate Google search results in Hyderabad and across India with our data-driven SEO strategies, technical audits, and high-impact content marketing campaigns.',
+    description: 'We help businesses across Hyderabad and India improve search visibility, attract the right audience and convert organic traffic into enquiries using clear, sustainable SEO and content strategies.',
     features: [
-      'Local SEO for Hyderabad & Telangana',
-      'Keyword Research & Competitor Analysis',
-      'On-Page & Technical SEO Audits',
-      'High-Authority Link Building',
-      'SEO-Optimized Blog & Content Writing',
-      'Google Business Profile Optimization',
-      'Monthly Ranking Reports & Analytics',
-      'Schema Markup & Rich Snippets',
+      'Website & Technical SEO Audit',
+      'Keyword Research & Opportunity Analysis',
+      'On-Page & Content Optmization',
+      'Local Visibility & Google Business Profile Setup',
+      'SEO-Focused Blog & Content Creation',
+      'Performance Monitoring & Reporting',
+      'Schema Markup for Better Search Appearance',
+      'Continuos SEO Improvements',
     ],
     icon: Search,
     image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
     color: 'from-purple-500/20 to-pink-500/20',
     longContent: `
-      <h2>Why SEO is the Best Investment for Your Business</h2>
-      <p>Search Engine Optimization is the highest-ROI marketing channel available to businesses in Hyderabad and India today. Unlike paid ads that stop generating traffic the moment you pause your budget, <strong>SEO compounds over time</strong>—every piece of optimized content and every backlink you earn continues working for you 24/7, 365 days a year.</p>
-      <p>At Digital Vint, we specialize in helping businesses across Telangana, Andhra Pradesh, and India achieve firstpage Google rankings for high-intent commercial keywords that drive real revenue—not just vanity traffic.</p>
-
-      <blockquote><p>93% of all online experiences begin with a search engine. If your business isn't ranking on the first page, you're invisible to 93% of your potential customers.</p></blockquote>
+      <h2>Why SEO Is One of the Best Long‑Term Investments for Your Business</h2>
+      <p>SEO helps your business appear when customers are actively searching and unlike paid ads, the results don’t stop the moment you pause a campaign.</p>
+      <p>With the right foundation, every improvement you make today continues to deliver visibility, trust, and enquiries over time.</p>
+      <p>At Digital Vint, we focus on SEO that supports business growth, not vanity metrics. Our approach is built to improve discoverability, user experience, and conversion paths together.</p>
+      <blockquote><p>93% of online experiences begin with a search engine. If your business isn’t visible when customers search, you’re missing qualified opportunities every day.</p></blockquote>
 
       <h2>Our SEO Process</h2>
 
-      <h3>1. Deep-Dive Audit & Competitor Analysis</h3>
-      <p>We begin every engagement with a comprehensive 100+ point technical SEO audit of your website. We analyze your site architecture, page speed, mobile usability, crawlability, schema markup, and internal linking structure. Simultaneously, we reverse-engineer your top competitors' strategies to find gaps and opportunities.</p>
+      <h3>1. Deep‑Dive Website & Market Analysis</h3>
+      <p>We begin with a detailed review of your website, identifying issues that affect visibility, speed, structure, and usability. We also study competitor positioning to uncover gaps and opportunities.</p>
+      <p> Focus: Clarity, foundations, quick wins.</p>
 
-      <h3>2. Local SEO Domination in Hyderabad</h3>
-      <p>For businesses serving the Hyderabad market, local SEO is critical. We optimize your Google Business Profile, build consistent NAP citations across Justdial, Sulekha, IndiaMART, and 50+ local directories. We create hyper-local landing pages targeting specific neighbourhoods—Banjara Hills, Madhapur, Gachibowli, HITEC City, Jubilee Hills, Kondapur, and Secunderabad.</p>
+      <h3>2. Search Visibility & Local Presence</h3>
+      <p>We improve how and where your business appears in search - including Google Search and Maps - by strengthening relevance, accuracy, and trust signals.</p>
+      <p>This helps ensure the right audience can find you when they’re ready to enquire.</p>
 
       <h3>3. Content Strategy & Keyword Mapping</h3>
-      <p>We develop a content calendar built around high-volume, high-intent keywords specific to your industry. Each piece of content is structured to target featured snippets, People Also Ask boxes, and long-tail keyword clusters that your competitors are missing.</p>
+      <p>We align content with real search intent — not random keywords. Pages and content are structured to answer questions clearly, support decision‑making, and guide visitors towards action.</p>
 
-      <h3>4. Technical SEO & Core Web Vitals</h3>
-      <p>Google rewards fast, accessible, and well-structured websites. We ensure your site achieves passing scores on all Core Web Vitals (LCP, INP, CLS), implements proper schema markup for rich snippets, and maintains a clean crawl budget with optimized XML sitemaps and robots.txt.</p>
+      <h3>4. Technical SEO & Performance Optimization</h3>
+      <p>Search engines reward fast, accessible websites. We improve page speed, mobile usability, structure, and crawlability to ensure your site performs smoothly for users and search engines.</p>
 
-      <h3>5. Link Building & Digital PR</h3>
-      <p>We build high-authority backlinks through guest posting on relevant Indian publications, digital PR campaigns, local partnerships, and creating link-worthy content assets like infographics and data-driven reports.</p>
+      <h3>5. Authority Building & Ongoing Improvements</h3>
+      <p>We strengthen credibility through quality content, trustworthy references, and continuous refinement - helping results grow steadily rather than spike and disappear.</p>
 
-      <h2>Industries We Serve in Hyderabad</h2>
+      <h2>Industries We Work With</h2>
       <ul>
         <li>Real Estate & Construction companies in Telangana</li>
         <li>Healthcare clinics and hospitals</li>
