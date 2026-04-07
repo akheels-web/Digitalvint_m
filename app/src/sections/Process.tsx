@@ -104,14 +104,32 @@ const Process = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleAuditSubmit = (e: React.FormEvent) => {
+  const handleAuditSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Send to contact / Google Sheets integration
-    setAuditSubmitted(true);
-    setTimeout(() => {
-      const contactEl = document.getElementById('contact');
-      contactEl?.scrollIntoView({ behavior: 'smooth' });
-    }, 2000);
+    
+    try {
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymXtTfHMJrQoz2nxoDaz9tCdNguciL75bPTxXSzuOhqfskYQE6o-vgpYxlRe0tlwax/exec';
+      
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify({
+          name: 'Not Provided',
+          email: auditEmail,
+          phone: '',
+          company: '',
+          service: 'SEO Audit Request', // Labels it uniquely in Google Sheets
+          message: `Website to audit: ${auditWebsite}`,
+          timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
+      });
+      
+      setAuditSubmitted(true);
+    } catch (error) {
+      console.error('Audit submit error:', error);
+    }
   };
 
   const scrollToContact = () => {
