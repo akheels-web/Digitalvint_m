@@ -220,22 +220,21 @@ const Process = () => {
                   </span>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 leading-tight">
-                  Get Your Free<br />
+                  Get a Free<br />
                   <span className="bg-gradient-to-r from-brand-blue to-purple-500 bg-clip-text text-transparent">
-                    Website & SEO Audit
+                    Website Performance Audit
                   </span>
                 </h2>
                 <p className="text-white/60 mb-6 leading-relaxed">
-                  Discover exactly what's holding your website back from ranking on Google.
-                  Our experts will analyze your site and deliver a detailed report with actionable fixes.
+                  Discover what's stopping your website from bringing enquiries, calls and customers - and how to fix it.
                 </p>
                 <ul className="space-y-3 mb-6">
                   {[
-                    'Core Web Vitals & speed analysis',
-                    'Keyword ranking opportunities',
-                    'Competitor gap analysis',
-                    'Technical SEO health check',
-                    'Local SEO readiness score',
+                    'Website Speed & user experience issues',
+                    'Visibility gaps affecting customer discovery',
+                    'Technical issues impacting enquiries & conversions',
+                    'Competitor comparison to find growth opportunities',
+                    'Local search readiness',
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-white/70 text-sm">
                       <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" />
@@ -288,7 +287,7 @@ const Process = () => {
                       type="submit"
                       className="w-full bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white py-6 rounded-xl text-base font-semibold shadow-glow inline-flex items-center justify-center gap-2"
                     >
-                      Get My Free Audit Report
+                      Get My Free Website Report
                       <ArrowRight className="w-4 h-4" />
                     </Button>
                     <p className="text-white/30 text-xs text-center">
