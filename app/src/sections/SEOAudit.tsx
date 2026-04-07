@@ -16,22 +16,28 @@ const SEOAudit = () => {
     setStatus('submitting');
 
     try {
-      // Replace this with your actual Google Apps Script Web App URL
-      const scriptUrl = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL';
+      // Using the exact same Google Sheet webhook as the Contact form
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymXtTfHMJrQoz2nxoDaz9tCdNguciL75bPTxXSzuOhqfskYQE6o-vgpYxlRe0tlwax/exec';
       
-      await fetch(scriptUrl, {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'text/plain;charset=utf-8',
         },
         body: JSON.stringify({
-          ...formData,
-          date: new Date().toISOString()
+          name: formData.name,
+          email: formData.email,
+          phone: '',
+          company: '',
+          service: 'SEO Audit Request', // <--- This labels it in the Google Sheet!
+          message: `Website to audit: ${formData.website}`,
+          timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
         })
       });
 
-      // no-cors will always return an opaque response, we assume success if no error was thrown
+      if (!response.ok && response.type !== 'opaque') {
+        throw new Error('Failed to submit form');
+      }
       setStatus('success');
       setFormData({ name: '', email: '', website: '' });
       
