@@ -78,15 +78,7 @@ function App() {
           <Navigation />
           <PromoBanner />
           <main>
-            {/* TEMPORARY SENTRY TEST BUTTON */}
-            <div className="flex justify-center p-10 bg-red-500 relative z-[9999] mt-20">
-              <button 
-                onClick={() => { throw new Error('This is your first error!'); }}
-                className="bg-white text-red-500 font-bold py-4 px-8 rounded shadow-2xl text-xl"
-              >
-                Break the world (Sentry Test)
-              </button>
-            </div>
+
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services/:slug" element={<ServiceDetail />} />
