@@ -90,61 +90,94 @@ export const servicesData = [
     image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&amp;q=80',
     color: 'from-blue-500/20 to-cyan-500/20',
     longContent: `
-	&lt;h2&gt;Websites Built to Generate Enquiries — Not Just Look Good&lt;/h2&gt;
-	&lt;p&gt;Your website is often the first place customers decide whether to contact you or move on. A good-looking website is important, but a &lt;strong&gt;clear, fast, and conversion‑focused website&lt;/strong&gt; is what actually drives business.&lt;/p&gt;
-	&lt;p&gt;At Digital Vint, we design and develop websites that help visitors understand your value quickly, trust your business, and take action—whether that’s calling, messaging, or submitting an enquiry.&lt;/p&gt;
+	<h2>Websites That Work as Hard as You Do</h2>
+<p>Your website is often the first place people decide whether to contact you or move on. It works 24/7, represents your business online, and plays a critical role in building trust with potential customers. At Digital Vint, we design and develop premium websites that don’t just look good — they help visitors understand your value quickly and take action.</p>
 
-	&lt;blockquote&gt;&lt;p&gt;A well‑structured website builds credibility, improves engagement, and can generate significantly more enquiries than generic template‑based sites.&lt;/p&gt;&lt;/blockquote&gt;
+<p>Our focus is simple: build fast, clear, and conversion‑focused websites that support real business growth by turning visitors into enquiries.</p>
 
-	&lt;h2&gt;Our Website Design &amp;amp; Development Approach&lt;/h2&gt;
+<blockquote>
+  <p>A professionally designed website builds credibility, improves engagement, and can generate significantly more enquiries compared to generic template‑based sites.</p>
+</blockquote>
 
-	&lt;h3&gt;1. Discovery &amp;amp; Clarity&lt;/h3&gt;
-	&lt;p&gt;We begin by understanding your business, customers, and goals. This helps us decide what information matters most, how users should navigate the site, and where calls‑to‑action should appear.&lt;/p&gt;
-	&lt;p&gt;The goal here is clarity—so visitors immediately understand what you do and why they should contact you.&lt;/p&gt;
+<h2>Our Web Design & Development Approach</h2>
 
-	&lt;h3&gt;2. UX‑Focused Design&lt;/h3&gt;
-	&lt;p&gt;Design is not decoration. We create clean, modern layouts that guide visitors naturally—using spacing, typography, and structure to reduce confusion and increase engagement.&lt;/p&gt;
-	&lt;p&gt;Every section is designed to support trust and decision‑making, not distract from it.&lt;/p&gt;
+<h3>1. Discovery & Strategy</h3>
+<p>Before any design begins, we take time to understand your business goals, target audience, and customer journey. This allows us to define what information matters most, how users should navigate the site, and where strong calls‑to‑action should appear.</p>
 
-	&lt;h3&gt;3. Robust, Modern Development&lt;/h3&gt;
-	&lt;p&gt;We build websites using modern, reliable technologies suited to your needs—whether that’s a custom‑built site or a content‑managed solution. Our code is clean, secure, accessible, and easy to scale.&lt;/p&gt;
-	&lt;p&gt;We focus on long‑term maintainability rather than quick hacks.&lt;/p&gt;
+<p>The goal of this phase is clarity — so visitors instantly know what you do and why they should contact you.</p>
 
-	&lt;h3&gt;4. Performance &amp;amp; Speed Optimization&lt;/h3&gt;
-	&lt;p&gt;Slow websites cost enquiries. We optimize every website for speed and mobile usability, ensuring fast load times, smooth interactions, and a strong experience across devices.&lt;/p&gt;
-	&lt;p&gt;Performance is treated as a conversion factor, not a technical afterthought.&lt;/p&gt;
+<h3>2. UI/UX Design</h3>
+<p>We design clean, modern interfaces focused on usability and trust. Layouts are structured to guide visitors naturally through the page using clear typography, spacing, and visual hierarchy.</p>
 
-	&lt;h3&gt;5. SEO‑Ready Architecture&lt;/h3&gt;
-	&lt;p&gt;Every website is built with search visibility in mind—clean structure, proper headings, optimized metadata, and layouts that make it easy for search engines and users to understand your content.&lt;/p&gt;
-	&lt;p&gt;This ensures your website supports SEO efforts from day one.&lt;/p&gt;
+<p>Design decisions are made to reduce confusion, improve engagement, and support conversions — not just visual appeal.</p>
 
-	&lt;h2&gt;Types of Websites We Build&lt;/h2&gt;
-	&lt;p&gt;We build websites based on what your business actually needs—no unnecessary complexity.&lt;/p&gt;
-	&lt;table&gt;
-  	&lt;thead&gt;
-    	&lt;tr&gt;
-      	&lt;th&gt;Website Type&lt;/th&gt;
-      	&lt;th&gt;Best For&lt;/th&gt;
-    	&lt;/tr&gt;
-  	&lt;/thead&gt;
-  	&lt;tbody&gt;
-    	&lt;tr&gt;&lt;td&gt;Business Websites&lt;/td&gt;&lt;td&gt;Service businesses, local companies, startups&lt;/td&gt;&lt;/tr&gt;
-    	&lt;tr&gt;&lt;td&gt;Lead‑Focused Landing Pages&lt;/td&gt;&lt;td&gt;Campaigns, launches, promotions&lt;/td&gt;&lt;/tr&gt;
-    	&lt;tr&gt;&lt;td&gt;E‑Commerce Websites&lt;/td&gt;&lt;td&gt;Product‑based businesses&lt;/td&gt;&lt;/tr&gt;
-    	&lt;tr&gt;&lt;td&gt;Portfolio Websites&lt;/td&gt;&lt;td&gt;Professionals, creators, agencies&lt;/td&gt;&lt;/tr&gt;
-    	&lt;tr&gt;&lt;td&gt;Web Applications&lt;/td&gt;&lt;td&gt;Growing and tech‑enabled businesses&lt;/td&gt;&lt;/tr&gt;
-  	&lt;/tbody&gt;
-	&lt;/table&gt;
+<h3>3. Modern Development Stack</h3>
+<p>We build websites using reliable, modern technologies suited to your business needs — whether that’s a fully custom build or a content‑managed solution. Our development approach prioritizes clean code, accessibility, security, and long‑term maintainability.</p>
 
-	&lt;h2&gt;Why Businesses Choose Digital Vint for Website Development&lt;/h2&gt;
-	&lt;ul&gt;
-  	&lt;li&gt;&lt;strong&gt;Conversion‑first approach:&lt;/strong&gt; We design for enquiries, not just aesthetics&lt;/li&gt;
-  	&lt;li&gt;&lt;strong&gt;Clear communication:&lt;/strong&gt; No technical confusion, no hidden steps&lt;/li&gt;
-  	&lt;li&gt;&lt;strong&gt;Performance‑driven:&lt;/strong&gt; Fast, mobile‑friendly websites by default&lt;/li&gt;
-  	&lt;li&gt;&lt;strong&gt;SEO‑ready builds:&lt;/strong&gt; Websites that support long‑term visibility&lt;/li&gt;
-  	&lt;li&gt;&lt;strong&gt;Ongoing support:&lt;/strong&gt; We continue improving after launch&lt;/li&gt;
-	&lt;/ul&gt;
-  `,
+<p>This ensures your website remains easy to manage and ready to scale as your business grows.</p>
+
+<h3>4. Performance Engineering</h3>
+<p>Website speed has a direct impact on user experience and enquiries. We optimize every website for fast loading, smooth interactions, and strong mobile performance using best‑practice optimization techniques.</p>
+
+<p>Performance is treated as a business requirement, not a technical extra.</p>
+
+<h3>5. SEO-Ready Architecture</h3>
+<p>All websites are built with search visibility in mind from the ground up. We use clean page structures, proper heading hierarchy, optimized metadata, schema markup, and SEO‑friendly URLs.</p>
+
+<p>This ensures your website supports SEO efforts naturally without needing major rebuilds later.</p>
+
+<h2>Types of Websites We Build</h2>
+
+<table>
+  <thead>
+	<tr>
+  	<th>Website Type</th>
+  	<th>Best For</th>
+  	<th>Starting Price</th>
+	</tr>
+  </thead>
+  <tbody>
+	<tr>
+  	<td>Business Website</td>
+  	<td>Service businesses, local companies, startups</td>
+  	<td>Contact for quote</td>
+	</tr>
+	<tr>
+  	<td>E-Commerce Store</td>
+  	<td>Product‑based businesses</td>
+  	<td>Contact for quote</td>
+	</tr>
+	<tr>
+  	<td>Portfolio Website</td>
+  	<td>Professionals, agencies, creators</td>
+  	<td>Contact for quote</td>
+	</tr>
+	<tr>
+  	<td>Landing Pages</td>
+  	<td>Campaigns, launches, lead generation</td>
+  	<td>Contact for quote</td>
+	</tr>
+	<tr>
+  	<td>SaaS / Web Application</td>
+  	<td>Tech‑enabled and growing businesses</td>
+  	<td>Contact for quote</td>
+	</tr>
+	<tr>
+  	<td>Corporate Website</td>
+  	<td>Established organisations</td>
+  	<td>Contact for quote</td>
+	</tr>
+  </tbody>
+</table>
+
+<h2>Why Choose Digital Vint for Web Design in Hyderabad?</h2>
+<ul>
+  <li><strong>Conversion‑focused approach:</strong> Websites designed to encourage enquiries, not just impressions</li>
+  <li><strong>Clear communication:</strong> Simple explanations without technical confusion</li>
+  <li><strong>Performance‑driven builds:</strong> Fast, mobile‑friendly websites by default</li>
+  <li><strong>SEO‑ready foundation:</strong> Built to support long‑term visibility</li>
+  <li><strong>Ongoing support:</strong> Continuous improvements even after launch</li>
+</ul>`,
   },
   {
     id: 3,
