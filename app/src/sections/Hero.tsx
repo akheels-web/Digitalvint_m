@@ -168,7 +168,7 @@ const Hero = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <span className="text-white/80 text-sm font-medium">
-              Trusted by 200+ Brands Since 2018
+              Trusted by 200+ Businesses Since 2018
             </span>
           </div>
 
@@ -181,8 +181,8 @@ const Hero = () => {
               transition: 'transform 0.3s ease-out',
             }}
           >
-            <span className="block">Transform Your</span>
-            <span className="block text-gradient">Digital Presence</span>
+            <span className="block">Helping Local Businesses</span>
+            <span className="block text-gradient">Get Online & Generate Leads</span>
           </h1>
 
           {/* Subheading - Minimal */}
@@ -190,7 +190,7 @@ const Hero = () => {
             ref={subheadingRef}
             className="text-lg sm:text-xl text-white/60 max-w-xl mx-auto mb-10 font-light"
           >
-            We build high-performance websites, run ROI-focused campaigns, and craft brands that convert.
+            We design high-converting websites for local businesses that bring enquiries, calls and real customers - not just online presence.
           </p>
 
           {/* CTA Buttons */}
