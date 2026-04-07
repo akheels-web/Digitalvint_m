@@ -17,7 +17,7 @@ const Process = () => {
       number: '01',
       icon: Search,
       title: 'Discovery & Audit',
-      description: 'We deep-dive into your business, competitors, and target market. A comprehensive audit reveals hidden opportunities and fixes quick wins.',
+      description: 'We start by understanding your business, your customers and whats currently holding back your online performance. This helps us find quick wins and avoid guesswork.',
       details: ['Competitor analysis', 'Website health audit', 'Keyword research', 'Market positioning'],
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-500/10',
@@ -26,7 +26,7 @@ const Process = () => {
       number: '02',
       icon: Lightbulb,
       title: 'Strategy & Planning',
-      description: 'We craft a data-backed digital strategy tailored to your goals — whether that\'s leads, sales, visibility, or all three.',
+      description: 'Based on the insights, we create a clear plan focused on your goals - whether thats more enquiries calls, online sales or visibility.',
       details: ['Custom roadmap', 'Channel selection', 'Budget allocation', 'KPI definition'],
       color: 'from-purple-500 to-pink-500',
       bgColor: 'bg-purple-500/10',
@@ -35,7 +35,7 @@ const Process = () => {
       number: '03',
       icon: Rocket,
       title: 'Execution & Launch',
-      description: 'Our team builds, designs, writes, and deploys. From SEO-optimized websites to ad campaigns — executed to perfection.',
+      description: 'Our team designs, builds and launches fast, conversion-focused websites and campaigns - ensuring everything is tested, responsive and ready to perform from day one.',
       details: ['Design & development', 'Content creation', 'Campaign setup', 'Quality assurance'],
       color: 'from-orange-500 to-yellow-500',
       bgColor: 'bg-orange-500/10',
@@ -43,8 +43,8 @@ const Process = () => {
     {
       number: '04',
       icon: TrendingUp,
-      title: 'Growth & Optimization',
-      description: 'We monitor, test, and refine continuously. Monthly reports, A/B testing, and scaling what delivers the highest ROI.',
+      title: 'Growth & Improvements',
+      description: 'Once things are live, we track whats working, make improvements and focus on increasing enquiries and results over time.',
       details: ['Performance tracking', 'A/B testing', 'Monthly reporting', 'Continuous scaling'],
       color: 'from-green-500 to-emerald-500',
       bgColor: 'bg-green-500/10',
@@ -142,7 +142,7 @@ const Process = () => {
             How We Deliver Results
           </h2>
           <p className="text-white/60 text-lg">
-            A proven 4-step framework that transforms businesses in Hyderabad and beyond into digital market leaders.
+            A simple, proven process that helps businesses get more visibility, enquiries and consistent growth.
           </p>
         </div>
 
