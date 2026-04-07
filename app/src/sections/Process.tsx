@@ -104,32 +104,32 @@ const Process = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleAuditSubmit = async (e: React.FormEvent) => {
+  const handleAuditSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    try {
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymXtTfHMJrQoz2nxoDaz9tCdNguciL75bPTxXSzuOhqfskYQE6o-vgpYxlRe0tlwax/exec';
-      
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
-        },
-        body: JSON.stringify({
-          name: 'Not Provided',
-          email: auditEmail,
-          phone: '',
-          company: '',
-          service: 'SEO Audit Request', // Labels it uniquely in Google Sheets
-          message: `Website to audit: ${auditWebsite}`,
-          timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
-        })
-      });
-      
-      setAuditSubmitted(true);
-    } catch (error) {
+    // Instantly show the success message so the user feels zero lag!
+    setAuditSubmitted(true);
+    
+    // Fire the request to Google Sheets in the background (fire-and-forget)
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymXtTfHMJrQoz2nxoDaz9tCdNguciL75bPTxXSzuOhqfskYQE6o-vgpYxlRe0tlwax/exec';
+    
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+      },
+      body: JSON.stringify({
+        name: 'Not Provided',
+        email: auditEmail,
+        phone: '',
+        company: '',
+        service: 'SEO Audit Request', // Labels it uniquely in Google Sheets
+        message: `Website to audit: ${auditWebsite}`,
+        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+      })
+    }).catch(error => {
       console.error('Audit submit error:', error);
-    }
+    });
   };
 
   const scrollToContact = () => {
