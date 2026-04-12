@@ -13,6 +13,7 @@ const MarketingFunnel = () => {
       title: 'Attract (Awareness)',
       icon: Magnet,
       description: 'We bring the right people to your website through search visibility, Google Maps Presence and targeted campaigns - so you are found when customers are actively looking.',
+      deliverables: 'SEO + Google Business Profile + Ads',
       metrics: 'Qualified traffic',
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-500/10',
@@ -22,6 +23,7 @@ const MarketingFunnel = () => {
       title: 'Engage (Trust & Interest)',
       icon: Users,
       description: 'Once they land, we guide them with clear messaging, fast pages, strong design and proof(reviews, work, results) - so they stay, explore and take action.',
+      deliverables: 'Messaging + Design + Proof',
       metrics: 'Engagement + Intent',
       color: 'from-purple-500 to-pink-500',
       bgColor: 'bg-purple-500/10',
@@ -31,6 +33,7 @@ const MarketingFunnel = () => {
       title: 'Convert (Enquiries & Sales)',
       icon: Handshake,
       description: 'We turn visitors into enquiries with high-converting layouts, strong calls-to-action, WhatsApp/call flows and frictionless forms - so you get more calls, messages and bookings.',
+      deliverables: 'CTA + Forms + WhatsApp + Landing pages',
       metrics: 'Leads + Conversions',
       color: 'from-orange-500 to-yellow-500',
       bgColor: 'bg-orange-500/10',
@@ -40,6 +43,7 @@ const MarketingFunnel = () => {
       title: 'Retain (Repeat Customers & Referrals)',
       icon: LineChart,
       description: 'After the first enquiry, we help you follow up and stay top-of-mind using simple automation, remarketing and review generation - bringing repeat customers and referrals over time.',
+      deliverables: 'Remarketing + Reviews + Follow-up',
       metrics: 'Retention + Growth',
       color: 'from-green-500 to-emerald-500',
       bgColor: 'bg-green-500/10',
@@ -139,13 +143,40 @@ const MarketingFunnel = () => {
                       Goal: {step.metrics}
                     </span>
                   </div>
-                  <p className="text-white/60 leading-relaxed text-sm md:text-base">
+                  <p className="text-white/60 leading-relaxed text-sm md:text-base mb-4">
                     {step.description}
                   </p>
+                  <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-white/5">
+                    <span className="text-white/40 text-xs font-semibold uppercase tracking-widest bg-white/5 px-2 py-1 rounded">Deliverables:</span>
+                    <span className="text-white/90 text-sm font-medium">{step.deliverables}</span>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CTA Under Funnel */}
+        <div className="mt-20 max-w-3xl mx-auto text-center border-t border-white/10 pt-16">
+          <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-6">
+            Want to know which stage you're losing customers?
+          </h3>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} 
+              className="w-full sm:w-auto px-8 py-4 bg-brand-blue hover:bg-brand-blue-light text-white font-semibold rounded-full shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:-translate-y-0.5 transition-all"
+            >
+              Get Free Audit
+            </button>
+            <a 
+              href="https://wa.me/919391795320" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 text-white font-semibold rounded-full hover:-translate-y-0.5 transition-all text-center"
+            >
+              WhatsApp Us
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -213,14 +213,11 @@ const Contact = () => {
   ];
 
   const services = [
-    'Website Development',
-    'SEO Services',
-    'Social Media Marketing',
-    'PPC Advertising',
-    'UI/UX Design',
-    'E-Commerce Solutions',
-    'SaaS Solutions & Deployment',
-    'Other',
+    'I need a new business website',
+    'I want more enquiries / leads',
+    'I need a website redesign',
+    'I want to sell products online',
+    'Not sure — need guidance',
   ];
 
   return (
@@ -424,6 +421,13 @@ const Contact = () => {
                     </>
                   )}
                 </Button>
+
+                <div className="flex items-start justify-center gap-2 mt-5 text-white/50 text-xs sm:text-sm font-medium px-2 max-w-sm mx-auto">
+                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /> 
+                  <p className="text-left leading-relaxed">
+                    No sales pressure. Just honest advice based on your business goals.
+                  </p>
+                </div>
               </form>
             </div>
           </div>
