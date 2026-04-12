@@ -298,19 +298,19 @@ const SEO = ({
       <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 
       {/* Structured Data */}
-      <script type="application/ld+json">
+      <script type="application/ld+json" key="schema-website">
         {JSON.stringify(websiteSchema)}
       </script>
-      <script type="application/ld+json">
+      <script type="application/ld+json" key="schema-org">
         {JSON.stringify(organizationSchema)}
       </script>
-      <script type="application/ld+json">
+      <script type="application/ld+json" key="schema-localbiz">
         {JSON.stringify(localBusinessSchema)}
       </script>
-      <script type="application/ld+json">
+      <script type="application/ld+json" key="schema-service">
         {JSON.stringify(serviceSchema)}
       </script>
-      <script type="application/ld+json">
+      <script type="application/ld+json" key="schema-breadcrumb">
         {JSON.stringify(breadcrumbSchema)}
       </script>
 
