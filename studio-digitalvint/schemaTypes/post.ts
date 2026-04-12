@@ -28,10 +28,22 @@ export const postType = defineType({
       description: 'The short preview text shown on the main blogs page.',
     }),
     defineField({
+      name: 'aiSummary',
+      title: 'AI Quick Digest (Key Takeaways)',
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'A few bullet points summarizing the article. Appears at the very top of the post.',
+    }),
+    defineField({
       name: 'content',
       title: 'Full Content',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [
+        {type: 'block'},
+        {type: 'image'},
+        {type: 'callout'},
+        {type: 'tweetQuote'},
+      ],
       description: 'The main body of the blog post.',
     }),
     defineField({
