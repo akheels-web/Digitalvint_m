@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, User, Calendar, Tag, CheckCircle, Facebook, Linkedin, Instagram, Quote, Info, AlertTriangle, Lightbulb, Sparkles, Twitter, ChevronDown } from 'lucide-react';
+import { ArrowLeft, Clock, User, Calendar, Tag, CheckCircle, Facebook, Linkedin, Instagram, Quote, Info, AlertTriangle, Lightbulb, Sparkles, Twitter, ChevronDown, PlayCircle, PauseCircle, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextComponents } from '@portabletext/react';
+import confetti from 'canvas-confetti';
 import { client, urlFor } from '../lib/sanityClient';
 import { Button } from '@/components/ui/button';
 import SEO from '../components/SEO';
@@ -20,6 +21,11 @@ const BlogDetail = () => {
   const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
   const [headings, setHeadings] = useState<{ id: string, text: string, level: string }[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Micro-interaction States
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [feedbackGiven, setFeedbackGiven] = useState<'yes' | 'no' | null>(null);
+  const [highlightMenu, setHighlightMenu] = useState<{ text: string, x: number, y: number } | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,8 +86,57 @@ const BlogDetail = () => {
       if (currentActive) setActiveHeader(currentActive);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Highlight-to-share logic
+    const handleMouseUp = () => {
+      const selection = window.getSelection();
+      if (selection && selection.toString().length > 10 && !selection.isCollapsed) {
+        const range = selection.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+        setHighlightMenu({
+          text: selection.toString(),
+          x: rect.left + rect.width / 2,
+          y: rect.top + window.scrollY - 50 // Above the selection
+        });
+      } else {
+        setHighlightMenu(null);
+      }
+    };
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mouseup', handleMouseUp);
+      // Stop audio if navigating away
+      window.speechSynthesis.cancel();
+    };
   }, []);
+
+  const handlePlayAudio = () => {
+    if (isPlayingAudio) {
+      window.speechSynthesis.cancel();
+      setIsPlayingAudio(false);
+    } else {
+      const articleText = articleRef.current?.innerText || '';
+      const textToRead = `${post.title}. ${articleText}`;
+      const utterance = new SpeechSynthesisUtterance(textToRead);
+      utterance.onend = () => setIsPlayingAudio(false);
+      window.speechSynthesis.speak(utterance);
+      setIsPlayingAudio(true);
+    }
+  };
+
+  const handleFeedback = (type: 'yes' | 'no') => {
+    setFeedbackGiven(type);
+    if (type === 'yes') {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#3b82f6', '#a855f7', '#10b981']
+      });
+    }
+  };
 
   if (isLoading) {
     return <div className="min-h-screen pt-32 flex justify-center text-white/50 text-xl">Loading article...</div>;
@@ -271,7 +326,34 @@ const BlogDetail = () => {
             </aside>
 
             {/* Main Article Content */}
-            <main className="flex-1 min-w-0 max-w-3xl lg:max-w-none">
+            <main className="flex-1 min-w-0 max-w-3xl lg:max-w-none relative">
+              
+              {/* Highlight to Share Tooltip */}
+              {highlightMenu && (
+                <div 
+                  style={{ top: highlightMenu.y, left: highlightMenu.x, transform: 'translateX(-50%)' }}
+                  className="absolute z-50 flex items-center gap-2 bg-brand-black border border-white/20 p-2 rounded-xl shadow-2xl animate-in slide-in-from-bottom-2 fade-in"
+                >
+                  <span className="text-white/80 text-xs px-2 font-medium">Highlight & Share:</span>
+                  <button onClick={() => {
+                      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`"${highlightMenu.text}" \n\n Via ${window.location.href}`)}`, '_blank');
+                      setHighlightMenu(null);
+                    }} 
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors group"
+                  >
+                    <Twitter className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
+                  </button>
+                  <button onClick={() => {
+                      navigator.clipboard.writeText(`"${highlightMenu.text}" \n\n ${window.location.href}`);
+                      setHighlightMenu(null);
+                    }} 
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors group"
+                  >
+                    <Share2 className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
+                  </button>
+                </div>
+              )}
+
               {/* Meta Bar */}
               <div className="flex flex-wrap items-center justify-between gap-4 border-y border-white/10 py-5 mb-10">
                 <div className="flex flex-wrap items-center gap-4 text-white/60 text-sm">
@@ -281,6 +363,15 @@ const BlogDetail = () => {
                   <div className="hidden sm:block w-1 h-1 rounded-full bg-white/20" />
                   <div className="flex items-center gap-2"><Calendar className="w-4 h-4" /><span>{post.date ? new Date(post.date).toLocaleDateString() : ''}</span></div>
                 </div>
+                
+                {/* Audio Player Micro-interaction */}
+                <button 
+                  onClick={handlePlayAudio}
+                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full border transition-all ${isPlayingAudio ? 'bg-brand-blue/20 border-brand-blue/50 text-brand-blue' : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white'}`}
+                >
+                  {isPlayingAudio ? <PauseCircle className="w-4 h-4" /> : <PlayCircle className="w-4 h-4" />}
+                  <span className="text-xs font-semibold tracking-wide uppercase">{isPlayingAudio ? 'Pause Audio' : 'Listen to Article'}</span>
+                </button>
               </div>
 
               {/* AI Key Takeaways */}
@@ -323,6 +414,28 @@ const BlogDetail = () => {
                   ))}
                 </div>
               )}
+
+              {/* End of Post Feedback */}
+              <div className="mt-16 p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                  <h4 className="text-xl font-display font-bold text-white mb-2">Was this article helpful?</h4>
+                  <p className="text-white/60 text-sm">Let us know so we can keep creating great content for you.</p>
+                </div>
+                {feedbackGiven ? (
+                  <div className="flex items-center gap-3 text-green-400 bg-green-400/10 px-6 py-3 rounded-full border border-green-400/20">
+                    <CheckCircle className="w-5 h-5" /> Thank you for your feedback!
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-3">
+                    <button onClick={() => handleFeedback('no')} className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-all group">
+                      <ThumbsDown className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" /> No
+                    </button>
+                    <button onClick={() => handleFeedback('yes')} className="flex items-center gap-2 px-6 py-3 rounded-full bg-brand-blue hover:bg-brand-blue-light text-white transition-all shadow-glow group">
+                      <ThumbsUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" /> Yes, very!
+                    </button>
+                  </div>
+                )}
+              </div>
             </main>
 
             {/* Right Sidebar: Sticky Author & CTA */}
