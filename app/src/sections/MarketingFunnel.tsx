@@ -42,7 +42,7 @@ const MarketingFunnel = () => {
     {
       title: 'Retain (Repeat Customers & Referrals)',
       icon: LineChart,
-      description: 'After the first enquiry, we help you follow up and stay top-of-mind using simple automation, remarketing and review generation - bringing repeat customers and referrals over time.',
+      description: 'After your first enquiry, we keep you top-of-mind with automation, remarketing, and reviews-driving repeat business and referrals.',
       deliverables: 'Remarketing + Reviews + Follow-up',
       metrics: 'Retention + Growth',
       color: 'from-green-500 to-emerald-500',
@@ -162,16 +162,16 @@ const MarketingFunnel = () => {
             Want to know which stage you're losing customers?
           </h3>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button 
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} 
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="w-full sm:w-auto px-8 py-4 bg-brand-blue hover:bg-brand-blue-light text-white font-semibold rounded-full shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:-translate-y-0.5 transition-all"
             >
               Get Free Audit
             </button>
-            <a 
-              href="https://wa.me/919391795320" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://wa.me/919391795320"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 text-white font-semibold rounded-full hover:-translate-y-0.5 transition-all text-center"
             >
               WhatsApp Us
