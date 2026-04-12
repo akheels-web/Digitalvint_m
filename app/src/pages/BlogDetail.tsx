@@ -336,24 +336,25 @@ const BlogDetail = () => {
               {highlightMenu && (
                 <div 
                   style={{ top: highlightMenu.y, left: highlightMenu.x, transform: 'translateX(-50%)' }}
-                  className="fixed z-[100] flex items-center gap-2 bg-brand-black border border-white/20 p-2 rounded-xl shadow-2xl animate-in slide-in-from-bottom-2 fade-in"
+                  className="fixed z-[100] flex items-center gap-3 bg-gradient-to-r from-brand-blue to-purple-600 backdrop-blur-xl border border-white/20 p-2 pl-5 rounded-full shadow-[0_10px_40px_rgba(59,130,246,0.5)] animate-in zoom-in-95 fade-in duration-200"
                 >
-                  <span className="text-white/80 text-xs px-2 font-medium">Highlight & Share:</span>
+                  <span className="text-white text-xs font-bold tracking-widest uppercase drop-shadow-sm">Share:</span>
+                  <div className="w-px h-4 bg-white/30 ml-1 mr-1" />
                   <button onClick={() => {
                       window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`"${highlightMenu.text}" \n\n Via ${window.location.href}`)}`, '_blank');
                       setHighlightMenu(null);
                     }} 
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors group"
+                    className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-all group"
                   >
-                    <Twitter className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
+                    <Twitter className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
                   </button>
                   <button onClick={() => {
                       navigator.clipboard.writeText(`"${highlightMenu.text}" \n\n ${window.location.href}`);
                       setHighlightMenu(null);
                     }} 
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors group"
+                    className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-all group"
                   >
-                    <Share2 className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
+                    <Share2 className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
                   </button>
                 </div>
               )}
@@ -420,21 +421,21 @@ const BlogDetail = () => {
               )}
 
               {/* End of Post Feedback */}
-              <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 text-center md:text-left">
+              <div className="mt-16 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 flex flex-col xl:flex-row items-center xl:items-start justify-between gap-6 sm:gap-8 text-center xl:text-left">
                 <div className="flex-1">
                   <h4 className="text-2xl font-display font-bold text-white mb-2">Was this article helpful?</h4>
                   <p className="text-white/60 text-sm md:text-base">Let us know so we can keep creating great content for you.</p>
                 </div>
                 {feedbackGiven ? (
-                  <div className="flex items-center justify-center gap-3 text-green-400 bg-green-400/10 px-8 py-4 rounded-full border border-green-400/20 font-medium shrink-0">
+                  <div className="flex items-center justify-center gap-3 text-green-400 bg-green-400/10 px-8 py-4 rounded-full border border-green-400/20 font-medium shrink-0 w-full sm:w-auto">
                     <CheckCircle className="w-5 h-5 shrink-0" /> Thank you for your feedback!
                   </div>
                 ) : (
-                  <div className="flex items-center justify-center gap-4 shrink-0 mt-4 md:mt-0">
-                    <button onClick={() => handleFeedback('no')} className="flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-all group shrink-0 whitespace-nowrap text-sm font-semibold tracking-wide">
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 shrink-0 w-full sm:w-auto mt-2 xl:mt-0 xl:self-start">
+                    <button onClick={() => handleFeedback('no')} className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-all group shrink-0 whitespace-nowrap text-sm font-semibold tracking-wide">
                       <ThumbsDown className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform" /> No
                     </button>
-                    <button onClick={() => handleFeedback('yes')} className="flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-brand-blue hover:bg-brand-blue-light text-white transition-all shadow-glow group shrink-0 whitespace-nowrap text-sm font-semibold tracking-wide">
+                    <button onClick={() => handleFeedback('yes')} className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-10 py-3.5 rounded-full bg-brand-blue hover:bg-brand-blue-light text-white transition-all shadow-glow group shrink-0 whitespace-nowrap text-sm font-semibold tracking-wide">
                       <ThumbsUp className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform flex-shrink-0" /> Yes, very!
                     </button>
                   </div>
