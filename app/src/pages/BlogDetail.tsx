@@ -372,10 +372,15 @@ const BlogDetail = () => {
                 {/* Audio Player Micro-interaction */}
                 <button 
                   onClick={handlePlayAudio}
-                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full border transition-all ${isPlayingAudio ? 'bg-brand-blue/20 border-brand-blue/50 text-brand-blue' : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white'}`}
+                  className={`flex items-center gap-3 px-5 py-2.5 rounded-full border transition-all shadow-lg overflow-hidden relative group mt-2 sm:mt-0 ${isPlayingAudio ? 'bg-gradient-to-r from-brand-blue/20 to-purple-600/20 border-brand-blue/50 text-white' : 'bg-gradient-to-r from-brand-blue to-purple-600 border-transparent text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:-translate-y-0.5'}`}
                 >
-                  {isPlayingAudio ? <PauseCircle className="w-4 h-4" /> : <PlayCircle className="w-4 h-4" />}
-                  <span className="text-xs font-semibold tracking-wide uppercase">{isPlayingAudio ? 'Pause Audio' : 'Listen to Article'}</span>
+                  {/* Hover Shine Effect */}
+                  {!isPlayingAudio && <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />}
+                  
+                  <div className="relative z-10 flex items-center gap-2.5">
+                    {isPlayingAudio ? <PauseCircle className="w-4 h-4 animate-pulse fill-white/10" /> : <PlayCircle className="w-4 h-4 fill-white/10" />}
+                    <span className="text-xs font-bold tracking-widest uppercase">{isPlayingAudio ? 'Pause Audio' : 'Listen to Article'}</span>
+                  </div>
                 </button>
               </div>
 
@@ -421,22 +426,26 @@ const BlogDetail = () => {
               )}
 
               {/* End of Post Feedback */}
-              <div className="mt-16 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 flex flex-col xl:flex-row items-center xl:items-start justify-between gap-6 sm:gap-8 text-center xl:text-left">
-                <div className="flex-1">
-                  <h4 className="text-2xl font-display font-bold text-white mb-2">Was this article helpful?</h4>
-                  <p className="text-white/60 text-sm md:text-base">Let us know so we can keep creating great content for you.</p>
+              <div className="mt-16 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 flex flex-col items-center justify-center gap-8 text-center relative overflow-hidden">
+                {/* Background glow element */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-blue/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+                
+                <div className="max-w-lg relative z-10">
+                  <h4 className="text-2xl sm:text-3xl font-display font-bold text-white mb-3 tracking-tight">Was this article helpful?</h4>
+                  <p className="text-white/60 text-sm sm:text-base">Let us know so we can keep creating great content for you.</p>
                 </div>
+                
                 {feedbackGiven ? (
-                  <div className="flex items-center justify-center gap-3 text-green-400 bg-green-400/10 px-8 py-4 rounded-full border border-green-400/20 font-medium shrink-0 w-full sm:w-auto">
+                  <div className="flex items-center justify-center gap-3 text-green-400 bg-green-400/10 px-8 py-4 rounded-full border border-green-400/20 font-medium relative z-10 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
                     <CheckCircle className="w-5 h-5 shrink-0" /> Thank you for your feedback!
                   </div>
                 ) : (
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 shrink-0 w-full sm:w-auto mt-2 xl:mt-0 xl:self-start">
-                    <button onClick={() => handleFeedback('no')} className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-all group shrink-0 whitespace-nowrap text-sm font-semibold tracking-wide">
-                      <ThumbsDown className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform" /> No
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto relative z-10">
+                    <button onClick={() => handleFeedback('no')} className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-all group whitespace-nowrap text-sm font-semibold tracking-wide">
+                      <ThumbsDown className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform" /> No, it missed the mark
                     </button>
-                    <button onClick={() => handleFeedback('yes')} className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-10 py-3.5 rounded-full bg-brand-blue hover:bg-brand-blue-light text-white transition-all shadow-glow group shrink-0 whitespace-nowrap text-sm font-semibold tracking-wide">
-                      <ThumbsUp className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform flex-shrink-0" /> Yes, very!
+                    <button onClick={() => handleFeedback('yes')} className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-10 py-4 rounded-full bg-brand-blue hover:bg-brand-blue-light text-white transition-all shadow-glow group whitespace-nowrap text-sm font-semibold tracking-wide">
+                      <ThumbsUp className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform" /> Yes, extremely helpful!
                     </button>
                   </div>
                 )}
