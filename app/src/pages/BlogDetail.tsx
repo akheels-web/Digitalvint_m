@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, User, Calendar, Tag, CheckCircle, Facebook, Linkedin, Instagram, Quote, Info, AlertTriangle, Lightbulb, Sparkles, Twitter } from 'lucide-react';
+import { ArrowLeft, Clock, User, Calendar, Tag, CheckCircle, Facebook, Linkedin, Instagram, Quote, Info, AlertTriangle, Lightbulb, Sparkles, Twitter, ChevronDown } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextComponents } from '@portabletext/react';
 import { client, urlFor } from '../lib/sanityClient';
@@ -176,6 +176,19 @@ const BlogDetail = () => {
               Tweet this quote
             </button>
           </div>
+        );
+      },
+      expandable: ({ value }) => {
+        return (
+          <details className="my-8 group rounded-2xl bg-white/5 border border-white/10 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors">
+              <span className="font-display font-bold text-white/90 text-lg">{value.title}</span>
+              <ChevronDown className="w-5 h-5 text-brand-blue transition-transform group-open:rotate-180" />
+            </summary>
+            <div className="px-6 pb-6 pt-2 text-white/70 leading-relaxed border-t border-white/5 bg-black/20">
+              {value.content}
+            </div>
+          </details>
         );
       }
     }

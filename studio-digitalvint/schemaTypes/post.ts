@@ -43,6 +43,7 @@ export const postType = defineType({
         {type: 'image'},
         {type: 'callout'},
         {type: 'tweetQuote'},
+        {type: 'expandable'},
       ],
       description: 'The main body of the blog post.',
     }),
