@@ -96,16 +96,20 @@ const BlogDetail = () => {
         setHighlightMenu({
           text: selection.toString(),
           x: rect.left + rect.width / 2,
-          y: rect.top + window.scrollY - 50 // Above the selection
+          y: rect.top - 60 // Viewport-relative offset instead of page-relative
         });
       } else {
         setHighlightMenu(null);
       }
     };
+    const handleScrollHide = () => setHighlightMenu(null);
+    
     document.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('scroll', handleScrollHide, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScrollHide);
       document.removeEventListener('mouseup', handleMouseUp);
       // Stop audio if navigating away
       window.speechSynthesis.cancel();
@@ -332,7 +336,7 @@ const BlogDetail = () => {
               {highlightMenu && (
                 <div 
                   style={{ top: highlightMenu.y, left: highlightMenu.x, transform: 'translateX(-50%)' }}
-                  className="absolute z-50 flex items-center gap-2 bg-brand-black border border-white/20 p-2 rounded-xl shadow-2xl animate-in slide-in-from-bottom-2 fade-in"
+                  className="fixed z-[100] flex items-center gap-2 bg-brand-black border border-white/20 p-2 rounded-xl shadow-2xl animate-in slide-in-from-bottom-2 fade-in"
                 >
                   <span className="text-white/80 text-xs px-2 font-medium">Highlight & Share:</span>
                   <button onClick={() => {
@@ -416,22 +420,22 @@ const BlogDetail = () => {
               )}
 
               {/* End of Post Feedback */}
-              <div className="mt-16 p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-                <div>
-                  <h4 className="text-xl font-display font-bold text-white mb-2">Was this article helpful?</h4>
-                  <p className="text-white/60 text-sm">Let us know so we can keep creating great content for you.</p>
+              <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 text-center md:text-left">
+                <div className="flex-1">
+                  <h4 className="text-2xl font-display font-bold text-white mb-2">Was this article helpful?</h4>
+                  <p className="text-white/60 text-sm md:text-base">Let us know so we can keep creating great content for you.</p>
                 </div>
                 {feedbackGiven ? (
-                  <div className="flex items-center gap-3 text-green-400 bg-green-400/10 px-6 py-3 rounded-full border border-green-400/20">
-                    <CheckCircle className="w-5 h-5" /> Thank you for your feedback!
+                  <div className="flex items-center justify-center gap-3 text-green-400 bg-green-400/10 px-8 py-4 rounded-full border border-green-400/20 font-medium shrink-0">
+                    <CheckCircle className="w-5 h-5 shrink-0" /> Thank you for your feedback!
                   </div>
                 ) : (
-                  <div className="flex items-center gap-3">
-                    <button onClick={() => handleFeedback('no')} className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-all group">
-                      <ThumbsDown className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" /> No
+                  <div className="flex items-center justify-center gap-4 shrink-0 mt-4 md:mt-0">
+                    <button onClick={() => handleFeedback('no')} className="flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-all group shrink-0 whitespace-nowrap text-sm font-semibold tracking-wide">
+                      <ThumbsDown className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform" /> No
                     </button>
-                    <button onClick={() => handleFeedback('yes')} className="flex items-center gap-2 px-6 py-3 rounded-full bg-brand-blue hover:bg-brand-blue-light text-white transition-all shadow-glow group">
-                      <ThumbsUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" /> Yes, very!
+                    <button onClick={() => handleFeedback('yes')} className="flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-brand-blue hover:bg-brand-blue-light text-white transition-all shadow-glow group shrink-0 whitespace-nowrap text-sm font-semibold tracking-wide">
+                      <ThumbsUp className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform flex-shrink-0" /> Yes, very!
                     </button>
                   </div>
                 )}
