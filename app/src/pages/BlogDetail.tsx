@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, User, Calendar, Share2, Tag, CheckCircle, Facebook, Linkedin, Instagram } from 'lucide-react';
+import { ArrowLeft, Clock, User, Calendar, Share2, Tag, CheckCircle, Facebook, Linkedin, Instagram, Quote, Info, AlertTriangle, Lightbulb, Sparkles, Twitter } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextComponents } from '@portabletext/react';
 import { client, urlFor } from '../lib/sanityClient';
@@ -118,6 +118,66 @@ const BlogDetail = () => {
         const id = slugify(children?.toString() || '');
         return <h3 id={id} className="scroll-mt-32">{children}</h3>;
       },
+    },
+    types: {
+      image: ({ value }) => {
+        if (!value?.asset?._ref) return null;
+        return (
+          <div className="my-8 rounded-2xl overflow-hidden aspect-[16/9] relative bg-white/5 border border-white/10">
+            <img src={urlFor(value).width(800).url()} alt="Blog Content" className="w-full h-full object-cover" loading="lazy" />
+          </div>
+        );
+      },
+      callout: ({ value }) => {
+        const { type, title, text } = value;
+        const config = {
+          info: { icon: Info, bg: 'from-blue-500/10 to-blue-400/5', border: 'border-blue-500/20', text: 'text-blue-200', iconColor: 'text-blue-400' },
+          warning: { icon: AlertTriangle, bg: 'from-yellow-500/10 to-yellow-400/5', border: 'border-yellow-500/20', text: 'text-yellow-200', iconColor: 'text-yellow-400' },
+          success: { icon: Lightbulb, bg: 'from-green-500/10 to-green-400/5', border: 'border-green-500/20', text: 'text-green-200', iconColor: 'text-green-400' }
+        }[type as string] || { icon: Info, bg: 'bg-white/5', border: 'border-white/10', text: 'text-white/80', iconColor: 'text-brand-blue' };
+
+        const Icon = config.icon;
+
+        return (
+          <div className={`my-8 p-6 rounded-2xl bg-gradient-to-r ${config.bg} border ${config.border} flex gap-4 md:gap-6`}>
+            <div className="shrink-0 mt-1">
+              <div className={`w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/5 ${config.iconColor}`}>
+                <Icon className="w-5 h-5" />
+              </div>
+            </div>
+            <div>
+              {title && <h4 className={`text-lg font-display font-bold mb-2 ${config.text}`}>{title}</h4>}
+              <p className="text-white/80 leading-relaxed m-0 text-sm md:text-base">{text}</p>
+            </div>
+          </div>
+        );
+      },
+      tweetQuote: ({ value }) => {
+        return (
+          <div className="my-10 px-8 py-10 relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-blue/10 to-brand-blue/5 border border-brand-blue/20">
+            <Quote className="absolute -top-4 -left-4 w-32 h-32 text-brand-blue/10 rotate-180 pointer-events-none" />
+            <div className="relative z-10 text-center">
+              <h3 className="text-2xl md:text-3xl font-display font-medium text-white mb-6 leading-snug">
+                "{value.quote}"
+              </h3>
+              {value.author && (
+                <div className="flex items-center justify-center gap-3">
+                  <div className="w-8 h-px bg-brand-blue/50" />
+                  <span className="text-brand-blue font-semibold uppercase tracking-widest text-xs">{value.author}</span>
+                  <div className="w-8 h-px bg-brand-blue/50" />
+                </div>
+              )}
+            </div>
+            <button 
+              onClick={() => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`"${value.quote}" - ${value.author || ''}`)}&url=${encodeURIComponent(window.location.href)}`, '_blank')}
+              className="mt-8 mx-auto flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-brand-blue hover:border-brand-blue text-white/60 hover:text-white transition-all text-xs font-semibold uppercase tracking-wide group"
+            >
+              <Twitter className="w-4 h-4 group-hover:scale-110 transition-transform" /> 
+              Tweet this quote
+            </button>
+          </div>
+        );
+      }
     }
   };
 
@@ -209,6 +269,28 @@ const BlogDetail = () => {
                   <div className="flex items-center gap-2"><Calendar className="w-4 h-4" /><span>{post.date ? new Date(post.date).toLocaleDateString() : ''}</span></div>
                 </div>
               </div>
+
+              {/* AI Key Takeaways */}
+              {post.aiSummary && post.aiSummary.length > 0 && (
+                <div className="mb-12 p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 to-brand-blue/5 border border-purple-500/20 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-6 opacity-20 pointer-events-none">
+                    <Sparkles className="w-24 h-24 text-purple-400" />
+                  </div>
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-2 text-purple-400 font-display font-bold tracking-wider text-sm uppercase mb-4">
+                      <Sparkles className="w-4 h-4" /> AI Quick Digest
+                    </div>
+                    <ul className="space-y-3">
+                      {post.aiSummary.map((point: string, i: number) => (
+                        <li key={i} className="flex items-start gap-3 text-white/80 text-sm md:text-base leading-relaxed">
+                          <CheckCircle className="w-5 h-5 shrink-0 text-purple-500/50 mt-0.5" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
 
               {/* Sanity Portable Text */}
               <article ref={articleRef} className="blog-article max-w-none prose prose-invert prose-headings:font-display prose-a:text-brand-blue hover:prose-a:text-brand-blue-light prose-img:rounded-2xl">
