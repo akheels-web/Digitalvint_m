@@ -12,46 +12,48 @@ const Hero = () => {
   const subheadingRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Entrance animations
-      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       tl.fromTo(
         '.hero-bg',
-        { scale: 1.2, filter: 'blur(10px)' },
-        { scale: 1, filter: 'blur(0px)', duration: 1.8 }
+        { scale: 1.1, filter: 'blur(5px)' },
+        { scale: 1, filter: 'blur(0px)', duration: 1.5 }
       )
         .fromTo(
           headingRef.current,
-          { y: 100, opacity: 0, rotateX: 90 },
-          { y: 0, opacity: 1, rotateX: 0, duration: 1.2 },
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1 },
           0.2
         )
         .fromTo(
           subheadingRef.current,
           { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8 },
-          0.6
+          0.4
         )
         .fromTo(
           ctaRef.current,
-          { scale: 0, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.7)' },
-          0.8
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8 },
+          0.6
         )
         .fromTo(
           statsRef.current?.children || [],
-          { y: 40, opacity: 0 },
+          { y: 20, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8, stagger: 0.1 },
-          1
+          0.8
         );
 
-      // Scroll parallax
-      gsap.to(headingRef.current, {
+      // Scroll parallax - move the whole container together so elements never overlap!
+      gsap.to(heroContentRef.current, {
         y: -100,
+        opacity: 0,
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
@@ -61,7 +63,7 @@ const Hero = () => {
       });
 
       gsap.to('.hero-bg', {
-        y: 50,
+        y: 100,
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
@@ -74,7 +76,7 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
-  // Mouse parallax effect
+  // Mouse parallax effect - only for visual background elements, no longer breaking text layout
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
@@ -163,7 +165,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-20 w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-20 pb-16">
-        <div className="max-w-5xl mx-auto text-center">
+        <div ref={heroContentRef} className="max-w-5xl mx-auto text-center">
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
@@ -175,26 +177,22 @@ const Hero = () => {
           {/* Main Heading */}
           <h1
             ref={headingRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white leading-tight mb-6 perspective-1000"
-            style={{
-              transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)`,
-              transition: 'transform 0.3s ease-out',
-            }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-white leading-[1.1] mb-8"
           >
-            <span className="block">Helping Local Businesses</span>
-            <span className="block text-gradient">Get Online & Generate Leads</span>
+            <span className="block mb-2">Helping Businesses</span>
+            <span className="block text-gradient">Scale Online</span>
           </h1>
 
           {/* Subheading - Minimal */}
           <p
             ref={subheadingRef}
-            className="text-lg sm:text-xl text-white/60 max-w-xl mx-auto mb-10 font-light"
+            className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-12 font-light leading-relaxed"
           >
-            We design high-converting websites for local businesses that bring enquiries, calls and real customers - not just online presence.
+            We design high-converting, state-of-the-art websites for businesses that bring real enquiries, direct calls, and measurable growth.
           </p>
 
           {/* CTA Buttons */}
-          <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-20">
             <Button
               onClick={() => scrollToSection('contact')}
               size="lg"
