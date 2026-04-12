@@ -372,15 +372,20 @@ const BlogDetail = () => {
                 {/* Audio Player Micro-interaction */}
                 <button 
                   onClick={handlePlayAudio}
-                  className={`flex items-center gap-3 px-5 py-2.5 rounded-full border transition-all shadow-lg overflow-hidden relative group mt-2 sm:mt-0 ${isPlayingAudio ? 'bg-gradient-to-r from-brand-blue/20 to-purple-600/20 border-brand-blue/50 text-white' : 'bg-gradient-to-r from-brand-blue to-purple-600 border-transparent text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:-translate-y-0.5'}`}
+                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full border transition-all mt-2 sm:mt-0 ${isPlayingAudio ? 'bg-brand-blue/10 border-brand-blue/30 text-brand-blue' : 'bg-transparent border-white/10 text-white/50 hover:bg-white/5 hover:text-white hover:border-white/20'}`}
                 >
-                  {/* Hover Shine Effect */}
-                  {!isPlayingAudio && <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />}
-                  
-                  <div className="relative z-10 flex items-center gap-2.5">
-                    {isPlayingAudio ? <PauseCircle className="w-4 h-4 animate-pulse fill-white/10" /> : <PlayCircle className="w-4 h-4 fill-white/10" />}
-                    <span className="text-xs font-bold tracking-widest uppercase">{isPlayingAudio ? 'Pause Audio' : 'Listen to Article'}</span>
+                  <div className="relative flex items-center justify-center w-5 h-5">
+                    {isPlayingAudio ? (
+                      <div className="absolute inset-0 flex items-center justify-center gap-0.5">
+                        <div className="w-0.5 h-2 bg-brand-blue animate-[bounce_1s_infinite_100ms]" />
+                        <div className="w-0.5 h-3 bg-brand-blue animate-[bounce_1s_infinite_200ms]" />
+                        <div className="w-0.5 h-2 bg-brand-blue animate-[bounce_1s_infinite_300ms]" />
+                      </div>
+                    ) : (
+                      <PlayCircle className="w-4 h-4" />
+                    )}
                   </div>
+                  <span className="text-xs font-semibold tracking-wide uppercase">{isPlayingAudio ? 'Playing Audio' : 'Listen to Article'}</span>
                 </button>
               </div>
 
@@ -426,26 +431,23 @@ const BlogDetail = () => {
               )}
 
               {/* End of Post Feedback */}
-              <div className="mt-16 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 flex flex-col items-center justify-center gap-8 text-center relative overflow-hidden">
-                {/* Background glow element */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-blue/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
-                
-                <div className="max-w-lg relative z-10">
-                  <h4 className="text-2xl sm:text-3xl font-display font-bold text-white mb-3 tracking-tight">Was this article helpful?</h4>
-                  <p className="text-white/60 text-sm sm:text-base">Let us know so we can keep creating great content for you.</p>
+              <div className="mt-16 py-8 border-y border-white/10 flex flex-col items-center justify-center gap-5 text-center">
+                <div className="max-w-lg">
+                  <h4 className="text-lg font-display font-bold text-white mb-1">Was this article helpful?</h4>
+                  <p className="text-white/50 text-xs">Let us know so we can keep creating great content for you.</p>
                 </div>
                 
                 {feedbackGiven ? (
-                  <div className="flex items-center justify-center gap-3 text-green-400 bg-green-400/10 px-8 py-4 rounded-full border border-green-400/20 font-medium relative z-10 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-                    <CheckCircle className="w-5 h-5 shrink-0" /> Thank you for your feedback!
+                  <div className="flex items-center justify-center gap-2 text-brand-blue/90 bg-brand-blue/10 px-5 py-2 rounded-full border border-brand-blue/20 text-xs font-medium">
+                    <CheckCircle className="w-3.5 h-3.5" /> Thank you for the feedback!
                   </div>
                 ) : (
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto relative z-10">
-                    <button onClick={() => handleFeedback('no')} className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-all group whitespace-nowrap text-sm font-semibold tracking-wide">
-                      <ThumbsDown className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform" /> No, it missed the mark
+                  <div className="flex items-center justify-center gap-3">
+                    <button onClick={() => handleFeedback('no')} className="flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-transparent hover:bg-white/5 border border-white/10 text-white/50 hover:text-white transition-all text-sm font-medium">
+                      <ThumbsDown className="w-3.5 h-3.5" /> No
                     </button>
-                    <button onClick={() => handleFeedback('yes')} className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-10 py-4 rounded-full bg-brand-blue hover:bg-brand-blue-light text-white transition-all shadow-glow group whitespace-nowrap text-sm font-semibold tracking-wide">
-                      <ThumbsUp className="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform" /> Yes, extremely helpful!
+                    <button onClick={() => handleFeedback('yes')} className="flex items-center justify-center gap-2 px-6 py-2 rounded-full bg-white/5 hover:bg-white/10 hover:border-white/20 border border-white/10 text-white/50 hover:text-white transition-all text-sm font-medium">
+                      <ThumbsUp className="w-3.5 h-3.5" /> Yes
                     </button>
                   </div>
                 )}
