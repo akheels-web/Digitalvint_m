@@ -1,6 +1,28 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/products/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-json/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/comments/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/search/(.*)",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
