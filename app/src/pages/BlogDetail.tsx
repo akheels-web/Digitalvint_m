@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, User, Calendar, Share2, Bookmark, Tag, CheckCircle } from 'lucide-react';
-import { PortableText, PortableTextComponents } from '@portabletext/react';
+import { ArrowLeft, Clock, User, Calendar, Share2, Tag, CheckCircle } from 'lucide-react';
+import { PortableText } from '@portabletext/react';
+import type { PortableTextComponents } from '@portabletext/react';
 import { client, urlFor } from '../lib/sanityClient';
 import { Button } from '@/components/ui/button';
 import SEO from '../components/SEO';
