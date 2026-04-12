@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, Clock, User, Calendar, Share2, Bookmark, Tag } from 'lucide-react';
-import { blogsData } from '../data/blogs';
+import { PortableText } from '@portabletext/react';
+import { client, urlFor } from '../lib/sanityClient';
 import { Button } from '@/components/ui/button';
 import SEO from '../components/SEO';
 
@@ -10,13 +11,36 @@ const BlogDetail = () => {
   const navigate = useNavigate();
   const articleRef = useRef<HTMLDivElement>(null);
   const [readProgress, setReadProgress] = useState(0);
-
-  const post = blogsData.find(b => b.slug === slug);
-  const currentIndex = blogsData.findIndex(b => b.slug === slug);
-  const relatedPosts = blogsData.filter(b => b.slug !== slug).slice(0, 3);
+  
+  const [post, setPost] = useState<any>(null);
+  const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (!slug) return;
+
+    const fetchPost = async () => {
+      setIsLoading(true);
+      try {
+        const query = `*[_type == "post" && slug.current == $slug][0]`;
+        const relatedQuery = `*[_type == "post" && slug.current != $slug] | order(date desc)[0...3]`;
+        
+        const [postData, relatedData] = await Promise.all([
+          client.fetch(query, { slug }),
+          client.fetch(relatedQuery, { slug })
+        ]);
+        
+        setPost(postData);
+        setRelatedPosts(relatedData);
+      } catch (err) {
+        console.error("Error fetching blog detail", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPost();
   }, [slug]);
 
   // Reading progress bar
@@ -31,6 +55,10 @@ const BlogDetail = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (isLoading) {
+    return <div className="min-h-screen pt-32 flex justify-center text-white/50 text-xl">Loading article...</div>;
+  }
 
   if (!post) {
     return (
@@ -51,12 +79,14 @@ const BlogDetail = () => {
     }
   };
 
+  const imageUrl = post.image ? urlFor(post.image).url() : '';
+
   return (
     <>
       <SEO
         title={`${post.title} | Digital Vint Blog`}
-        description={post.excerpt}
-        image={post.image}
+        description={post.snippet}
+        image={imageUrl}
         article={true}
       />
 
@@ -72,7 +102,7 @@ const BlogDetail = () => {
 
         {/* Hero Banner */}
         <div className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden mb-16">
-          <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          {imageUrl && <img src={imageUrl} alt={post.title} className="w-full h-full object-cover" />}
           <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/70 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 lg:px-12 pb-12">
             <div className="max-w-4xl mx-auto">
@@ -84,7 +114,7 @@ const BlogDetail = () => {
                 Back to Articles
               </button>
               <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/20 text-brand-blue font-medium text-sm border border-brand-blue/30 mb-4">
-                {post.category}
+                {post.category || 'Uncategorized'}
               </span>
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
                 {post.title}
@@ -98,11 +128,11 @@ const BlogDetail = () => {
           {/* Meta Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 border-y border-white/10 py-5 mb-12">
             <div className="flex flex-wrap items-center gap-6 text-white/60 text-sm">
-              <div className="flex items-center gap-2"><User className="w-4 h-4" /><span className="font-medium text-white/80">{post.author}</span></div>
+              <div className="flex items-center gap-2"><User className="w-4 h-4" /><span className="font-medium text-white/80">{post.author || 'Digital Vint'}</span></div>
               <div className="hidden sm:block w-1 h-1 rounded-full bg-white/20" />
-              <div className="flex items-center gap-2"><Clock className="w-4 h-4" /><span>{post.readTime}</span></div>
+              {post.readTime && <div className="flex items-center gap-2"><Clock className="w-4 h-4" /><span>{post.readTime}</span></div>}
               <div className="hidden sm:block w-1 h-1 rounded-full bg-white/20" />
-              <div className="flex items-center gap-2"><Calendar className="w-4 h-4" /><span>{post.date}</span></div>
+              <div className="flex items-center gap-2"><Calendar className="w-4 h-4" /><span>{post.date ? new Date(post.date).toLocaleDateString() : ''}</span></div>
             </div>
             <div className="flex items-center gap-3">
               <button onClick={handleShare} className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue/20 transition-all" aria-label="Share">
@@ -115,19 +145,23 @@ const BlogDetail = () => {
           </div>
 
           {/* Article Content */}
-          <article
-            ref={articleRef}
-            className="blog-article max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          <article ref={articleRef} className="blog-article max-w-none prose prose-invert">
+            {post.content ? (
+              <PortableText value={post.content} />
+            ) : (
+              <p>No content available.</p>
+            )}
+          </article>
 
           {/* Tags */}
-          <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center gap-3">
-            <Tag className="w-4 h-4 text-white/40" />
-            {[post.category, 'Digital Marketing', 'Hyderabad'].map(tag => (
-              <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs">{tag}</span>
-            ))}
-          </div>
+          {post.tags && post.tags.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center gap-3">
+              <Tag className="w-4 h-4 text-white/40" />
+              {post.tags.map((tag: string) => (
+                <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs">{tag}</span>
+              ))}
+            </div>
+          )}
 
           {/* CTA Card */}
           <div className="mt-16 bg-gradient-to-br from-brand-blue/10 to-purple-600/10 border border-brand-blue/20 rounded-3xl p-8 md:p-12 text-center">
@@ -143,42 +177,28 @@ const BlogDetail = () => {
             </div>
           </div>
 
-          {/* Prev / Next Navigation */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {currentIndex > 0 && (
-              <Link to={`/blog/${blogsData[currentIndex - 1].slug}`} className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-blue/30 transition-all">
-                <span className="text-xs text-white/40 mb-2 block">← Previous Article</span>
-                <span className="text-white font-display font-semibold group-hover:text-brand-blue transition-colors line-clamp-2">{blogsData[currentIndex - 1].title}</span>
-              </Link>
-            )}
-            {currentIndex < blogsData.length - 1 && (
-              <Link to={`/blog/${blogsData[currentIndex + 1].slug}`} className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-blue/30 transition-all text-right md:col-start-2">
-                <span className="text-xs text-white/40 mb-2 block">Next Article →</span>
-                <span className="text-white font-display font-semibold group-hover:text-brand-blue transition-colors line-clamp-2">{blogsData[currentIndex + 1].title}</span>
-              </Link>
-            )}
-          </div>
-
           {/* Related Posts */}
-          <div className="mt-20">
-            <h2 className="text-2xl font-display font-bold text-white mb-8">You Might Also Like</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {relatedPosts.map(rp => (
-                <Link key={rp.id} to={`/blog/${rp.slug}`} className="group rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-brand-blue/30 transition-all">
-                  <div className="aspect-video overflow-hidden">
-                    <img src={rp.image} alt={rp.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                  </div>
-                  <div className="p-5">
-                    <span className="text-brand-blue text-xs font-medium">{rp.category}</span>
-                    <h3 className="text-white font-display font-semibold mt-2 group-hover:text-brand-blue transition-colors line-clamp-2 text-sm">{rp.title}</h3>
-                    <div className="flex items-center gap-2 mt-3 text-white/40 text-xs">
-                      <Clock className="w-3 h-3" /> {rp.readTime}
+          {relatedPosts.length > 0 && (
+            <div className="mt-20">
+              <h2 className="text-2xl font-display font-bold text-white mb-8">You Might Also Like</h2>
+              <div className="grid md:grid-cols-3 gap-6">
+                {relatedPosts.map((rp: any) => (
+                  <Link key={rp._id} to={`/blog/${rp.slug.current}`} className="group rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-brand-blue/30 transition-all">
+                    <div className="aspect-video overflow-hidden">
+                      {rp.image && <img src={urlFor(rp.image).width(400).url()} alt={rp.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />}
                     </div>
-                  </div>
-                </Link>
-              ))}
+                    <div className="p-5">
+                      <span className="text-brand-blue text-xs font-medium">{rp.category || 'Uncategorized'}</span>
+                      <h3 className="text-white font-display font-semibold mt-2 group-hover:text-brand-blue transition-colors line-clamp-2 text-sm">{rp.title}</h3>
+                      {rp.readTime && <div className="flex items-center gap-2 mt-3 text-white/40 text-xs">
+                        <Clock className="w-3 h-3" /> {rp.readTime}
+                      </div>}
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>
