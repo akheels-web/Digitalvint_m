@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, User, Calendar, Tag, CheckCircle, Facebook, Linkedin, Instagram, Quote, Info, AlertTriangle, Lightbulb, Sparkles, Twitter, ChevronDown, PlayCircle, PauseCircle, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { ArrowLeft, Clock, User, Calendar, Share2, Tag, CheckCircle, Facebook, Linkedin, Instagram, Quote, Info, AlertTriangle, Lightbulb, Sparkles, Twitter, ChevronDown, PlayCircle, PauseCircle, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextComponents } from '@portabletext/react';
 import confetti from 'canvas-confetti';
