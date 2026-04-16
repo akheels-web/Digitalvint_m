@@ -1,0 +1,88 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Digital Vint",
+  "description": "Digital Vint is a results-driven digital marketing and web design agency in Hyderabad, India. We help local businesses attract customers, generate leads, and grow online through lead-generating websites, local SEO, paid ads, and e-commerce solutions.",
+  "url": "https://digitalvint.com",
+  "logo": "https://digitalvint.com/logo.png",
+  "foundingDate": "2018",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hyderabad",
+    "addressRegion": "Telangana",
+    "addressCountry": "IN"
+  },
+  "areaServed": [
+    "Hyderabad",
+    "Telangana",
+    "India"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-93917-95320",
+    "contactType": "customer service",
+    "availableLanguage": ["English", "Hindi", "Telugu", "Urdu"]
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Digital Marketing Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Lead-Generating Business Websites",
+          "description": "Fast, mobile-friendly websites designed to convert visitors into enquiries, calls, and WhatsApp messages.",
+          "url": "https://digitalvint.com/services/website-designing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Local SEO & Online Visibility",
+          "description": "Google Rankings, Google Business Profile optimisation, and local keyword targeting to attract nearby customers.",
+          "url": "https://digitalvint.com/services/seo-optimization"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Paid Ads for Faster Leads",
+          "description": "Targeted Google Ads and social media advertising campaigns generating immediate, high-quality leads.",
+          "url": "https://digitalvint.com/services/performance-marketing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "E-Commerce for Local & Growing Businesses",
+          "description": "Simple, scalable online stores built on Shopify and WooCommerce with UPI and Indian payment integrations.",
+          "url": "https://digitalvint.com/services/ecommerce-solutions"
+        }
+      }
+    ]
+  },
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "minValue": 5,
+    "maxValue": 20
+  },
+  "keywords": [
+    "digital marketing agency Hyderabad",
+    "web design Hyderabad",
+    "SEO agency Hyderabad",
+    "local SEO Telangana",
+    "Google Ads Hyderabad",
+    "lead generation agency India",
+    "website design Hyderabad",
+    "digital marketing company Hyderabad"
+  ],
+  "sameAs": [
+    "https://www.instagram.com/digitalvint/",
+    "https://www.facebook.com/digitalvint/",
+    "https://www.linkedin.com/company/digitalvint/"
+  ]
+}

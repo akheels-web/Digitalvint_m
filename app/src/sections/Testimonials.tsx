@@ -4,14 +4,31 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+import { client } from '../lib/sanityClient';
+
 gsap.registerPlugin(ScrollTrigger);
+
+interface Testimonial {
+  id?: string | number;
+  name: string;
+  role?: string;
+  designation?: string; // fallback mapping
+  company?: string; // fallback mapping
+  image?: string;
+  avatarUrl?: string | null;
+  content?: string;
+  quote?: string; // fallback mapping
+  rating: number;
+}
 
 const Testimonials = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const testimonials = [
+  const fallbackTestimonials: Testimonial[] = [
     {
       id: 1,
       name: 'Dr. Manti Nath',
@@ -87,6 +104,27 @@ const Testimonials = () => {
   ];
 
   useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const query = '*[_type == "testimonial"] | order(_createdAt desc)';
+        const fetched = await client.fetch(query);
+        if (fetched && fetched.length > 0) {
+          setTestimonials(fetched);
+        } else {
+          setTestimonials(fallbackTestimonials);
+        }
+      } catch (error) {
+        console.error("Failed to load testimonials:", error);
+        setTestimonials(fallbackTestimonials);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchTestimonials();
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.testimonials-heading',
@@ -121,10 +159,11 @@ const Testimonials = () => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isLoading]);
 
   // Auto-rotate testimonials
   useEffect(() => {
+    if (isLoading || testimonials.length === 0) return;
     const interval = setInterval(() => {
       if (!isAnimating) {
         setActiveIndex((prev) => (prev + 1) % testimonials.length);
@@ -156,6 +195,10 @@ const Testimonials = () => {
     }
     return visible;
   };
+
+  if (isLoading) {
+    return <section className="py-12 md:py-16 bg-brand-black min-h-[500px]"></section>;
+  }
 
   return (
     <section
@@ -202,12 +245,12 @@ const Testimonials = () => {
 
                   {/* Content */}
                   <p className="text-white/80 text-lg leading-relaxed mb-6">
-                    &ldquo;{testimonial.content}&rdquo;
+                    &ldquo;{testimonial.quote || testimonial.content}&rdquo;
                   </p>
 
                   {/* Rating */}
                   <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
+                    {[...Array(testimonial.rating || 5)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 fill-yellow-500 text-yellow-500" />
                     ))}
                   </div>
@@ -215,49 +258,49 @@ const Testimonials = () => {
                   {/* Author */}
                   <div className="flex items-center gap-4">
                     <img
-                      src={testimonial.image}
+                      src={testimonial.avatarUrl || testimonial.image || `https://ui-avatars.com/api/?name=${testimonial.name}&background=0D0D12&color=fff&size=128`}
                       alt={`${testimonial.name} - Digital Marketing Client Testimonial India`}
                       className="w-14 h-14 rounded-full object-cover border-2 border-brand-blue/30"
                       loading="lazy"
                       decoding="async"
                     />
-                    <div>
-                      <h4 className="text-white font-semibold">{testimonial.name}</h4>
-                      <p className="text-white/50 text-sm">
-                        {testimonial.role}, {testimonial.company}
-                      </p>
-                    </div>
+                  <div>
+                    <h4 className="text-white font-semibold">{testimonial.name}</h4>
+                    <p className="text-white/50 text-sm">
+                      {testimonial.designation || testimonial.role}{testimonial.company ? `, ${testimonial.company}` : ''}
+                    </p>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
 
-          {/* Mobile Carousel */}
-          <div className="md:hidden">
-            <div className="testimonial-card p-6 rounded-2xl bg-white/5 border border-white/10">
-              <Quote className="w-8 h-8 text-brand-blue/30 mb-4" />
-              <p className="text-white/80 text-base leading-relaxed mb-4">
-                &ldquo;{testimonials[activeIndex].content}&rdquo;
-              </p>
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                ))}
-              </div>
-              <div className="flex items-center gap-3">
-                <img
-                  src={testimonials[activeIndex].image}
-                  alt={`${testimonials[activeIndex].name} - Digital Marketing Client Testimonial India`}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-brand-blue/30"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div>
-                  <h4 className="text-white font-semibold text-sm">{testimonials[activeIndex].name}</h4>
-                  <p className="text-white/50 text-xs">
-                    {testimonials[activeIndex].role}, {testimonials[activeIndex].company}
-                  </p>
+        {/* Mobile Carousel */}
+        <div className="md:hidden">
+          <div className="testimonial-card p-6 rounded-2xl bg-white/5 border border-white/10">
+            <Quote className="w-8 h-8 text-brand-blue/30 mb-4" />
+            <p className="text-white/80 text-base leading-relaxed mb-4">
+              &ldquo;{testimonials[activeIndex]?.quote || testimonials[activeIndex]?.content}&rdquo;
+            </p>
+            <div className="flex gap-1 mb-4">
+              {[...Array(testimonials[activeIndex]?.rating || 5)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+              ))}
+            </div>
+            <div className="flex items-center gap-3">
+              <img
+                src={testimonials[activeIndex]?.avatarUrl || testimonials[activeIndex]?.image || `https://ui-avatars.com/api/?name=${testimonials[activeIndex]?.name}&background=0D0D12&color=fff&size=128`}
+                alt={`${testimonials[activeIndex]?.name} - Digital Marketing Client Testimonial India`}
+                className="w-12 h-12 rounded-full object-cover border-2 border-brand-blue/30"
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <h4 className="text-white font-semibold text-sm">{testimonials[activeIndex]?.name}</h4>
+                <p className="text-white/50 text-xs">
+                  {testimonials[activeIndex]?.designation || testimonials[activeIndex]?.role}{testimonials[activeIndex]?.company ? `, ${testimonials[activeIndex]?.company}` : ''}
+                </p>
                 </div>
               </div>
             </div>
