@@ -119,13 +119,13 @@ const Works = () => {
                         {project.description}
                       </p>
 
-                      {/* Display a key stat if available */}
-                      {project.stats && (
+                      {/* Display key stats */}
+                      {project.stats && project.stats.length > 0 && (
                         <div className="grid grid-cols-2 gap-4">
-                          {Object.entries(project.stats).slice(0, 2).map(([key, value]) => (
-                            <div key={key} className="bg-white/5 rounded-xl p-4 border border-white/5">
-                              <div className="text-2xl font-bold text-white mb-1">{value}</div>
-                              <div className="text-sm text-white/50 capitalize">{key}</div>
+                          {project.stats.slice(0, 2).map((stat, i) => (
+                            <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/5">
+                              <div className="text-2xl font-bold text-brand-blue mb-1">{stat.value}</div>
+                              <div className="text-sm text-white/50">{stat.label}</div>
                             </div>
                           ))}
                         </div>

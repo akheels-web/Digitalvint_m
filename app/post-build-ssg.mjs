@@ -53,6 +53,16 @@ const routes = [
     }
   },
   {
+    path: '/faq',
+    title: 'Frequently Asked Questions — Digital Vint Hyderabad',
+    description: 'Answers to common questions about Digital Vint\'s digital marketing, web design, SEO, and Google Ads services in Hyderabad. No jargon, just straight answers.',
+    schema: {
+      "@type": "FAQPage",
+      "url": "https://digitalvint.com/faq",
+      "name": "Digital Vint FAQ"
+    }
+  },
+  {
     path: '/services/website-designing',
     title: 'Lead-Generating Business Websites in Hyderabad | Digital Vint',
     description: 'We design fast, mobile-friendly websites that help local businesses turn visitors into enquiries, calls, and WhatsApp messages.',
@@ -104,16 +114,85 @@ const routes = [
       "url": "https://digitalvint.com/services/ecommerce-solutions"
     }
   },
+  // ─── Case Studies ─────────────────────────────────────────────────────────────
   {
-    path: '/faq',
-    title: 'Frequently Asked Questions — Digital Vint Hyderabad',
-    description: 'Answers to common questions about Digital Vint\'s digital marketing and web design services in Hyderabad.',
+    path: '/works/zaid-book-depot',
+    title: 'Zaid Book Depot Case Study — +150% Traffic, +85% Conversion | Digital Vint',
+    description: 'How Digital Vint built a Shopify e-commerce store for Zaid Book Depot in Hyderabad, resulting in 150% traffic growth and 85% higher checkout conversion rates.',
     schema: {
-      "@type": "FAQPage",
-      "url": "https://digitalvint.com/faq",
-      "name": "Digital Vint FAQ"
+      "@type": "CreativeWork",
+      "name": "Zaid Book Depot — E-Commerce Case Study",
+      "creator": { "@type": "Organization", "name": "Digital Vint" },
+      "about": { "@type": "Organization", "name": "Zaid Book Depot", "location": "Hyderabad, India" },
+      "description": "Shopify e-commerce store delivering +150% traffic growth and +85% checkout conversion for an online bookstore in Hyderabad.",
+      "url": "https://digitalvint.com/works/zaid-book-depot"
     }
-  }
+  },
+  {
+    path: '/works/the-observer-post',
+    title: 'The Observer Post Case Study — +200% Traffic | Digital Vint',
+    description: 'How Digital Vint built a fast-loading news portal for The Observer Post, achieving 200% organic traffic growth and 120% improvement in reader engagement.',
+    schema: {
+      "@type": "CreativeWork",
+      "name": "The Observer Post — News Portal Case Study",
+      "creator": { "@type": "Organization", "name": "Digital Vint" },
+      "about": { "@type": "Organization", "name": "The Observer Post", "location": "Hyderabad, India" },
+      "description": "Custom WordPress news portal achieving +200% organic traffic and +120% reader engagement for a Hyderabad news publication.",
+      "url": "https://digitalvint.com/works/the-observer-post"
+    }
+  },
+  {
+    path: '/works/treasure-jewelry',
+    title: 'Treasure Jewelry Case Study — +180% Sales, 80+ Monthly Enquiries | Digital Vint',
+    description: 'How Digital Vint redesigned the Treasure Jewelry website, delivering 180% more online sales and 80+ WhatsApp enquiries per month for a Hyderabad jewelry brand.',
+    schema: {
+      "@type": "CreativeWork",
+      "name": "Treasure Jewelry — E-Commerce Case Study",
+      "creator": { "@type": "Organization", "name": "Digital Vint" },
+      "about": { "@type": "Organization", "name": "Treasure Jewelry", "location": "Hyderabad, India" },
+      "description": "Premium jewelry e-commerce redesign achieving +180% online sales and 80+ WhatsApp enquiries per month.",
+      "url": "https://digitalvint.com/works/treasure-jewelry"
+    }
+  },
+  {
+    path: '/works/agha-perfumes',
+    title: 'Agha Perfumes Case Study — +250% Leads, 0.8s Load | Digital Vint',
+    description: 'How Digital Vint built a luxury brand website for Agha Perfumes in Hyderabad — resulting in 250% more lead enquiries and a sub-second page load time.',
+    schema: {
+      "@type": "CreativeWork",
+      "name": "Agha Perfumes — Brand Website Case Study",
+      "creator": { "@type": "Organization", "name": "Digital Vint" },
+      "about": { "@type": "Organization", "name": "Agha Perfumes", "location": "Hyderabad, India" },
+      "description": "Luxury perfume brand website with cinematic animations achieving +250% lead enquiries and 0.8s page load speed.",
+      "url": "https://digitalvint.com/works/agha-perfumes"
+    }
+  },
+  {
+    path: '/works/psyke-tech',
+    title: 'Psyke Tech Case Study — +300% Leads, -55% Bounce Rate | Digital Vint',
+    description: 'How Digital Vint redesigned Psyke Tech\'s corporate website to generate 300% more qualified signups and reduce bounce rate by 55%.',
+    schema: {
+      "@type": "CreativeWork",
+      "name": "Psyke Tech — Corporate Website Case Study",
+      "creator": { "@type": "Organization", "name": "Digital Vint" },
+      "about": { "@type": "Organization", "name": "Psyke Tech", "location": "Hyderabad, India" },
+      "description": "Corporate SaaS website achieving +300% qualified lead signups and -55% bounce rate reduction.",
+      "url": "https://digitalvint.com/works/psyke-tech"
+    }
+  },
+  {
+    path: '/works/based-matrimony',
+    title: 'Based Matrimony Case Study — +500% Users | Digital Vint',
+    description: 'How Digital Vint built a full-stack matrimony web application for Based Matrimony, growing registered users by 500% and successful matches by 400%.',
+    schema: {
+      "@type": "CreativeWork",
+      "name": "Based Matrimony — Web Application Case Study",
+      "creator": { "@type": "Organization", "name": "Digital Vint" },
+      "about": { "@type": "Organization", "name": "Based Matrimony", "location": "Hyderabad, India" },
+      "description": "Full-stack matrimony platform achieving +500% registered users and +400% successful matches.",
+      "url": "https://digitalvint.com/works/based-matrimony"
+    }
+  },
 ];
 
 // ─── Helper ───────────────────────────────────────────────────────────────────
