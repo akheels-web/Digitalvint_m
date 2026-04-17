@@ -12,28 +12,49 @@ export const caseStudyType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'client',
-      title: 'Client Name',
-      type: 'string',
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'category',
-      title: 'Category',
+      name: 'location',
+      title: 'Location',
       type: 'string',
-      options: {
-        list: ['Website Development', 'SEO', 'Performance Marketing', 'Packaging Design', 'SaaS', 'E-commerce'],
-      }
+      initialValue: 'Hyderabad, India',
+    }),
+    defineField({
+      name: 'year',
+      title: 'Project Year',
+      type: 'string',
     }),
     defineField({
       name: 'description',
-      title: 'Short Description / Outcome',
+      title: 'Short Description',
       type: 'text',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'imageUrl',
-      title: 'Project Image URL (from Vercel Blob)',
-      type: 'url',
+      name: 'challenge',
+      title: 'The Challenge',
+      type: 'text',
+    }),
+    defineField({
+      name: 'solution',
+      title: 'Our Solution',
+      type: 'text',
+    }),
+    defineField({
+      name: 'mainImage',
+      title: 'Project Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -47,6 +68,15 @@ export const caseStudyType = defineType({
           {name: 'label', type: 'string', title: 'Label (e.g. Traffic Growth)'}
         ]
       }]
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Technologies Used',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags'
+      }
     }),
     defineField({
       name: 'websiteUrl',
@@ -72,6 +102,7 @@ export const caseStudyType = defineType({
     select: {
       title: 'title',
       subtitle: 'category',
+      media: 'mainImage'
     },
   },
 })
