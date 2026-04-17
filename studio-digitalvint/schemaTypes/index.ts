@@ -7,6 +7,7 @@ import {caseStudyType} from './caseStudy'
 import {testimonialType} from './testimonial'
 import {clientLogoType} from './clientLogo'
 import {siteSettingsType} from './siteSettings'
+import {ctaType} from './cta'
 
 export const schemaTypes = [
   postType, 
@@ -17,5 +18,6 @@ export const schemaTypes = [
   caseStudyType,
   testimonialType,
   clientLogoType,
-  siteSettingsType
+  siteSettingsType,
+  ctaType
 ]

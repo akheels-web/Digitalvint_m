@@ -55,6 +55,21 @@ export const serviceType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'faqs',
+      title: 'Service FAQs',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'question', title: 'Question', type: 'string'},
+            {name: 'answer', title: 'Answer', type: 'text'},
+          ],
+        },
+      ],
+      description: 'Add dynamic FAQs for this service (Automatically used for SEO/Schema).',
+    }),
+    defineField({
       name: 'longContent',
       title: 'Detailed Page Content (HTML)',
       type: 'text',

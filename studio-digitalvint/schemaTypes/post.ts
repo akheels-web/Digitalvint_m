@@ -93,5 +93,12 @@ export const postType = defineType({
         layout: 'tags',
       },
     }),
+    defineField({
+      name: 'cta',
+      title: 'Marketing funnel (CTA)',
+      type: 'reference',
+      to: [{type: 'cta'}],
+      description: 'Select a reusable Call to Action block for the bottom of this post.',
+    }),
   ],
 })
