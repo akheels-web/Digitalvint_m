@@ -9,7 +9,8 @@ import {
   ChevronRight,
   Zap,
   Copy,
-  Check
+  Check,
+  Target
 } from 'lucide-react';
 import { createShortLink } from './lib/sanityClient';
 import RedirectHandler from './components/RedirectHandler';

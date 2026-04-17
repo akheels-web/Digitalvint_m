@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Target, ChevronRight, Copy, Check, Globe, Tag, Info, Share2 } from 'lucide-react';
 
 const UTMArchitect = () => {
@@ -8,8 +7,6 @@ const UTMArchitect = () => {
   const [source, setSource] = useState('');
   const [medium, setMedium] = useState('');
   const [campaign, setCampaign] = useState('');
-  const [term, setTerm] = useState('');
-  const [content, setContent] = useState('');
   
   const [result, setResult] = useState('');
   const [isCopied, setIsCopied] = useState(false);
@@ -27,15 +24,13 @@ const UTMArchitect = () => {
       if (source) params.set('utm_source', source.toLowerCase().replace(/\s+/g, '_'));
       if (medium) params.set('utm_medium', medium.toLowerCase().replace(/\s+/g, '_'));
       if (campaign) params.set('utm_campaign', campaign.toLowerCase().replace(/\s+/g, '_'));
-      if (term) params.set('utm_term', term.toLowerCase().replace(/\s+/g, '_'));
-      if (content) params.set('utm_content', content.toLowerCase().replace(/\s+/g, '_'));
 
       const queryString = params.toString();
       setResult(queryString ? `${baseUrl.origin}${baseUrl.pathname}?${queryString}` : baseUrl.toString());
     } catch (e) {
       setResult('Invalid URL');
     }
-  }, [url, source, medium, campaign, term, content]);
+  }, [url, source, medium, campaign]);
 
   const copyToClipboard = () => {
     if (!result || result === 'Invalid URL') return;
