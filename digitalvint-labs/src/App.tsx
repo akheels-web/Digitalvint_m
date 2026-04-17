@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { createShortLink } from './lib/sanityClient';
 import RedirectHandler from './components/RedirectHandler';
+import SEOPreviewer from './components/SEOPreviewer';
+import GrowthCalculator from './components/GrowthCalculator';
 
 // Common Components
 const Nav = () => (
@@ -136,9 +138,16 @@ const UrlShortener = () => {
       await createShortLink(title, url, finalSlug);
       const baseUrl = window.location.origin;
       setResult(`${baseUrl}/s/${finalSlug}`);
-    } catch (err) {
-      console.error('Shorten error:', err);
-      alert('Error creating link.');
+    } catch (err: any) {
+      console.error('Shorten error detail:', err);
+      const msg = err?.message || 'Unknown network error';
+      if (msg.includes('Not authorized') || msg.includes('401')) {
+        alert('Permission Denied: Your Sanity Write Token is missing or invalid.');
+      } else if (msg.includes('403')) {
+        alert('CORS Error: You need to add labs.digitalvint.com to your Sanity project settings (API -> CORS Origins).');
+      } else {
+        alert(`Error creating link: ${msg}`);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -246,6 +255,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shortener" element={<UrlShortener />} />
+            <Route path="/seo" element={<SEOPreviewer />} />
+            <Route path="/growth" element={<GrowthCalculator />} />
             <Route path="/s/:slug" element={<RedirectHandler />} />
             {/* Fallback */}
             <Route path="*" element={<div className="h-[60vh] flex flex-col items-center justify-center text-center px-6">
