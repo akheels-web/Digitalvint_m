@@ -2,21 +2,24 @@ import { useEffect, useCallback, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, ExternalLink, ChevronRight, ChevronLeft } from 'lucide-react';
+import { ArrowRight, ExternalLink, ChevronRight, ChevronLeft, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { worksData } from '../data/works';
 import { Button } from '@/components/ui/button';
+import { client, urlFor } from '../lib/sanityClient';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Works = () => {
   const navigate = useNavigate();
+  const [works, setWorks] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: 'center',
     skipSnaps: false,
   });
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -32,12 +35,28 @@ const Works = () => {
   }, [emblaApi, setSelectedIndex]);
 
   useEffect(() => {
+    const fetchWorks = async () => {
+      try {
+        const query = '*[_type == "caseStudy"] | order(_createdAt desc)';
+        const data = await client.fetch(query);
+        setWorks(data);
+      } catch (err) {
+        console.error('Error fetching works:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchWorks();
+  }, []);
+
+  useEffect(() => {
     if (!emblaApi) return;
     emblaApi.on('select', onSelect);
     emblaApi.on('reInit', onSelect);
   }, [emblaApi, onSelect]);
 
   useEffect(() => {
+    if (isLoading || works.length === 0) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.works-heading',
@@ -56,7 +75,15 @@ const Works = () => {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [isLoading, works]);
+
+  if (isLoading) {
+    return (
+      <div className="py-20 flex justify-center bg-brand-black">
+        <Loader2 className="w-10 h-10 text-brand-blue animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <section id="works" className="relative py-12 md:py-16 bg-brand-black overflow-hidden">
@@ -84,9 +111,9 @@ const Works = () => {
         <div className="max-w-6xl mx-auto mb-8">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex touch-pan-y">
-              {worksData.map((project, index) => (
+              {works.map((project, index) => (
                 <div
-                  key={project.id}
+                  key={project._id}
                   className="flex-[0_0_100%] min-w-0 px-2"
                 >
                   <div className={`transition-all duration-500 ease-out grid lg:grid-cols-2 gap-8 items-center bg-white/5 border border-white/10 rounded-3xl p-6 md:p-10 ${selectedIndex === index ? 'opacity-100 scale-100' : 'opacity-40 scale-[0.98]'}`}>
@@ -94,20 +121,9 @@ const Works = () => {
                     {/* Project Info */}
                     <div className="order-2 lg:order-1 space-y-8">
                       <div className="flex items-center gap-4">
-                        {project.logo && (
-                          <div className="w-16 h-16 rounded-xl overflow-hidden bg-brand-black border border-white/10 flex items-center justify-center shadow-lg">
-                            <img
-                              src={project.logo}
-                              alt={`${project.title} - Digital Marketing client logo`}
-                              loading="lazy"
-                              decoding="async"
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        )}
                         <div>
                           <span className="text-brand-blue text-sm font-medium tracking-wider uppercase mb-1 block">
-                            {project.category}
+                            {project.location || 'Client Success'}
                           </span>
                           <h3 className="text-3xl font-display font-bold text-white">
                             {project.title}
@@ -115,16 +131,16 @@ const Works = () => {
                         </div>
                       </div>
 
-                      <p className="text-lg text-white/70 leading-relaxed">
+                      <p className="text-lg text-white/70 leading-relaxed line-clamp-3">
                         {project.description}
                       </p>
 
                       {/* Display key stats */}
-                      {project.stats && project.stats.length > 0 && (
+                      {project.results && project.results.length > 0 && (
                         <div className="grid grid-cols-2 gap-4">
-                          {project.stats.slice(0, 2).map((stat, i) => (
+                          {project.results.slice(0, 2).map((stat: any, i: number) => (
                             <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/5">
-                              <div className="text-2xl font-bold text-brand-blue mb-1">{stat.value}</div>
+                              <div className="text-2xl font-bold text-brand-blue mb-1">{stat.metric}</div>
                               <div className="text-sm text-white/50">{stat.label}</div>
                             </div>
                           ))}
@@ -132,7 +148,7 @@ const Works = () => {
                       )}
 
                       <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag, tagIndex) => (
+                        {project.tags?.map((tag: any, tagIndex: number) => (
                           <span
                             key={tagIndex}
                             className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 text-sm hover:text-white transition-colors"
@@ -143,7 +159,7 @@ const Works = () => {
                       </div>
 
                       <Button
-                        onClick={() => navigate(`/works/${project.slug}`)}
+                        onClick={() => navigate(`/works/${project.slug?.current}`)}
                         aria-label={`View full case study for ${project.title} digital marketing project`}
                         className="bg-transparent hover:bg-white/10 text-white border border-white/20 font-medium px-8 py-6 rounded-full focus-visible:ring-2 focus-visible:ring-brand-blue focus:outline-none transition-all duration-300 group inline-flex items-center gap-2"
                       >
@@ -160,7 +176,7 @@ const Works = () => {
                           {/* Screen Content */}
                           <div className="absolute inset-0 bg-brand-darker">
                             <img
-                              src={project.image}
+                              src={project.mainImage ? urlFor(project.mainImage).width(800).url() : project.image}
                               alt={`${project.title} - Digital Marketing Case Study Preview`}
                               title={`Digital Vint work for ${project.title}`}
                               loading="lazy"
@@ -196,7 +212,7 @@ const Works = () => {
             </button>
 
             <div className="flex gap-2">
-              {worksData.map((_, index) => (
+              {works.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => emblaApi && emblaApi.scrollTo(index)}
@@ -219,16 +235,6 @@ const Works = () => {
           </div>
         </div>
 
-        {/* View All CTA */}
-        <div className="text-center mt-12">
-          <Button
-            className="bg-gradient-to-r from-brand-blue to-purple-600 hover:from-brand-blue-light hover:to-purple-500 text-white font-medium px-8 py-6 rounded-full text-lg shadow-glow transition-all duration-300 hover:scale-105"
-            onClick={() => navigate('/#works')} // Replace with actual works page if exists, or contact
-          >
-            View All Projects
-            <ExternalLink className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
       </div>
     </section>
   );

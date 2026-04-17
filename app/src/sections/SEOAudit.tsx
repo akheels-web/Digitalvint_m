@@ -16,26 +16,22 @@ const SEOAudit = () => {
     setStatus('submitting');
 
     try {
-      // Using the exact same Google Sheet webhook as the Contact form
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymXtTfHMJrQoz2nxoDaz9tCdNguciL75bPTxXSzuOhqfskYQE6o-vgpYxlRe0tlwax/exec';
-      
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      // Use our new local API bridge
+      const response = await fetch('/api/submit-lead', {
         method: 'POST',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: '',
-          company: '',
-          service: 'SEO Audit Request', // <--- This labels it in the Google Sheet!
+          service: 'SEO Audit Request',
           message: `Website to audit: ${formData.website}`,
-          timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
-        })
+          source: 'Free Audit Form'
+        }),
       });
 
-      if (!response.ok && response.type !== 'opaque') {
+      if (!response.ok) {
         throw new Error('Failed to submit form');
       }
       setStatus('success');

@@ -21,6 +21,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { client, settingsQuery } from '../lib/sanityClient';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,6 +61,7 @@ const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
+  const [settings, setSettings] = useState<any>(null);
 
   const {
     register,
@@ -69,6 +71,14 @@ const Contact = () => {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      const data = await client.fetch(settingsQuery);
+      setSettings(data);
+    };
+    fetchSettings();
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -153,22 +163,19 @@ const Contact = () => {
     setSubmitStatus('idle');
 
     try {
-      // Replace this URL with your Google Apps Script Web App URL
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymXtTfHMJrQoz2nxoDaz9tCdNguciL75bPTxXSzuOhqfskYQE6o-vgpYxlRe0tlwax/exec';
-
-      // Using text/plain to bypass Google Apps Script CORS preflight issues
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      // Use our new local API bridge
+      const response = await fetch('/api/submit-lead', {
         method: 'POST',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           ...data,
-          timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+          source: 'Contact Form' 
         }),
       });
 
-      if (!response.ok && response.type !== 'opaque') {
+      if (!response.ok) {
         throw new Error('Failed to submit form');
       }
 
@@ -190,25 +197,25 @@ const Contact = () => {
     {
       icon: Phone,
       label: 'Phone',
-      value: '+91 93917 95320',
-      href: 'tel:+919391795320',
+      value: settings?.phone || '+91 93917 95320',
+      href: `tel:${settings?.phone || '+919391795320'}`,
     },
     {
       icon: Mail,
       label: 'Email',
-      value: 'info@digitalvint.com',
-      href: 'mailto:info@digitalvint.com',
+      value: settings?.email || 'info@digitalvint.com',
+      href: `mailto:${settings?.email || 'info@digitalvint.com'}`,
     },
     {
       icon: MapPin,
       label: 'Address',
-      value: 'Banjara Hills, Hyderabad, Telangana',
-      href: 'https://maps.google.com/?q=Banjara+Hills+Hyderabad',
+      value: settings?.address || 'Banjara Hills, Hyderabad, Telangana',
+      href: 'https://maps.google.com/?q=' + encodeURIComponent(settings?.address || 'Banjara Hills Hyderabad'),
     },
     {
       icon: Clock,
       label: 'Business Hours',
-      value: 'Mon - Sat: 10:00 AM - 7:00 PM IST',
+      value: settings?.businessHours || 'Mon - Sat: 10:00 AM - 7:00 PM IST',
       href: null,
     },
   ];
@@ -477,7 +484,7 @@ const Contact = () => {
                 Ideal for quick questions and initial guidance.
               </p>
               <a
-                href="https://wa.me/919391795320"
+                href={`https://wa.me/${settings?.whatsappNumber || '919391795320'}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white font-medium transition-colors"

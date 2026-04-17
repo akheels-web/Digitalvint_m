@@ -3,19 +3,49 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   ArrowRight,
-  Check
+  Check,
+  Layout,
+  TrendingUp,
+  Search,
+  Store,
+  Loader2
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { servicesData as services } from '../data/services';
+import { client, urlFor } from '../lib/sanityClient';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const iconMap: Record<string, any> = {
+  'website-designing': Layout,
+  'seo-optimization': Search,
+  'performance-marketing': TrendingUp,
+  'ecommerce-solutions': Store,
+};
 
 const Services = () => {
   const [activeService, setActiveService] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const [services, setServices] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const query = '*[_type == "service"] | order(number asc)';
+        const data = await client.fetch(query);
+        setServices(data);
+      } catch (err) {
+        console.error('Error fetching services:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchServices();
+  }, []);
+
+  useEffect(() => {
+    if (isLoading || services.length === 0) return;
     const ctx = gsap.context(() => {
       // Heading animation
       gsap.fromTo(
@@ -53,7 +83,15 @@ const Services = () => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isLoading, services]);
+
+  if (isLoading) {
+    return (
+      <div className="py-20 flex justify-center bg-brand-black">
+        <Loader2 className="w-10 h-10 text-brand-blue animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <section
@@ -86,154 +124,160 @@ const Services = () => {
           ref={cardsRef}
           className="hidden lg:flex h-[600px] gap-4"
         >
-          {services.map((service, index) => (
-            <div
-              key={service.id}
-              className={`service-card relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 ease-expo ${activeService === index ? 'flex-[3]' : 'flex-1'
-                }`}
-              onClick={() => setActiveService(index)}
-              onMouseEnter={() => setActiveService(index)}
-            >
-              {/* Background Image */}
+          {services.map((service, index) => {
+            const ServiceIcon = iconMap[service.slug?.current || service.iconName] || Layout;
+            return (
               <div
-                className={`absolute inset-0 transition-all duration-700 ${activeService === index ? 'opacity-100' : 'opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-75'
+                key={service._id}
+                className={`service-card relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 ease-expo ${activeService === index ? 'flex-[3]' : 'flex-1'
                   }`}
+                onClick={() => setActiveService(index)}
+                onMouseEnter={() => setActiveService(index)}
               >
-                <img
-                  src={service.image}
-                  alt={`${service.title} - Digital Marketing Services India`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent" />
-              </div>
-
-              {/* Background Gradient (when collapsed) */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${service.color} mix-blend-overlay pointer-events-none transition-opacity duration-500 ${activeService === index ? 'opacity-0' : 'opacity-60'
-                  }`}
-              />
-              <div
-                className={`absolute inset-0 bg-brand-darker/80 pointer-events-none transition-opacity duration-500 ${activeService === index ? 'opacity-0' : 'opacity-100'
-                  }`}
-              />
-
-              {/* Content */}
-              <div className="relative h-full p-6 flex flex-col">
-                {/* Number & Icon */}
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-5xl font-display font-bold text-white/20">
-                    {service.number}
-                  </span>
-                  <service.icon
-                    className={`w-8 h-8 transition-colors duration-300 ${activeService === index ? 'text-brand-blue' : 'text-white/40'
-                      }`}
+                {/* Background Image */}
+                <div
+                  className={`absolute inset-0 transition-all duration-700 ${activeService === index ? 'opacity-100' : 'opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-75'
+                    }`}
+                >
+                  <img
+                    src={service.mainImage ? urlFor(service.mainImage).width(800).url() : service.imageUrl}
+                    alt={`${service.title} - Digital Marketing Services India`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent" />
                 </div>
 
-                {/* Title */}
-                <h3
-                  className={`font-display font-semibold text-white transition-all duration-500 ${activeService === index
-                    ? 'text-2xl mb-4'
-                    : 'text-lg writing-mode-vertical transform rotate-180'
-                    }`}
-                  style={
-                    activeService !== index
-                      ? { writingMode: 'vertical-rl' }
-                      : undefined
-                  }
-                >
-                  {service.title}
-                </h3>
-
-                {/* Expanded Content */}
+                {/* Background Gradient (when collapsed) */}
                 <div
-                  className={`flex-1 flex flex-col transition-all duration-500 ${activeService === index
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-4 pointer-events-none'
+                  className={`absolute inset-0 bg-gradient-to-br ${service.color || 'from-brand-blue/20 to-transparent'} mix-blend-overlay pointer-events-none transition-opacity duration-500 ${activeService === index ? 'opacity-0' : 'opacity-60'
                     }`}
-                >
-                  <p className="text-white/70 mb-6 line-clamp-3">
+                />
+                <div
+                  className={`absolute inset-0 bg-brand-darker/80 pointer-events-none transition-opacity duration-500 ${activeService === index ? 'opacity-0' : 'opacity-100'
+                    }`}
+                />
+
+                {/* Content */}
+                <div className="relative h-full p-6 flex flex-col">
+                  {/* Number & Icon */}
+                  <div className="flex items-start justify-between mb-4">
+                    <span className="text-5xl font-display font-bold text-white/20">
+                      {service.number}
+                    </span>
+                    <ServiceIcon
+                      className={`w-8 h-8 transition-colors duration-300 ${activeService === index ? 'text-brand-blue' : 'text-white/40'
+                        }`}
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    className={`font-display font-semibold text-white transition-all duration-500 ${activeService === index
+                      ? 'text-2xl mb-4'
+                      : 'text-lg writing-mode-vertical transform rotate-180'
+                      }`}
+                    style={
+                      activeService !== index
+                        ? { writingMode: 'vertical-rl' }
+                        : undefined
+                    }
+                  >
+                    {service.title}
+                  </h3>
+
+                  {/* Expanded Content */}
+                  <div
+                    className={`flex-1 flex flex-col transition-all duration-500 ${activeService === index
+                      ? 'opacity-100 translate-y-0'
+                      : 'opacity-0 translate-y-4 pointer-events-none'
+                      }`}
+                  >
+                    <p className="text-white/70 mb-6 line-clamp-3">
+                      {service.description}
+                    </p>
+
+                    {/* Features */}
+                    <ul className="space-y-2 mb-6">
+                      {service.features?.map((feature: any, fIndex: number) => (
+                        <li
+                          key={fIndex}
+                          className="flex items-center gap-2 text-white/60 text-sm"
+                        >
+                          <Check className="w-4 h-4 text-brand-blue flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <Link to={`/services/${service.slug?.current}`} className="mt-auto flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light font-medium group">
+                      Learn More
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Services Grid - Mobile/Tablet Cards */}
+        <div className="lg:hidden grid md:grid-cols-2 gap-6">
+          {services.map((service) => {
+            const ServiceIcon = iconMap[service.slug?.current || service.iconName] || Layout;
+            return (
+              <div
+                key={service._id}
+                className="service-card relative rounded-2xl overflow-hidden bg-brand-darker border border-white/10 hover:border-brand-blue/30 transition-all duration-300 group"
+              >
+                {/* Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                <div className="relative p-6">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center">
+                        <ServiceIcon className="w-6 h-6 text-brand-blue" />
+                      </div>
+                      <span className="text-3xl font-display font-bold text-white/10">
+                        {service.number}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-display font-semibold text-white mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-white/60 text-sm mb-4 line-clamp-2">
                     {service.description}
                   </p>
 
                   {/* Features */}
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, fIndex) => (
+                  <ul className="space-y-1.5 mb-4">
+                    {service.features?.slice(0, 3).map((feature: any, fIndex: number) => (
                       <li
                         key={fIndex}
-                        className="flex items-center gap-2 text-white/60 text-sm"
+                        className="flex items-center gap-2 text-white/50 text-xs"
                       >
-                        <Check className="w-4 h-4 text-brand-blue flex-shrink-0" />
+                        <Check className="w-3 h-3 text-brand-blue flex-shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
 
                   {/* CTA */}
-                  <Link to={`/services/${service.slug}`} className="mt-auto flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light font-medium group">
+                  <Link to={`/services/${service.slug?.current}`} className="flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light text-sm font-medium group/btn">
                     Learn More
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Services Grid - Mobile/Tablet Cards */}
-        <div className="lg:hidden grid md:grid-cols-2 gap-6">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="service-card relative rounded-2xl overflow-hidden bg-brand-darker border border-white/10 hover:border-brand-blue/30 transition-all duration-300 group"
-            >
-              {/* Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-              <div className="relative p-6">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center">
-                      <service.icon className="w-6 h-6 text-brand-blue" />
-                    </div>
-                    <span className="text-3xl font-display font-bold text-white/10">
-                      {service.number}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-display font-semibold text-white mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-white/60 text-sm mb-4 line-clamp-2">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <ul className="space-y-1.5 mb-4">
-                  {service.features.slice(0, 3).map((feature, fIndex) => (
-                    <li
-                      key={fIndex}
-                      className="flex items-center gap-2 text-white/50 text-xs"
-                    >
-                      <Check className="w-3 h-3 text-brand-blue flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA */}
-                <Link to={`/services/${service.slug}`} className="flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light text-sm font-medium group/btn">
-                  Learn More
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

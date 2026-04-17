@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   Facebook,
   Instagram,
@@ -7,12 +8,26 @@ import {
   Mail,
   Phone,
   MapPin,
-  ArrowRight
+  ArrowRight,
+  Twitter,
+  Globe
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { client, settingsQuery } from '../lib/sanityClient';
 
-// Custom X (formerly Twitter) icon since lucide-react doesn't have it
+// Icon Map for Social Platforms
+const SocialIconMap: Record<string, any> = {
+  Facebook,
+  Instagram,
+  LinkedIn: Linkedin,
+  Twitter,
+  X: Twitter, // Fallback if user types X
+  YouTube: Youtube,
+  Globe
+};
+
+// Custom X (formerly Twitter) icon
 const XIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -20,8 +35,17 @@ const XIcon = ({ className }: { className?: string }) => (
 );
 
 const Footer = () => {
+  const [settings, setSettings] = useState<any>(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      const data = await client.fetch(settingsQuery);
+      setSettings(data);
+    };
+    fetchSettings();
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -120,22 +144,25 @@ const Footer = () => {
             </div>
 
             <p className="text-white/60 text-base leading-relaxed mb-8">
-              Hyderabad-based digital growth studio. We help businesses build high-converting websites and generate consistent online enquiries.
+              {settings?.description || 'Hyderabad-based digital growth studio. We help businesses build high-converting websites and generate consistent online enquiries.'}
             </p>
 
             <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300 hover:-translate-y-1"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-4 h-4" />
-                </a>
-              ))}
+              {(settings?.socialLinks || []).map((social: any) => {
+                const Icon = SocialIconMap[social.platform] || SocialIconMap.Globe;
+                return (
+                  <a
+                    key={social._key}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300 hover:-translate-y-1"
+                    aria-label={social.platform}
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -144,19 +171,19 @@ const Footer = () => {
             <h3 className="text-white font-display font-bold text-lg mb-6 tracking-wide">Contact Us</h3>
             <ul className="space-y-4">
               <li>
-                <a href="tel:+919391795320" className="flex items-start gap-3 text-white/60 hover:text-white transition-colors group">
+                <a href={`tel:${settings?.phone || '+91 93917 95320'}`} className="flex items-start gap-3 text-white/60 hover:text-white transition-colors group">
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors shrink-0">
                     <Phone className="w-4 h-4 text-brand-blue" />
                   </div>
-                  <span className="pt-1">+91 93917 95320</span>
+                  <span className="pt-1">{settings?.phone || '+91 93917 95320'}</span>
                 </a>
               </li>
               <li>
-                <a href="mailto:info@digitalvint.com" className="flex items-start gap-3 text-white/60 hover:text-white transition-colors group">
+                <a href={`mailto:${settings?.email || 'info@digitalvint.com'}`} className="flex items-start gap-3 text-white/60 hover:text-white transition-colors group">
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors shrink-0">
                     <Mail className="w-4 h-4 text-brand-blue" />
                   </div>
-                  <span className="pt-1 break-all">info@digitalvint.com</span>
+                  <span className="pt-1 break-all">{settings?.email || 'info@digitalvint.com'}</span>
                 </a>
               </li>
               <li>
@@ -164,7 +191,9 @@ const Footer = () => {
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
                     <MapPin className="w-4 h-4 text-brand-blue" />
                   </div>
-                  <span className="pt-1">Banjara Hills, Hyderabad,<br />Telangana, India</span>
+                  <span className="pt-1 whitespace-pre-line">
+                    {settings?.address || 'Banjara Hills, Hyderabad,\nTelangana, India'}
+                  </span>
                 </div>
               </li>
             </ul>

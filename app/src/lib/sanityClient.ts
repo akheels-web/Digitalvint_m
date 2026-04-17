@@ -16,3 +16,5 @@ export function urlFor(source: ImageSource) {
   return builder.image(source);
 }
 
+export const settingsQuery = `*[_type == "siteSettings"][0]`;
+

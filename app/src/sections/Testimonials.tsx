@@ -4,20 +4,20 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-import { client } from '../lib/sanityClient';
+import { client, urlFor } from '../lib/sanityClient';
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface Testimonial {
-  id?: string | number;
+  _id?: string;
   name: string;
   role?: string;
-  designation?: string; // fallback mapping
-  company?: string; // fallback mapping
-  image?: string;
-  avatarUrl?: string | null;
+  designation?: string; 
+  company?: string; 
+  avatar?: any;
+  avatarUrl?: string;
   content?: string;
-  quote?: string; // fallback mapping
+  quote?: string; 
   rating: number;
 }
 
@@ -258,7 +258,7 @@ const Testimonials = () => {
                   {/* Author */}
                   <div className="flex items-center gap-4">
                     <img
-                      src={testimonial.avatarUrl || testimonial.image || `https://ui-avatars.com/api/?name=${testimonial.name}&background=0D0D12&color=fff&size=128`}
+                      src={testimonial.avatar ? urlFor(testimonial.avatar).width(150).url() : (testimonial.avatarUrl || `https://ui-avatars.com/api/?name=${testimonial.name}&background=0D0D12&color=fff&size=128`)}
                       alt={`${testimonial.name} - Digital Marketing Client Testimonial India`}
                       className="w-14 h-14 rounded-full object-cover border-2 border-brand-blue/30"
                       loading="lazy"
@@ -290,7 +290,7 @@ const Testimonials = () => {
             </div>
             <div className="flex items-center gap-3">
               <img
-                src={testimonials[activeIndex]?.avatarUrl || testimonials[activeIndex]?.image || `https://ui-avatars.com/api/?name=${testimonials[activeIndex]?.name}&background=0D0D12&color=fff&size=128`}
+                src={testimonials[activeIndex]?.avatar ? urlFor(testimonials[activeIndex].avatar).width(150).url() : (testimonials[activeIndex]?.avatarUrl || `https://ui-avatars.com/api/?name=${testimonials[activeIndex]?.name}&background=0D0D12&color=fff&size=128`)}
                 alt={`${testimonials[activeIndex]?.name} - Digital Marketing Client Testimonial India`}
                 className="w-12 h-12 rounded-full object-cover border-2 border-brand-blue/30"
                 loading="lazy"

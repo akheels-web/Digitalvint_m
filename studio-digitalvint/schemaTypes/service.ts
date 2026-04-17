@@ -73,6 +73,7 @@ export const serviceType = defineType({
       name: 'longContent',
       title: 'Detailed Page Content (HTML)',
       type: 'text',
+      description: 'You can use HTML tags here for styling (h2, p, ul, li).'
     }),
   ],
   preview: {

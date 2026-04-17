@@ -2,13 +2,23 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { client, settingsQuery } from '../lib/sanityClient';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [settings, setSettings] = useState<any>(null);
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      const data = await client.fetch(settingsQuery);
+      setSettings(data);
+    };
+    fetchSettings();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,9 +96,9 @@ const Navigation = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
-              <a href="tel:+919391795320" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+              <a href={`tel:${settings?.phone || '+91 93917 95320'}`} className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
                 <Phone className="w-4 h-4" />
-                <span className="text-sm font-medium">+91 93917 95320</span>
+                <span className="text-sm font-medium">{settings?.phone || '+91 93917 95320'}</span>
               </a>
               <Button
                 onClick={() => scrollToSection('contact')}
@@ -138,11 +148,11 @@ const Navigation = () => {
               Get a Free Quote
             </Button>
             <a
-              href="tel:+919391795320"
+              href={`tel:${settings?.phone || '+91 93917 95320'}`}
               className="flex items-center justify-center gap-2 text-white/80 py-4"
             >
               <Phone className="w-5 h-5" />
-              <span className="text-lg font-medium">+91 93917 95320</span>
+              <span className="text-lg font-medium">{settings?.phone || '+91 93917 95320'}</span>
             </a>
           </div>
         </div>
