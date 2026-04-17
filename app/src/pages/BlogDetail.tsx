@@ -7,6 +7,7 @@ import confetti from 'canvas-confetti';
 import { client, urlFor } from '../lib/sanityClient';
 import { Button } from '@/components/ui/button';
 import SEO from '../components/SEO';
+import { Helmet } from 'react-helmet-async';
 
 const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
@@ -227,6 +228,22 @@ const BlogDetail = () => {
   return (
     <>
       <SEO title={`${post.title} | Digital Vint Blog`} description={post.snippet} image={imageUrl} article={true} />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": post.author || "Digital Vint Team",
+            "url": "https://digitalvint.com/#why-us",
+            "jobTitle": "Digital Marketing Expert",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Digital Vint",
+              "url": "https://digitalvint.com"
+            }
+          })}
+        </script>
+      </Helmet>
 
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 z-[60]">

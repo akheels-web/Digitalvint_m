@@ -20,10 +20,19 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { createClient } from '@sanity/client';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const distDir = join(__dirname, 'dist');
+
+// Setup Sanity Client for Build
+const sanityClient = createClient({
+  projectId: 'x6r02qtl',
+  dataset: 'production',
+  apiVersion: '2024-03-12',
+  useCdn: false, // Must be false to ensure fresh data at build time
+});
 
 // ─── Route Definitions ───────────────────────────────────────────────────────
 // Add or remove routes here as your site grows.
@@ -67,12 +76,24 @@ const routes = [
     title: 'Lead-Generating Business Websites in Hyderabad | Digital Vint',
     description: 'We design fast, mobile-friendly websites that help local businesses turn visitors into enquiries, calls, and WhatsApp messages.',
     schema: {
-      "@type": "Service",
+      "@type": ["Service", "FAQPage"],
       "name": "Lead-Generating Business Websites",
       "provider": { "@type": "Organization", "name": "Digital Vint", "url": "https://digitalvint.com" },
       "areaServed": "Hyderabad",
       "description": "Fast, mobile-friendly websites that help local businesses turn visitors into enquiries, calls, and WhatsApp messages.",
-      "url": "https://digitalvint.com/services/website-designing"
+      "url": "https://digitalvint.com/services/website-designing",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a business website cost in Hyderabad?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Website costs vary based on features, ranging from ₹35,000 for standard business sites to custom quotes for complex portals." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you design mobile-friendly websites?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, every website we build is 100% mobile-responsive and optimized for fast loading on Indian networks." }
+        }
+      ]
     }
   },
   {
@@ -80,12 +101,24 @@ const routes = [
     title: 'Local SEO & Online Visibility in Hyderabad | Digital Vint',
     description: 'We help your business appear on Google when nearby customers search for your services, driving consistent local traffic and leads.',
     schema: {
-      "@type": "Service",
+      "@type": ["Service", "FAQPage"],
       "name": "Local SEO & Online Visibility",
       "provider": { "@type": "Organization", "name": "Digital Vint", "url": "https://digitalvint.com" },
       "areaServed": "Hyderabad",
       "description": "Google Rankings, Google Business Profile, and local keyword targeting to attract nearby customers.",
-      "url": "https://digitalvint.com/services/seo-optimization"
+      "url": "https://digitalvint.com/services/seo-optimization",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does SEO take to show results in Hyderabad?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Local SEO typically starts showing noticeable improvements in map rankings and organic traffic within 3 to 6 months depending on competition." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you manage Google Business Profiles?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, Google Business Profile optimization is a core part of our local SEO strategy to maximize local visibility." }
+        }
+      ]
     }
   },
   {
@@ -238,9 +271,42 @@ function injectRouteMetaIntoHtml(baseHtml, route) {
   return html;
 }
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
-const baseHtml = readFileSync(join(distDir, 'index.html'), 'utf-8');
-let successCount = 0;
+// ─── Main Execution ─────────────────────────────────────────────────────────────
+async function main() {
+  console.log('Fetching dynamic routes from Sanity...');
+  try {
+    const posts = await sanityClient.fetch(`*[_type == "post"]{
+      "slug": slug.current,
+      title,
+      snippet,
+      "date": publishedAt,
+      "imageUrl": image.asset->url
+    }`);
+
+    const dynamicRoutes = posts.map(post => ({
+      path: `/blog/${post.slug}`,
+      title: `${post.title} | Digital Vint Blog`,
+      description: post.snippet || `Read ${post.title} on the Digital Vint Blog.`,
+      schema: {
+        "@type": "Article",
+        "headline": post.title,
+        "description": post.snippet || `Read ${post.title} on the Digital Vint Blog.`,
+        "image": post.imageUrl ? [post.imageUrl] : [],
+        "datePublished": post.date,
+        "author": { "@type": "Person", "name": "Digital Vint Team" },
+        "publisher": { "@type": "Organization", "name": "Digital Vint", "logo": "https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Digitalvint.png" }
+      }
+    }));
+
+    console.log(`Discovered ${dynamicRoutes.length} dynamic blog posts.`);
+    routes.push(...dynamicRoutes);
+  } catch (error) {
+    console.error('Failed to fetch from Sanity. Proceeding with static routes only.', error);
+  }
+
+  const baseHtml = readFileSync(join(distDir, 'index.html'), 'utf-8');
+  let successCount = 0;
+
 
 for (const route of routes) {
   if (route.path === '/') {
@@ -264,5 +330,8 @@ for (const route of routes) {
   successCount++;
 }
 
-console.log(`\n🚀 SSG pre-rendering complete: ${successCount}/${routes.length} routes pre-rendered.`);
-console.log(`   AI crawlers will now receive static HTML with full meta tags and JSON-LD schema.`);
+  console.log(`\n🚀 SSG pre-rendering complete: ${successCount}/${routes.length} routes pre-rendered.`);
+  console.log(`   AI crawlers will now receive static HTML with full meta tags and JSON-LD schema.`);
+}
+
+main().catch(console.error);
