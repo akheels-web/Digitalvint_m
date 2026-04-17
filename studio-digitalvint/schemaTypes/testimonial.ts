@@ -15,13 +15,26 @@ export const testimonialType = defineType({
     }),
     defineField({
       name: 'designation',
-      title: 'Designation / Company',
+      title: 'Designation / Role',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'company',
+      title: 'Company Name',
+      type: 'string',
+    }),
+    defineField({
+      name: 'avatar',
+      title: 'Avatar Image (Sanity Asset)',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'avatarUrl',
-      title: 'Avatar Image URL (from Vercel Blob)',
+      title: 'Avatar Image URL (Legacy)',
       type: 'url',
     }),
     defineField({

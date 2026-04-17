@@ -19,8 +19,16 @@ export const clientLogoType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'logo',
+      title: 'Logo Image (Sanity Asset)',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'logoUrl',
-      title: 'Logo Image URL (from Vercel Blob)',
+      title: 'Logo Image URL (Legacy/Fallback)',
       type: 'url',
     }),
     defineField({

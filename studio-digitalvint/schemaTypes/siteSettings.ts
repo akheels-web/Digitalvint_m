@@ -45,13 +45,33 @@ export const siteSettingsType = defineType({
       name: 'socialLinks',
       title: 'Social Media Links',
       type: 'array',
+      readOnly: false, // Ensure it is editable
       of: [
         {
           type: 'object',
           fields: [
-            {name: 'platform', title: 'Platform', type: 'string'},
+            {
+              name: 'platform', 
+              title: 'Platform', 
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Facebook', value: 'Facebook'},
+                  {title: 'Instagram', value: 'Instagram'},
+                  {title: 'LinkedIn', value: 'LinkedIn'},
+                  {title: 'X (Twitter)', value: 'X'},
+                  {title: 'YouTube', value: 'YouTube'},
+                ]
+              }
+            },
             {name: 'url', title: 'URL', type: 'url'},
           ],
+          preview: {
+            select: {
+              title: 'platform',
+              subtitle: 'url',
+            }
+          }
         },
       ],
     }),
