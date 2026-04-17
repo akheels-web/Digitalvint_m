@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, User, Calendar, Share2, Tag, CheckCircle, Quote, Info, AlertTriangle, Lightbulb, Sparkles, ChevronDown, PlayCircle, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { ArrowLeft, Clock, User, Calendar, Share2, Tag, CheckCircle, Facebook, Linkedin, Instagram, Quote, Info, AlertTriangle, Lightbulb, Sparkles, Twitter, ChevronDown, PlayCircle, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextComponents } from '@portabletext/react';
 import confetti from 'canvas-confetti';
@@ -135,13 +135,6 @@ const BlogDetail = () => {
     );
   }
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      await navigator.share({ title: post.title, url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-    }
-  };
 
   const imageUrl = post.image ? urlFor(post.image).url() : '';
 
