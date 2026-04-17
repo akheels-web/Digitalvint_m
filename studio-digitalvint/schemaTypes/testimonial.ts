@@ -1,9 +1,11 @@
 import {defineField, defineType} from 'sanity'
+import {BlockquoteIcon} from '@sanity/icons'
 
 export const testimonialType = defineType({
   name: 'testimonial',
   title: 'Testimonial',
   type: 'document',
+  icon: BlockquoteIcon,
   fields: [
     defineField({
       name: 'name',

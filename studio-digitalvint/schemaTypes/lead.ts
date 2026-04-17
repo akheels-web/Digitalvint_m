@@ -1,9 +1,11 @@
 import {defineField, defineType} from 'sanity'
+import {UserIcon} from '@sanity/icons'
 
 export const leadType = defineType({
   name: 'lead',
   title: 'Leads (CRM)',
   type: 'document',
+  icon: UserIcon,
   fields: [
     defineField({
       name: 'name',

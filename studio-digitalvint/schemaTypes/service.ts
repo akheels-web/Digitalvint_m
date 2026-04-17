@@ -1,9 +1,11 @@
 import {defineField, defineType} from 'sanity'
+import {BulbOutlineIcon} from '@sanity/icons'
 
 export const serviceType = defineType({
   name: 'service',
   title: 'Service',
   type: 'document',
+  icon: BulbOutlineIcon,
   fields: [
     defineField({
       name: 'number',

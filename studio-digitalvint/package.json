@@ -16,11 +16,15 @@
   ],
   "dependencies": {
     "@sanity/color-input": "^6.0.4",
+    "@sanity/dashboard": "^5.0.1",
+    "@sanity/icons": "^3.7.4",
     "@sanity/presentation": "^2.0.0",
     "@sanity/vision": "^5.20.0",
+    "lucide-react": "^1.8.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "sanity": "^5.20.0",
+    "sanity-plugin-media": "^4.1.1",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
