@@ -381,27 +381,48 @@ const BlogDetail = () => {
 
 
               {/* End of Post Feedback */}
-              <div className="mt-16 py-8 border-y border-white/10 flex flex-col items-center justify-center gap-5 text-center">
-                <div className="max-w-lg">
-                  <h4 className="text-lg font-display font-bold text-white mb-1">Was this article helpful?</h4>
-                  <p className="text-white/50 text-xs">Let us know so we can keep creating great content for you.</p>
-                </div>
+              <div className="mt-20 p-10 rounded-3xl bg-white/[0.03] border border-white/10 relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-blue/20 to-transparent" />
+                
+                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                  <div className="text-center md:text-left">
+                    <h4 className="text-2xl font-display font-bold text-white mb-2 underline decoration-brand-blue/30 decoration-4 underline-offset-4">
+                      Was this helpful?
+                    </h4>
+                    <p className="text-white/50 text-sm max-w-sm leading-relaxed">
+                      Your feedback helps us refine our 2026 AI SEO strategies. Rate this article to help other business owners.
+                    </p>
+                  </div>
 
-                {feedbackGiven ? (
-                  <div className="flex items-center justify-center gap-2 text-brand-blue/90 bg-brand-blue/10 px-5 py-2 rounded-full border border-brand-blue/20 text-xs font-medium">
-                    <CheckCircle className="w-3.5 h-3.5" /> Thank you for the feedback!
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center gap-3">
-                    <button onClick={() => handleFeedback('no')} className="flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-transparent hover:bg-white/5 border border-white/10 text-white/50 hover:text-white transition-all text-sm font-medium">
-                      <ThumbsDown className="w-3.5 h-3.5" /> No
-                    </button>
-                    <button onClick={() => handleFeedback('yes')} className="flex items-center justify-center gap-2 px-6 py-2 rounded-full bg-white/5 hover:bg-white/10 hover:border-white/20 border border-white/10 text-white/50 hover:text-white transition-all text-sm font-medium">
-                      <ThumbsUp className="w-3.5 h-3.5" /> Yes
-                    </button>
-                  </div>
-                )}
+                  {feedbackGiven ? (
+                    <div className="flex flex-col items-center md:items-end animate-in fade-in slide-in-from-bottom-4 duration-500">
+                      <div className="flex items-center gap-3 text-brand-blue font-bold px-6 py-3 rounded-2xl bg-brand-blue/10 border border-brand-blue/20 shadow-[0_0_30px_rgba(59,130,246,0.15)] mb-2">
+                        <CheckCircle className="w-5 h-5" /> 
+                        Sent with magic!
+                      </div>
+                      <p className="text-white/40 text-[10px] uppercase tracking-widest font-bold">Thank you for your response</p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-4">
+                      <button 
+                        onClick={() => handleFeedback('no')} 
+                        className="group/btn flex items-center gap-3 px-8 py-3.5 rounded-2xl bg-white/5 hover:bg-red-500/10 border border-white/10 hover:border-red-500/30 text-white/60 hover:text-red-400 transition-all duration-300 font-bold"
+                      >
+                        <ThumbsDown className="w-5 h-5 group-hover/btn:-rotate-12 transition-transform" />
+                        No
+                      </button>
+                      <button 
+                        onClick={() => handleFeedback('yes')} 
+                        className="group/btn flex items-center gap-3 px-10 py-3.5 rounded-2xl bg-brand-blue border border-brand-blue text-white hover:bg-brand-blue-light hover:scale-105 transition-all duration-300 font-bold shadow-xl shadow-brand-blue/20"
+                      >
+                        <ThumbsUp className="w-5 h-5 group-hover/btn:rotate-12 transition-transform" />
+                        Yes
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
+
             </main>
 
             {/* Right Sidebar: Sticky Author & CTA */}
