@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, User, Calendar, Share2, Tag, CheckCircle, Facebook, Linkedin, Instagram, Quote, Info, AlertTriangle, Lightbulb, Sparkles, Twitter, ChevronDown, PlayCircle, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { ArrowLeft, Clock, User, Calendar, Share2, Tag, CheckCircle, Quote, Info, AlertTriangle, Lightbulb, Sparkles, ChevronDown, PlayCircle, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextComponents } from '@portabletext/react';
 import confetti from 'canvas-confetti';
@@ -309,21 +309,25 @@ const BlogDetail = () => {
                 {/* Audio Player Micro-interaction */}
                 <button
                   onClick={handlePlayAudio}
-                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full border transition-all mt-2 sm:mt-0 ${isPlayingAudio ? 'bg-brand-blue/10 border-brand-blue/30 text-brand-blue' : 'bg-transparent border-white/10 text-white/50 hover:bg-white/5 hover:text-white hover:border-white/20'}`}
+                  className={`group flex items-center gap-3 px-5 py-2.5 rounded-full border transition-all duration-300 mt-2 sm:mt-0 shadow-lg ${isPlayingAudio
+                      ? 'bg-brand-blue border-brand-blue text-white shadow-brand-blue/20 scale-105'
+                      : 'bg-white/5 border-white/10 text-white/80 hover:bg-white/10 hover:border-brand-blue/50 hover:text-brand-blue hover:shadow-brand-blue/10'
+                    }`}
                 >
-                  <div className="relative flex items-center justify-center w-5 h-5">
+                  <div className="relative flex items-center justify-center w-6 h-6 rounded-full bg-white/10 group-hover:bg-brand-blue/20 transition-colors">
                     {isPlayingAudio ? (
-                      <div className="absolute inset-0 flex items-center justify-center gap-0.5">
-                        <div className="w-0.5 h-2 bg-brand-blue animate-[bounce_1s_infinite_100ms]" />
-                        <div className="w-0.5 h-3 bg-brand-blue animate-[bounce_1s_infinite_200ms]" />
-                        <div className="w-0.5 h-2 bg-brand-blue animate-[bounce_1s_infinite_300ms]" />
+                      <div className="flex items-center justify-center gap-0.5">
+                        <div className="w-0.5 h-3 bg-white animate-[bounce_1s_infinite_100ms]" />
+                        <div className="w-0.5 h-4 bg-white animate-[bounce_1s_infinite_200ms]" />
+                        <div className="w-0.5 h-3 bg-white animate-[bounce_1s_infinite_300ms]" />
                       </div>
                     ) : (
-                      <PlayCircle className="w-4 h-4" />
+                      <PlayCircle className="w-4 h-4 transition-transform group-hover:scale-110" />
                     )}
                   </div>
-                  <span className="text-xs font-semibold tracking-wide uppercase">{isPlayingAudio ? 'Playing Audio' : 'Listen to Article'}</span>
+                  <span className="text-xs font-bold tracking-widest uppercase">{isPlayingAudio ? 'Playing' : 'Listen to Article'}</span>
                 </button>
+
               </div>
 
               {/* AI Key Takeaways */}
@@ -366,7 +370,7 @@ const BlogDetail = () => {
                       <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs">{tag}</span>
                     ))}
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <span className="text-white/40 text-xs font-display uppercase tracking-widest font-semibold mr-2">Share</span>
                     <button onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`, '_blank')} className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white transition-all group">
@@ -429,16 +433,16 @@ const BlogDetail = () => {
                 {/* Decorative Elements */}
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-blue/20 rounded-full blur-3xl pointer-events-none" />
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
-                
+
                 <h4 className="text-2xl font-display font-bold text-white mb-3">Scale Your Business</h4>
                 <p className="text-white/70 text-sm mb-8 leading-relaxed">Stop guessing with your digital strategy. Let's build a custom roadmap for your brand.</p>
-                
+
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center text-xs font-medium text-white/80 justify-center gap-2 mb-2 bg-white/5 py-2 rounded-full border border-white/5">
                     <CheckCircle className="w-4 h-4 text-green-400" /> Free Audit included
                   </div>
-                  <Button 
-                    onClick={() => navigate('/#contact')} 
+                  <Button
+                    onClick={() => navigate('/#contact')}
                     className="w-full bg-white text-brand-black hover:bg-brand-blue hover:text-white rounded-xl font-bold h-12 transition-all duration-300 shadow-xl"
                   >
                     Book Strategy Call
