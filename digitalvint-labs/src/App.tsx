@@ -15,6 +15,7 @@ import { createShortLink } from './lib/sanityClient';
 import RedirectHandler from './components/RedirectHandler';
 import SEOPreviewer from './components/SEOPreviewer';
 import GrowthCalculator from './components/GrowthCalculator';
+import UTMArchitect from './components/UTMArchitect';
 
 // Common Components
 const Nav = () => (
@@ -61,6 +62,14 @@ const Home = () => {
       path: '/growth',
       color: 'from-orange-500 to-red-600',
       tag: 'Strategy'
+    },
+    {
+      title: 'UTM Architect',
+      description: 'Standardize your campaign tracking links with professional UTM parameters.',
+      icon: Target,
+      path: '/utm',
+      color: 'from-cyan-500 to-blue-600',
+      tag: 'Tracking'
     }
   ];
 
@@ -257,6 +266,7 @@ const App = () => {
             <Route path="/shortener" element={<UrlShortener />} />
             <Route path="/seo" element={<SEOPreviewer />} />
             <Route path="/growth" element={<GrowthCalculator />} />
+            <Route path="/utm" element={<UTMArchitect />} />
             <Route path="/s/:slug" element={<RedirectHandler />} />
             {/* Fallback */}
             <Route path="*" element={<div className="h-[60vh] flex flex-col items-center justify-center text-center px-6">
