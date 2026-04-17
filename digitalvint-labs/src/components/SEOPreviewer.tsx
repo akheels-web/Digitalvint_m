@@ -9,21 +9,21 @@ const SEOPreviewer = () => {
   const [view, setView] = useState<'desktop' | 'mobile'>('desktop');
 
   return (
-    <div className="px-6 py-12 md:py-20">
-      <div className="max-w-5xl mx-auto w-full">
-        <Link to="/" className="inline-flex items-center gap-2 text-white/30 hover:text-white mb-10 transition-all hover:-translate-x-1 uppercase text-[10px] font-black tracking-widest">
-          <ChevronRight className="w-4 h-4 rotate-180" /> Dashboard
+    <div className="px-6 py-12 md:py-16 min-h-[85vh] flex flex-col items-center justify-center">
+      <div className="max-w-4xl mx-auto w-full">
+        <Link to="/" className="inline-flex items-center gap-2 text-white/30 hover:text-white mb-8 transition-all hover:-translate-x-1 uppercase text-[9px] font-black tracking-widest pl-2">
+          <ChevronRight className="w-3.5 h-3.5 rotate-180" /> Back to Dashboard
         </Link>
         
-        <div className="labs-card p-10 md:p-16 relative overflow-hidden">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16">
-            <div className="flex items-center gap-6">
-              <div className="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
-                <Search className="w-8 h-8 text-purple-400" />
+        <div className="labs-card p-8 md:p-12 relative overflow-hidden shadow-2xl">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-white/5 pb-10">
+            <div className="flex items-center gap-5">
+              <div className="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
+                <Search className="w-7 h-7 text-purple-400" />
               </div>
               <div>
-                <h2 className="text-3xl md:text-4xl font-display font-black text-white mb-1">SEO Previewer</h2>
-                <p className="text-white/40">Optimize how your site appears in Google search results.</p>
+                <h2 className="text-2xl md:text-3xl font-display font-black text-white">SEO Previewer</h2>
+                <p className="text-white/40 text-sm">Optimize your Google search presence.</p>
               </div>
             </div>
             

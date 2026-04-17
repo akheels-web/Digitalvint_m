@@ -161,13 +161,13 @@ const UrlShortener = () => {
   };
 
   return (
-    <div className="px-6 py-12 md:py-20 min-h-[80vh] flex items-center">
-      <div className="max-w-4xl mx-auto w-full">
-        <Link to="/" className="inline-flex items-center gap-2 text-white/30 hover:text-white mb-10 transition-all hover:-translate-x-1 uppercase text-[10px] font-black tracking-widest">
-          <ChevronRight className="w-4 h-4 rotate-180" /> Dashboard
+    <div className="px-6 py-12 md:py-16 min-h-[80vh] flex flex-col items-center justify-center">
+      <div className="max-w-3xl mx-auto w-full">
+        <Link to="/" className="inline-flex items-center gap-2 text-white/30 hover:text-white mb-8 transition-all hover:-translate-x-1 uppercase text-[9px] font-black tracking-widest pl-2">
+          <ChevronRight className="w-3.5 h-3.5 rotate-180" /> Back to Dashboard
         </Link>
         
-        <div className="labs-card p-10 md:p-20 relative overflow-hidden">
+        <div className="labs-card p-8 md:p-12 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-blue/5 rounded-full blur-[100px] pointer-events-none" />
           
           <div className="flex flex-col md:flex-row md:items-center gap-8 mb-16">
