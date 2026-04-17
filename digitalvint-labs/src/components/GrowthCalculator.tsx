@@ -32,7 +32,7 @@ const GrowthCalculator = () => {
   };
 
   return (
-    <div className="px-6 py-12 md:py-16 min-h-[85vh] flex flex-col items-center justify-center">
+    <div className="pt-32 pb-20 px-6 relative z-10 font-sans">
       <div className="max-w-4xl mx-auto w-full">
         <Link to="/" className="inline-flex items-center gap-2 text-white/30 hover:text-white mb-8 transition-all hover:-translate-x-1 uppercase text-[9px] font-black tracking-widest pl-2">
           <ChevronRight className="w-3.5 h-3.5 rotate-180" /> Back to Dashboard
@@ -44,26 +44,26 @@ const GrowthCalculator = () => {
               <BarChart3 className="w-7 h-7 text-orange-400" />
             </div>
             <div>
-              <h2 className="text-2xl md:text-4xl font-display font-black text-white">Growth Profit</h2>
+              <h2 className="text-2xl md:text-3xl font-display font-black text-white leading-tight">Growth Profit</h2>
               <p className="text-white/40 text-sm">Visualize your monthly revenue growth potential.</p>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Inputs */}
-            <div className="space-y-12">
+            <div className="space-y-10">
               <div className="space-y-6">
                 <div className="flex justify-between items-center text-white">
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4 text-brand-blue" />
                     <span className="text-[10px] uppercase font-black tracking-widest text-white/60">Monthly Visitors</span>
                   </div>
-                  <span className="text-2xl font-display font-black">{traffic.toLocaleString()}</span>
+                  <span className="text-xl font-display font-bold">{traffic.toLocaleString()}</span>
                 </div>
                 <input 
                   type="range" 
                   min="500" max="50000" step="500"
-                  className="w-full h-2 bg-white/5 rounded-lg appearance-none cursor-pointer accent-brand-blue"
+                  className="w-full h-1.5 bg-white/5 rounded-lg appearance-none cursor-pointer accent-brand-blue"
                   value={traffic}
                   onChange={(e) => setTraffic(Number(e.target.value))}
                 />
@@ -75,12 +75,12 @@ const GrowthCalculator = () => {
                     <Target className="w-4 h-4 text-purple-400" />
                     <span className="text-[10px] uppercase font-black tracking-widest text-white/60">Conversion Rate</span>
                   </div>
-                  <span className="text-2xl font-display font-black">{convRate}%</span>
+                  <span className="text-xl font-display font-bold">{convRate}%</span>
                 </div>
                 <input 
                   type="range" 
                   min="0.1" max="10" step="0.1"
-                  className="w-full h-2 bg-white/5 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  className="w-full h-1.5 bg-white/5 rounded-lg appearance-none cursor-pointer accent-purple-600"
                   value={convRate}
                   onChange={(e) => setConvRate(Number(e.target.value))}
                 />
@@ -90,21 +90,21 @@ const GrowthCalculator = () => {
                 <div className="flex justify-between items-center text-white">
                   <div className="flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-green-400" />
-                    <span className="text-[10px] uppercase font-black tracking-widest text-white/60">Average Lead Value</span>
+                    <span className="text-[10px] uppercase font-black tracking-widest text-white/60">Avg. Lead Value</span>
                   </div>
-                  <span className="text-2xl font-display font-black">{formatCurrency(leadValue)}</span>
+                  <span className="text-xl font-display font-bold">{formatCurrency(leadValue)}</span>
                 </div>
                 <input 
                   type="range" 
                   min="100" max="10000" step="100"
-                  className="w-full h-2 bg-white/5 rounded-lg appearance-none cursor-pointer accent-green-600"
+                  className="w-full h-1.5 bg-white/5 rounded-lg appearance-none cursor-pointer accent-green-600"
                   value={leadValue}
                   onChange={(e) => setLeadValue(Number(e.target.value))}
                 />
               </div>
 
-              <div className="pt-10 border-t border-white/5">
-                <p className="text-white/40 text-sm italic leading-relaxed">
+              <div className="pt-8 border-t border-white/5">
+                <p className="text-white/30 text-xs italic leading-relaxed">
                   "Adjust the sliders to see how small improvements in traffic and conversion can exponentially increase your monthly revenue."
                 </p>
               </div>
@@ -113,11 +113,11 @@ const GrowthCalculator = () => {
             {/* Results Card */}
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-brand-blue/20 to-purple-600/20 blur-3xl opacity-50" />
-              <div className="relative bg-[#1a1a1c] border border-white/10 rounded-[3rem] p-10 md:p-12 text-center overflow-hidden">
+              <div className="relative bg-[#1a1a1c] border border-white/10 rounded-[2.5rem] p-8 md:p-10 text-center overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-blue/10 rounded-full blur-3xl" />
                 
-                <p className="text-white/30 uppercase tracking-[0.3em] font-black text-[10px] mb-4">Estimated Monthly Gain</p>
-                <div className="text-5xl md:text-7xl font-display font-black text-white mb-6 animate-pulse">
+                <p className="text-white/30 uppercase tracking-[0.2em] font-black text-[9px] mb-4">Estimated Monthly Gain</p>
+                <div className="text-3xl md:text-5xl font-display font-black text-white mb-6 animate-pulse leading-none break-words px-2">
                   +{formatCurrency(growth)}
                 </div>
                 

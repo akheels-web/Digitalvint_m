@@ -9,7 +9,7 @@ const SEOPreviewer = () => {
   const [view, setView] = useState<'desktop' | 'mobile'>('desktop');
 
   return (
-    <div className="px-6 py-12 md:py-16 min-h-[85vh] flex flex-col items-center justify-center">
+    <div className="pt-32 pb-20 px-6 relative z-10">
       <div className="max-w-4xl mx-auto w-full">
         <Link to="/" className="inline-flex items-center gap-2 text-white/30 hover:text-white mb-8 transition-all hover:-translate-x-1 uppercase text-[9px] font-black tracking-widest pl-2">
           <ChevronRight className="w-3.5 h-3.5 rotate-180" /> Back to Dashboard
