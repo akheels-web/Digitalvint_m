@@ -9,23 +9,11 @@ import {
   Phone,
   MapPin,
   ArrowRight,
-  Twitter,
   Globe
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { client, settingsQuery } from '../lib/sanityClient';
-
-// Icon Map for Social Platforms
-const SocialIconMap: Record<string, any> = {
-  Facebook,
-  Instagram,
-  LinkedIn: Linkedin,
-  Twitter,
-  X: Twitter, // Fallback if user types X
-  YouTube: Youtube,
-  Globe
-};
 
 // Custom X (formerly Twitter) icon
 const XIcon = ({ className }: { className?: string }) => (
@@ -33,6 +21,17 @@ const XIcon = ({ className }: { className?: string }) => (
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
+
+// Icon Map for Social Platforms
+const SocialIconMap: Record<string, any> = {
+  Facebook,
+  Instagram,
+  LinkedIn: Linkedin,
+  Twitter: XIcon,
+  X: XIcon,
+  YouTube: Youtube,
+  Globe
+};
 
 const Footer = () => {
   const [settings, setSettings] = useState<any>(null);
