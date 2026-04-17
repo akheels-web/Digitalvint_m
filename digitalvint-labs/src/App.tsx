@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Link as LinkIcon, 
   Search, 
   BarChart3, 
   ArrowRight, 
-  ExternalLink,
   ChevronRight,
-  Zap,
-  Layout,
-  Globe,
-  Plus
+  Zap
 } from 'lucide-react';
 import { createShortLink } from './lib/sanityClient';
 import RedirectHandler from './components/RedirectHandler';
