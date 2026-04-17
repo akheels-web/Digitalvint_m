@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import { BarChart3, ChevronRight, Users, Target, DollarSign, TrendingUp, ArrowRight } from 'lucide-react';
 
 const GrowthCalculator = () => {
