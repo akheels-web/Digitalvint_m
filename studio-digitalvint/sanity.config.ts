@@ -8,6 +8,7 @@ import {media} from 'sanity-plugin-media'
 import {schemaTypes} from './schemaTypes'
 import {StudioLogo} from './components/StudioLogo'
 import {myTheme} from './theme'
+import {LeadStatsWidget} from './components/LeadStatsWidget'
 
 export default defineConfig({
   name: 'default',
@@ -20,6 +21,11 @@ export default defineConfig({
   plugins: [
     dashboardTool({
       widgets: [
+        {
+          name: 'lead-stats',
+          component: LeadStatsWidget,
+          layout: { width: 'full' }
+        },
         projectInfoWidget({
           layout: { width: 'medium' },
           data: [
