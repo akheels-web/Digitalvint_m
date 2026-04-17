@@ -2,7 +2,7 @@ import { useEffect, useCallback, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, ExternalLink, ChevronRight, ChevronLeft, Loader2 } from 'lucide-react';
+import { ArrowRight, ChevronRight, ChevronLeft, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { client, urlFor } from '../lib/sanityClient';

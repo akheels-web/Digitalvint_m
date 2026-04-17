@@ -87,13 +87,6 @@ const Footer = () => {
     ],
   };
 
-  const socialLinks = [
-    { icon: Facebook, href: 'https://www.facebook.com/DigitalVint/', label: 'Facebook' },
-    { icon: Instagram, href: 'https://www.instagram.com/digital.vint/', label: 'Instagram' },
-    { icon: Linkedin, href: 'https://in.linkedin.com/company/digitalvint', label: 'LinkedIn' },
-    { icon: XIcon, href: 'https://x.com/DigitalVint', label: 'X (Twitter)' },
-    { icon: Youtube, href: 'https://www.youtube.com/channel/UC5Kgd9Y7fMoFUZxgpeSSE7g', label: 'YouTube' },
-  ];
 
   return (
     <footer className="relative bg-brand-black overflow-hidden pt-20">

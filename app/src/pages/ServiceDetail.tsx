@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, ArrowRight, ChevronDown, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SEO from '../components/SEO';
-import { client, urlFor, settingsQuery } from '../lib/sanityClient';
+import { client } from '../lib/sanityClient';
 
 // Minimal FAQ accordion component — no extra dependency
 function FAQItem({ question, answer }: { question: string; answer: string }) {
