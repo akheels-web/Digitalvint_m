@@ -9,6 +9,7 @@ import {clientLogoType} from './clientLogo'
 import {siteSettingsType} from './siteSettings'
 import {ctaType} from './cta'
 import {leadType} from './lead'
+import {shortLinkType} from './shortLink'
 
 export const schemaTypes = [
   postType, 
@@ -21,5 +22,6 @@ export const schemaTypes = [
   clientLogoType,
   siteSettingsType,
   ctaType,
-  leadType
+  leadType,
+  shortLinkType
 ]
