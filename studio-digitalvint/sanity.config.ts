@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'default',
   title: 'Digitalvint',
 
-  projectId: 'x6r02qtl',
-  dataset: 'production',
+  projectId: import.meta.env.SANITY_STUDIO_PROJECT_ID || 'x6r02qtl',
+  dataset: import.meta.env.SANITY_STUDIO_DATASET || 'production',
 
   plugins: [structureTool(), visionTool()],
 
