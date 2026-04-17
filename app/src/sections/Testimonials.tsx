@@ -21,87 +21,87 @@ interface Testimonial {
   rating: number;
 }
 
+const fallbackTestimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: 'Dr. Manti Nath',
+    role: 'Founder',
+    company: 'Healthcare Startup',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80',
+    content: 'Digital Vint built us a sleek, professional website that perfectly aligned with our brand. Their attention to detail and communication was top-notch. Highly recommended!',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Shalini Dutta',
+    role: 'Founder',
+    company: 'Fashion Brand',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80',
+    content: 'Our website redesign improved user engagement and conversions. The team was responsive, skilled, and understood our business goals clearly.',
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Sufiyan Khan',
+    role: 'Founder',
+    company: 'Agha Perfumes',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80',
+    content: 'Digital Vint delivered a beautiful, responsive website for our tech company. It is fast, clean, and represents our brand perfectly.',
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: 'Adeed Ahmed',
+    role: 'Founder',
+    company: 'Psyke Tech',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+    content: 'From design to deployment, everything was smooth. The website looks stunning and functions flawlessly. Great job!',
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: 'Usama Hazari',
+    role: 'Founder',
+    company: 'Based Matrimony',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&q=80',
+    content: 'The team brought our vision to life with a vibrant and user-focused website. Excellent design sense and execution.',
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: 'Sarfaraz Ali',
+    role: 'Founder/Creator',
+    company: 'Hyderabad Meri Jaan',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80',
+    content: 'Our new portfolio website looks elegant and professional. It has helped us gain more clients online. Very satisfied!',
+    rating: 5,
+  },
+  {
+    id: 7,
+    name: 'Shaik Azhar',
+    role: 'Founder',
+    company: 'Crown Interiors',
+    image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=200&q=80',
+    content: 'They crafted a premium website that showcases our products beautifully. The design and user experience are top class!',
+    rating: 5,
+  },
+  {
+    id: 8,
+    name: 'Habeeb Hasan',
+    role: 'Founder',
+    company: 'BSA Gold & Diamonds',
+    image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=200&q=80',
+    content: 'Digital Vint built us a powerful website with integrated booking and contact forms. It is mobile-friendly and looks fantastic. We have seen a spike in inquiries since launch!',
+    rating: 5,
+  },
+];
+
 const Testimonials = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const fallbackTestimonials: Testimonial[] = [
-    {
-      id: 1,
-      name: 'Dr. Manti Nath',
-      role: 'Founder',
-      company: 'Healthcare Startup',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80',
-      content: 'Digital Vint built us a sleek, professional website that perfectly aligned with our brand. Their attention to detail and communication was top-notch. Highly recommended!',
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: 'Shalini Dutta',
-      role: 'Founder',
-      company: 'Fashion Brand',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80',
-      content: 'Our website redesign improved user engagement and conversions. The team was responsive, skilled, and understood our business goals clearly.',
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: 'Sufiyan Khan',
-      role: 'Founder',
-      company: 'Agha Perfumes',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80',
-      content: 'Digital Vint delivered a beautiful, responsive website for our tech company. It is fast, clean, and represents our brand perfectly.',
-      rating: 5,
-    },
-    {
-      id: 4,
-      name: 'Adeed Ahmed',
-      role: 'Founder',
-      company: 'Psyke Tech',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
-      content: 'From design to deployment, everything was smooth. The website looks stunning and functions flawlessly. Great job!',
-      rating: 5,
-    },
-    {
-      id: 5,
-      name: 'Usama Hazari',
-      role: 'Founder',
-      company: 'Based Matrimony',
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&q=80',
-      content: 'The team brought our vision to life with a vibrant and user-focused website. Excellent design sense and execution.',
-      rating: 5,
-    },
-    {
-      id: 6,
-      name: 'Sarfaraz Ali',
-      role: 'Founder/Creator',
-      company: 'Hyderabad Meri Jaan',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80',
-      content: 'Our new portfolio website looks elegant and professional. It has helped us gain more clients online. Very satisfied!',
-      rating: 5,
-    },
-    {
-      id: 7,
-      name: 'Shaik Azhar',
-      role: 'Founder',
-      company: 'Crown Interiors',
-      image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=200&q=80',
-      content: 'They crafted a premium website that showcases our products beautifully. The design and user experience are top class!',
-      rating: 5,
-    },
-    {
-      id: 8,
-      name: 'Habeeb Hasan',
-      role: 'Founder',
-      company: 'BSA Gold & Diamonds',
-      image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=200&q=80',
-      content: 'Digital Vint built us a powerful website with integrated booking and contact forms. It is mobile-friendly and looks fantastic. We have seen a spike in inquiries since launch!',
-      rating: 5,
-    },
-  ];
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -171,7 +171,7 @@ const Testimonials = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isAnimating, testimonials.length]);
+  }, [isLoading, isAnimating, testimonials.length]);
 
   const goToPrev = () => {
     if (isAnimating) return;

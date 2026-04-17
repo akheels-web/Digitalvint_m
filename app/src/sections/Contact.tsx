@@ -178,6 +178,7 @@ const Contact = () => {
       reset();
       sessionStorage.removeItem('selectedPlan');
     } catch (error) {
+      console.error('Contact Form Submission Error:', error);
       setSubmitStatus('error');
       setSubmitMessage('Something went wrong. Please try again or contact us directly.');
     } finally {

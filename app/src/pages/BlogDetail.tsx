@@ -8,6 +8,7 @@ import { client, urlFor } from '../lib/sanityClient';
 import { Button } from '@/components/ui/button';
 import SEO from '../components/SEO';
 import { Helmet } from 'react-helmet-async';
+import type { SanityPost } from '../types/sanity';
 
 const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
@@ -16,8 +17,8 @@ const BlogDetail = () => {
   const navigate = useNavigate();
   const articleRef = useRef<HTMLDivElement>(null);
   const [readProgress, setReadProgress] = useState(0);
-  const [post, setPost] = useState<any>(null);
-  const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
+  const [post, setPost] = useState<SanityPost | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<SanityPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
 
@@ -101,7 +102,7 @@ const BlogDetail = () => {
       setIsPlayingAudio(false);
     } else {
       const articleText = articleRef.current?.innerText || '';
-      const textToRead = `${post.title}. ${articleText}`;
+      const textToRead = `${post?.title || 'Article'}. ${articleText}`;
       const utterance = new SpeechSynthesisUtterance(textToRead);
       utterance.onend = () => setIsPlayingAudio(false);
       window.speechSynthesis.speak(utterance);
@@ -490,7 +491,7 @@ const BlogDetail = () => {
             <div className="mt-24 pt-16 border-t border-white/10">
               <h2 className="text-3xl font-display font-bold text-white mb-10 text-center">Keep Reading</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {relatedPosts.map((rp: any) => (
+                {relatedPosts.map((rp: SanityPost) => (
                   <Link key={rp._id} to={`/blog/${rp.slug.current}`} className="group rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-brand-blue/30 transition-all flex flex-col">
                     <div className="aspect-[16/10] overflow-hidden">
                       {rp.image && <img src={urlFor(rp.image).width(600).url()} alt={rp.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />}

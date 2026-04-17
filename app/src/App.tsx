@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, Suspense, lazy } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
@@ -7,13 +7,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SEO from './components/SEO';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
-import ServiceDetail from './pages/ServiceDetail';
-import WorkDetail from './pages/WorkDetail';
-import BlogPage from './pages/Blog';
-import FAQPage from './pages/FAQ';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService';
-import BlogDetail from './pages/BlogDetail';
+const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
+const WorkDetail = lazy(() => import('./pages/WorkDetail'));
+const BlogPage = lazy(() => import('./pages/Blog'));
+const FAQPage = lazy(() => import('./pages/FAQ'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const BlogDetail = lazy(() => import('./pages/BlogDetail'));
 import Footer from './sections/Footer';
 import PromoBanner from './components/PromoBanner';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
@@ -79,16 +79,18 @@ function App() {
           <PromoBanner />
           <main>
 
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/services/:slug" element={<ServiceDetail />} />
-              <Route path="/works/:slug" element={<WorkDetail />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<BlogDetail />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms" element={<TermsOfService />} />
-            </Routes>
+            <Suspense fallback={<div className="min-h-screen bg-brand-black flex items-center justify-center text-brand-blue">Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/services/:slug" element={<ServiceDetail />} />
+                <Route path="/works/:slug" element={<WorkDetail />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogDetail />} />
+                <Route path="/faq" element={<FAQPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<TermsOfService />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
           <Chatbot />

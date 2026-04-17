@@ -3,18 +3,7 @@ import { ArrowLeft, Clock, User, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { client, urlFor } from '../lib/sanityClient';
 import SEO from '../components/SEO';
-
-interface SanityPost {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  snippet: string;
-  author: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image: any;
-}
+import type { SanityPost } from '../types/sanity';
 
 const BlogPage = () => {
   const navigate = useNavigate();

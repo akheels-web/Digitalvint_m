@@ -13,39 +13,39 @@ interface ClientLogo {
   logo?: string; // fallback mapping
 }
 
+// Fallback Client logos if Sanity is empty
+const fallbackClients = [
+  { name: 'Tarzee', initials: 'TZ', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/terzee.webp' },
+  { name: 'Zaid Book Depot', initials: 'ZB', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/zaid%20book%20depot.webp' },
+  { name: 'The Observer Post', initials: 'OP', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/the%20observer%20post.webp' },
+  { name: 'Treasure', initials: 'TR', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/treasure.webp' },
+  { name: 'Agha Perfumes', initials: 'AP', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/agha%20perfumes.webp' },
+  { name: 'Psyke', initials: 'PS', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/psyke.webp' },
+  { name: 'Joharfa', initials: 'JF', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/joharfa.webp' },
+  { name: 'Viluthila Maldives', initials: 'VM', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/viluthila%20maldives.webp' },
+  { name: 'Saltan', initials: 'SL', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/saltan2.webp' },
+  { name: 'BSA Gold', initials: 'BG', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/BSA.webp' },
+  { name: 'RVJ Fine Diamonds', initials: 'RVJ', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/rvj.webp' },
+  { name: 'Residential Ease', initials: 'RE', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/residential%20ease.webp' },
+  { name: 'Signature Retreat', initials: 'SR', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/signature%20retreat.webp' },
+  { name: 'Chiro Nation', initials: 'CN', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Chironation.webp' },
+  { name: 'Pragna', initials: 'PR', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/pragna.webp' },
+  { name: 'The Tehqeeq', initials: 'TT', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/The%20tehqeeq.webp' },
+  { name: 'Time Square Entertainment', initials: 'TS', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Time%20square%20entertainment.webp' },
+  { name: 'Radhika Jewelers', initials: 'RJ', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/radhika%20jewellers.webp' },
+  { name: 'Salamah', initials: 'SH', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/salamah.webp' },
+  { name: 'House of Yugandhar', initials: 'HY', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/house%20of%20yugandhar.webp' },
+  { name: 'Simple Space Architects', initials: 'SS', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/simple%20space%20architects.webp' },
+  { name: 'Next Modest', initials: 'NM', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/next%20modest.webp' },
+  { name: 'Proxima', initials: 'PX', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/proxima.webp' },
+  { name: 'AI Energy Systems', initials: 'AE', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Ai%20Energy%20system.webp' },
+  { name: 'Sidra Collections', initials: 'SC', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/sidra.webp' },
+];
+
 const Clients = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [clients, setClients] = useState<ClientLogo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Fallback Client logos if Sanity is empty
-  const fallbackClients = [
-    { name: 'Tarzee', initials: 'TZ', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/terzee.webp' },
-    { name: 'Zaid Book Depot', initials: 'ZB', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/zaid%20book%20depot.webp' },
-    { name: 'The Observer Post', initials: 'OP', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/the%20observer%20post.webp' },
-    { name: 'Treasure', initials: 'TR', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/treasure.webp' },
-    { name: 'Agha Perfumes', initials: 'AP', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/agha%20perfumes.webp' },
-    { name: 'Psyke', initials: 'PS', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/psyke.webp' },
-    { name: 'Joharfa', initials: 'JF', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/joharfa.webp' },
-    { name: 'Viluthila Maldives', initials: 'VM', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/viluthila%20maldives.webp' },
-    { name: 'Saltan', initials: 'SL', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/saltan2.webp' },
-    { name: 'BSA Gold', initials: 'BG', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/BSA.webp' },
-    { name: 'RVJ Fine Diamonds', initials: 'RVJ', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/rvj.webp' },
-    { name: 'Residential Ease', initials: 'RE', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/residential%20ease.webp' },
-    { name: 'Signature Retreat', initials: 'SR', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/signature%20retreat.webp' },
-    { name: 'Chiro Nation', initials: 'CN', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Chironation.webp' },
-    { name: 'Pragna', initials: 'PR', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/pragna.webp' },
-    { name: 'The Tehqeeq', initials: 'TT', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/The%20tehqeeq.webp' },
-    { name: 'Time Square Entertainment', initials: 'TS', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Time%20square%20entertainment.webp' },
-    { name: 'Radhika Jewelers', initials: 'RJ', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/radhika%20jewellers.webp' },
-    { name: 'Salamah', initials: 'SH', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/salamah.webp' },
-    { name: 'House of Yugandhar', initials: 'HY', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/house%20of%20yugandhar.webp' },
-    { name: 'Simple Space Architects', initials: 'SS', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/simple%20space%20architects.webp' },
-    { name: 'Next Modest', initials: 'NM', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/next%20modest.webp' },
-    { name: 'Proxima', initials: 'PX', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/proxima.webp' },
-    { name: 'AI Energy Systems', initials: 'AE', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Ai%20Energy%20system.webp' },
-    { name: 'Sidra Collections', initials: 'SC', logoUrl: 'https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/sidra.webp' },
-  ];
 
   useEffect(() => {
     const fetchClients = async () => {
