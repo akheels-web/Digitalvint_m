@@ -5,6 +5,7 @@ import { PortableText } from '@portabletext/react';
 import type { PortableTextComponents } from '@portabletext/react';
 import confetti from 'canvas-confetti';
 import { client, urlFor } from '../lib/sanityClient';
+import '../Blog.css';
 import { Button } from '@/components/ui/button';
 import SEO from '../components/SEO';
 import { Helmet } from 'react-helmet-async';

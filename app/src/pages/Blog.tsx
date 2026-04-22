@@ -3,6 +3,7 @@ import { ArrowLeft, Clock, User, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { client, urlFor } from '../lib/sanityClient';
 import SEO from '../components/SEO';
+import '../Blog.css';
 import type { SanityPost } from '../types/sanity';
 
 const BlogPage = () => {

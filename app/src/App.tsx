@@ -14,12 +14,11 @@ const FAQPage = lazy(() => import('./pages/FAQ'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const BlogDetail = lazy(() => import('./pages/BlogDetail'));
-import Footer from './sections/Footer';
-import PromoBanner from './components/PromoBanner';
+const Footer = lazy(() => import('./sections/Footer'));
+const PromoBanner = lazy(() => import('./components/PromoBanner'));
+const Chatbot = lazy(() => import('./components/Chatbot'));
+const FloatingActions = lazy(() => import('./components/FloatingActions'));
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-
-import Chatbot from './components/Chatbot';
-import FloatingActions from './components/FloatingActions';
 
 import './App.css';
 
@@ -74,28 +73,31 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <SEO />
-        <div className="relative min-h-screen bg-brand-black noise-overlay">
-          <Navigation />
-          <PromoBanner />
-          <main>
-
-            <Suspense fallback={<div className="min-h-screen bg-brand-black flex items-center justify-center text-brand-blue">Loading...</div>}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/services/:slug" element={<ServiceDetail />} />
-                <Route path="/works/:slug" element={<WorkDetail />} />
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/blog/:slug" element={<BlogDetail />} />
-                <Route path="/faq" element={<FAQPage />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/terms" element={<TermsOfService />} />
-              </Routes>
+          <div className="relative min-h-screen bg-brand-black noise-overlay">
+            <Navigation />
+            <Suspense fallback={null}>
+              <PromoBanner />
             </Suspense>
-          </main>
-          <Footer />
-          <Chatbot />
-          <FloatingActions />
-        </div>
+            <main>
+              <Suspense fallback={<div className="min-h-screen bg-brand-black flex items-center justify-center text-brand-blue">Loading...</div>}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/services/:slug" element={<ServiceDetail />} />
+                  <Route path="/works/:slug" element={<WorkDetail />} />
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/blog/:slug" element={<BlogDetail />} />
+                  <Route path="/faq" element={<FAQPage />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<TermsOfService />} />
+                </Routes>
+              </Suspense>
+            </main>
+            <Suspense fallback={null}>
+              <Footer />
+              <Chatbot />
+              <FloatingActions />
+            </Suspense>
+          </div>
       </BrowserRouter>
     </HelmetProvider>
   );

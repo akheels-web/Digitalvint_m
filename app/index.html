@@ -5,6 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Resource Hints (Early Discovery) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com" />
+  <link rel="preconnect" href="https://x6r02qtl.apicdn.sanity.io" />
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com" />
+  <link rel="dns-prefetch" href="https://x6r02qtl.apicdn.sanity.io" />
+
   <!-- Primary Meta -->
   <title>Digital Vint — Digital Marketing & Web Design Agency in Hyderabad</title>
   <meta name="description" content="Digital Vint is a results-driven digital marketing agency in Hyderabad. We help local businesses attract leads, rank on Google, and grow online through websites, SEO, and paid ads." />
@@ -132,13 +143,21 @@
   }
   </script>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KYPCT9Z2JN"></script>
+  <!-- Google Tag Manager (Deferred to improve TBT) -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-KYPCT9Z2JN');
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-KYPCT9Z2JN';
+        document.head.appendChild(script);
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-KYPCT9Z2JN');
+      }, 2000);
+    });
   </script>
 </head>
 

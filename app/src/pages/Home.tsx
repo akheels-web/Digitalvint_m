@@ -1,13 +1,14 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../sections/Hero';
-import Clients from '../sections/Clients';
-import Services from '../sections/Services';
-import Works from '../sections/Works';
-import MarketingFunnel from '../sections/MarketingFunnel';
 import SEO from '../components/SEO';
+import InViewLazy from '../components/InViewLazy';
 
+const Clients = lazy(() => import('../sections/Clients'));
+const Services = lazy(() => import('../sections/Services'));
+const MarketingFunnel = lazy(() => import('../sections/MarketingFunnel'));
 const Industries = lazy(() => import('../sections/Industries'));
+const Works = lazy(() => import('../sections/Works'));
 const Process = lazy(() => import('../sections/Process'));
 const WhyUs = lazy(() => import('../sections/WhyUs'));
 const Testimonials = lazy(() => import('../sections/Testimonials'));
@@ -31,16 +32,43 @@ const Home = () => {
     <>
       <SEO />
       <Hero />
-      <Clients />
-      <Services />
-      <MarketingFunnel />
-      <Suspense fallback={<div className="h-20" />}>
-        <Industries />
-        <Works />
-        <Process />
-        <WhyUs />
-        <Testimonials />
-        <Contact />
+      
+      <Suspense fallback={<div className="h-40" />}>
+        <InViewLazy minHeight="200px">
+          <Clients />
+        </InViewLazy>
+        
+        <InViewLazy minHeight="400px">
+          <Services />
+        </InViewLazy>
+        
+        <InViewLazy minHeight="400px">
+          <MarketingFunnel />
+        </InViewLazy>
+        
+        <InViewLazy minHeight="400px">
+          <Industries />
+        </InViewLazy>
+        
+        <InViewLazy minHeight="600px">
+          <Works />
+        </InViewLazy>
+        
+        <InViewLazy minHeight="400px">
+          <Process />
+        </InViewLazy>
+        
+        <InViewLazy minHeight="400px">
+          <WhyUs />
+        </InViewLazy>
+        
+        <InViewLazy minHeight="400px">
+          <Testimonials />
+        </InViewLazy>
+        
+        <InViewLazy minHeight="600px">
+          <Contact />
+        </InViewLazy>
       </Suspense>
     </>
   );
