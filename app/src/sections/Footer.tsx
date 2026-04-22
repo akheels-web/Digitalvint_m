@@ -130,6 +130,8 @@ const Footer = () => {
                 <img
                   src="https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Digitalvint.png"
                   alt="Digital Vint Logo"
+                  width="172"
+                  height="48"
                   className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
                 />
               </Link>
@@ -245,7 +247,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-white/5 px-4 sm:px-6 lg:px-12 xl:px-20 py-6 bg-black/20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-sm font-medium">
+          <p className="text-white/65 text-sm font-medium">
             &copy; {new Date().getFullYear()} Digital Vint. All rights reserved.
           </p>
 

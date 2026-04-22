@@ -265,7 +265,7 @@ const Testimonials = () => {
                       decoding="async"
                     />
                   <div>
-                    <h4 className="text-white font-semibold">{testimonial.name}</h4>
+                    <h3 className="text-white font-semibold">{testimonial.name}</h3>
                     <p className="text-white/50 text-sm">
                       {testimonial.designation || testimonial.role}{testimonial.company ? `, ${testimonial.company}` : ''}
                     </p>
@@ -297,7 +297,7 @@ const Testimonials = () => {
                 decoding="async"
               />
               <div>
-                <h4 className="text-white font-semibold text-sm">{testimonials[activeIndex]?.name}</h4>
+                <h3 className="text-white font-semibold text-sm">{testimonials[activeIndex]?.name}</h3>
                 <p className="text-white/50 text-xs">
                   {testimonials[activeIndex]?.designation || testimonials[activeIndex]?.role}{testimonials[activeIndex]?.company ? `, ${testimonials[activeIndex]?.company}` : ''}
                 </p>
@@ -312,6 +312,7 @@ const Testimonials = () => {
               variant="outline"
               size="icon"
               onClick={goToPrev}
+              aria-label="Previous Testimonial"
               className="w-12 h-12 rounded-full border-white/20 bg-white/10 text-white hover:bg-white/20 transition-all"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
@@ -329,7 +330,8 @@ const Testimonials = () => {
                       setTimeout(() => setIsAnimating(false), 500);
                     }
                   }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${index === activeIndex
+                  aria-label={`Go to testimonial ${index + 1}`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 p-1 box-content ${index === activeIndex
                     ? 'w-8 bg-brand-blue'
                     : 'bg-white/30 hover:bg-white/50'
                     }`}
@@ -341,6 +343,7 @@ const Testimonials = () => {
               variant="outline"
               size="icon"
               onClick={goToNext}
+              aria-label="Next Testimonial"
               className="w-12 h-12 rounded-full border-white/20 bg-white/10 text-white hover:bg-white/20 transition-all"
             >
               <ChevronRight className="w-6 h-6 text-white" />

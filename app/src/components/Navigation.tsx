@@ -76,7 +76,12 @@ const Navigation = () => {
               <img
                 src="https://zugkwxy0oqkvrsu5.public.blob.vercel-storage.com/Digitalvint.png"
                 alt="Digital Vint Logo"
+                width="144"
+                height="40"
                 className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </Link>
 

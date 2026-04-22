@@ -216,9 +216,9 @@ const Works = () => {
                 <button
                   key={index}
                   onClick={() => emblaApi && emblaApi.scrollTo(index)}
-                  className={`transition-all duration-300 rounded-full h-2 ${selectedIndex === index
+                  className={`transition-all duration-300 rounded-full h-3 p-1 box-content ${selectedIndex === index
                     ? 'w-8 bg-brand-blue'
-                    : 'w-2 bg-white/20 hover:bg-white/40'
+                    : 'w-3 bg-white/20 hover:bg-white/40'
                     }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />

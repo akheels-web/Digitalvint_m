@@ -212,8 +212,12 @@ const Services = () => {
                     </ul>
 
                     {/* CTA */}
-                    <Link to={`/services/${service.slug?.current}`} className="mt-auto flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light font-medium group">
-                      Learn More
+                    <Link 
+                      to={`/services/${service.slug?.current}`} 
+                      aria-label={`Learn more about our ${service.title} service`}
+                      className="mt-auto flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light font-medium group"
+                    >
+                      Learn More <span className="sr-only">about {service.title}</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -270,8 +274,12 @@ const Services = () => {
                   </ul>
 
                   {/* CTA */}
-                  <Link to={`/services/${service.slug?.current}`} className="flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light text-sm font-medium group/btn">
-                    Learn More
+                  <Link 
+                    to={`/services/${service.slug?.current}`} 
+                    aria-label={`Learn more about our ${service.title} service`}
+                    className="flex items-center gap-2 w-fit text-brand-blue hover:text-brand-blue-light text-sm font-medium group/btn"
+                  >
+                    Learn More <span className="sr-only">about {service.title}</span>
                     <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>

@@ -14,13 +14,7 @@ const Chatbot = () => {
       }
     };
 
-    loadChatbot();
-
-    return () => {
-      // Any cleanup needed
-    };
-
-    function initializeChatbot() {
+    const initializeChatbot = () => {
       // @ts-ignore
       if (window.Chatbot) {
         // @ts-ignore
@@ -69,7 +63,14 @@ const Chatbot = () => {
           }
         });
       }
-    }
+    };
+
+    // Delay loading the chatbot by 4 seconds to improve initial page load performance
+    const timer = setTimeout(() => {
+      loadChatbot();
+    }, 4000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return null;

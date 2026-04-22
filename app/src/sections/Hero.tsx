@@ -13,7 +13,7 @@ const Hero = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -76,19 +76,49 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
-  // Mouse parallax effect - only for visual background elements, no longer breaking text layout
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      setMousePosition({
-        x: (clientX / innerWidth - 0.5) * 20,
-        y: (clientY / innerHeight - 0.5) * 20,
-      });
-    };
+  const bgRef = useRef<HTMLDivElement>(null);
+  const bgImageRef = useRef<HTMLImageElement>(null);
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+  useEffect(() => {
+    // Only run on desktop
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const handleMouseMove = (e: MouseEvent) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        const x = (clientX / innerWidth - 0.5) * 20;
+        const y = (clientY / innerHeight - 0.5) * 20;
+
+        if (bgRef.current) {
+          gsap.to(bgRef.current, {
+            x: x * 0.5,
+            y: y * 0.5,
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        }
+
+        // Animate floating orbs with inverse movement
+        gsap.to('.hero-orb-1', {
+          x: x * -1,
+          y: y * -1,
+          duration: 0.5,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        });
+
+        gsap.to('.hero-orb-2', {
+          x: x * -1.5,
+          y: y * -1.5,
+          duration: 0.5,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        });
+      };
+
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -113,14 +143,19 @@ const Hero = () => {
     >
       {/* Background Image with Parallax */}
       <div
+        ref={bgRef}
         className="hero-bg absolute inset-0 z-0"
-        style={{
-          transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
-          transition: 'transform 0.3s ease-out',
-        }}
       >
         <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80"
+          ref={bgImageRef}
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80"
+          srcSet="
+            https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=480&q=80 480w,
+            https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80 800w,
+            https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80 1200w,
+            https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80 1920w
+          "
+          sizes="100vw"
           alt="Digital Vint Team"
           className="w-full h-full object-cover opacity-40"
           loading="eager"
@@ -135,19 +170,11 @@ const Hero = () => {
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden hidden md:block">
         {/* Floating Orbs */}
         <div
-          className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-brand-blue/20 blur-3xl animate-float"
-          style={{
-            transform: `translate(${mousePosition.x * -1}px, ${mousePosition.y * -1}px)`,
-            transition: 'transform 0.5s ease-out',
-          }}
+          className="hero-orb-1 absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-brand-blue/20 blur-3xl animate-float"
         />
         <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-brand-blue-light/10 blur-3xl animate-float"
-          style={{
-            animationDelay: '1s',
-            transform: `translate(${mousePosition.x * -1.5}px, ${mousePosition.y * -1.5}px)`,
-            transition: 'transform 0.5s ease-out',
-          }}
+          className="hero-orb-2 absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-brand-blue-light/10 blur-3xl animate-float"
+          style={{ animationDelay: '1s' }}
         />
 
         {/* Grid Pattern */}

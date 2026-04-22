@@ -1,16 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../sections/Hero';
 import Clients from '../sections/Clients';
 import Services from '../sections/Services';
 import Works from '../sections/Works';
 import MarketingFunnel from '../sections/MarketingFunnel';
-import Industries from '../sections/Industries';
-import Process from '../sections/Process';
-import WhyUs from '../sections/WhyUs';
-import Testimonials from '../sections/Testimonials';
-import Contact from '../sections/Contact';
 import SEO from '../components/SEO';
+
+const Industries = lazy(() => import('../sections/Industries'));
+const Process = lazy(() => import('../sections/Process'));
+const WhyUs = lazy(() => import('../sections/WhyUs'));
+const Testimonials = lazy(() => import('../sections/Testimonials'));
+const Contact = lazy(() => import('../sections/Contact'));
 
 const Home = () => {
   const location = useLocation();
@@ -33,12 +34,14 @@ const Home = () => {
       <Clients />
       <Services />
       <MarketingFunnel />
-      <Industries />
-      <Works />
-      <Process />
-      <WhyUs />
-      <Testimonials />
-      <Contact />
+      <Suspense fallback={<div className="h-20" />}>
+        <Industries />
+        <Works />
+        <Process />
+        <WhyUs />
+        <Testimonials />
+        <Contact />
+      </Suspense>
     </>
   );
 };

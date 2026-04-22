@@ -126,6 +126,8 @@ const Clients = () => {
                     src={client.logo ? urlFor(client.logo).width(200).url() : (client.logoUrl || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`)}
                     alt={`${client.name} - Digital Marketing Client India`}
                     title={`${client.name} partnership with Digital Vint`}
+                    width="160"
+                    height="64"
                     loading="eager"
                     decoding="async"
                     className={`h-full w-auto object-contain grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-500 ${(!client.logoUrl && !client.logo) ? 'rounded-full' : ''}`}
@@ -146,6 +148,8 @@ const Clients = () => {
                   <img
                     src={client.logo ? urlFor(client.logo).width(200).url() : (client.logoUrl || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`)}
                     alt={`${client.name} - Digital Marketing Client India`}
+                    width="160"
+                    height="64"
                     loading="eager"
                     decoding="async"
                     className={`h-full w-auto object-contain grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-500 ${(!client.logoUrl && !client.logo) ? 'rounded-full' : ''}`}
@@ -166,6 +170,8 @@ const Clients = () => {
                   <img
                     src={client.logo ? urlFor(client.logo).width(200).url() : (client.logoUrl || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`)}
                     alt={`${client.name} - Trusted Client India`}
+                    width="160"
+                    height="64"
                     loading="eager"
                     decoding="async"
                     className={`h-full w-auto object-contain grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-500 ${(!client.logoUrl && !client.logo) ? 'rounded-full' : ''}`}
@@ -182,6 +188,8 @@ const Clients = () => {
                   <img
                     src={client.logo ? urlFor(client.logo).width(200).url() : (client.logoUrl || `https://ui-avatars.com/api/?name=${client.initials}&background=0D0D12&color=fff&size=128&font-size=0.4`)}
                     alt={`${client.name} - Trusted Client India`}
+                    width="160"
+                    height="64"
                     loading="eager"
                     decoding="async"
                     className={`h-full w-auto object-contain grayscale opacity-40 group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-500 ${(!client.logoUrl && !client.logo) ? 'rounded-full' : ''}`}
