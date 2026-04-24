@@ -2,7 +2,6 @@ import { useEffect, Suspense, lazy } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../sections/Hero';
 import SEO from '../components/SEO';
-import InViewLazy from '../components/InViewLazy';
 
 const Clients = lazy(() => import('../sections/Clients'));
 const Services = lazy(() => import('../sections/Services'));
@@ -32,43 +31,16 @@ const Home = () => {
     <>
       <SEO />
       <Hero />
-      
-      <Suspense fallback={<div className="h-40" />}>
-        <InViewLazy minHeight="200px">
-          <Clients />
-        </InViewLazy>
-        
-        <InViewLazy minHeight="400px">
-          <Services />
-        </InViewLazy>
-        
-        <InViewLazy minHeight="400px">
-          <MarketingFunnel />
-        </InViewLazy>
-        
-        <InViewLazy minHeight="400px">
-          <Industries />
-        </InViewLazy>
-        
-        <InViewLazy minHeight="600px">
-          <Works />
-        </InViewLazy>
-        
-        <InViewLazy minHeight="400px">
-          <Process />
-        </InViewLazy>
-        
-        <InViewLazy minHeight="400px">
-          <WhyUs />
-        </InViewLazy>
-        
-        <InViewLazy minHeight="400px">
-          <Testimonials />
-        </InViewLazy>
-        
-        <InViewLazy minHeight="600px">
-          <Contact />
-        </InViewLazy>
+      <Suspense fallback={null}>
+        <Clients />
+        <Services />
+        <MarketingFunnel />
+        <Industries />
+        <Works />
+        <Process />
+        <WhyUs />
+        <Testimonials />
+        <Contact />
       </Suspense>
     </>
   );
