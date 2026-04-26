@@ -186,11 +186,11 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${settings?.email || 'info@digitalvint.com'}`} className="flex items-start gap-3 text-white/60 hover:text-white transition-colors group">
+                <a href={`mailto:${settings?.email || 'grow@digitalvint.com'}`} className="flex items-start gap-3 text-white/60 hover:text-white transition-colors group">
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors shrink-0">
                     <Mail className="w-4 h-4 text-brand-blue" />
                   </div>
-                  <span className="pt-1 break-all">{settings?.email || 'info@digitalvint.com'}</span>
+                  <span className="pt-1 break-all">{settings?.email || 'grow@digitalvint.com'}</span>
                 </a>
               </li>
               <li>

@@ -86,7 +86,7 @@ const PrivacyPolicy = () => {
             <p className="leading-relaxed">
               If you have any questions about this privacy policy, including any requests to exercise your legal rights, please contact us using the details below:
             </p>
-            <p className="mt-4 font-medium text-white">Email: info@digitalvint.com</p>
+            <p className="mt-4 font-medium text-white">Email: grow@digitalvint.com</p>
             <p className="font-medium text-white">Phone: +91 93917 95320</p>
           </section>
         </div>

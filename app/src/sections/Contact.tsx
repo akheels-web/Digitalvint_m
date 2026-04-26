@@ -187,7 +187,7 @@ const Contact = () => {
     } catch (error) {
       console.error('Contact Form Submission Error:', error);
       setSubmitStatus('error');
-      setSubmitMessage('Something went wrong. Please try again or contact us directly.');
+      setSubmitMessage('Something went wrong. Please try again or contact us directly at grow@digitalvint.com.');
     } finally {
       setIsSubmitting(false);
     }
@@ -203,8 +203,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: settings?.email || 'info@digitalvint.com',
-      href: `mailto:${settings?.email || 'info@digitalvint.com'}`,
+      value: settings?.email || 'grow@digitalvint.com',
+      href: `mailto:${settings?.email || 'grow@digitalvint.com'}`,
     },
     {
       icon: MapPin,

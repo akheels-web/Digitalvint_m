@@ -170,7 +170,7 @@ const SEOAudit = () => {
               {status === 'error' && (
                 <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-start gap-3">
                   <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <p>Something went wrong submitting your request. Please try again or email us directly at info@digitalvint.com.</p>
+                  <p>Something went wrong submitting your request. Please try again or email us directly at grow@digitalvint.com.</p>
                 </div>
               )}
             </form>
