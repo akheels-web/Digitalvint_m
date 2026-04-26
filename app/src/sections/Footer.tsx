@@ -142,21 +142,34 @@ const Footer = () => {
             </p>
 
             <div className="flex gap-3">
-              {(settings?.socialLinks || []).map((social: any) => {
-                const Icon = SocialIconMap[social.platform] || SocialIconMap.Globe;
-                return (
-                  <a
-                    key={social._key}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300 hover:-translate-y-1"
-                    aria-label={social.platform}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </a>
-                );
-              })}
+              {(() => {
+                const baseLinks = settings?.socialLinks || [];
+                const finalLinks = [...baseLinks];
+                
+                // Ensure requested social platforms are present
+                const platforms = ['Facebook', 'X', 'YouTube'];
+                platforms.forEach(p => {
+                  if (!finalLinks.find(link => link.platform === p)) {
+                    finalLinks.push({ platform: p, url: '#', _key: `default-${p.toLowerCase()}` });
+                  }
+                });
+
+                return finalLinks.map((social: any) => {
+                  const Icon = SocialIconMap[social.platform] || SocialIconMap.Globe;
+                  return (
+                    <a
+                      key={social._key}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300 hover:-translate-y-1"
+                      aria-label={social.platform}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </a>
+                  );
+                });
+              })()}
             </div>
           </div>
 

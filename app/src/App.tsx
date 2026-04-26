@@ -16,7 +16,6 @@ const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const BlogDetail = lazy(() => import('./pages/BlogDetail'));
 const Footer = lazy(() => import('./sections/Footer'));
 const PromoBanner = lazy(() => import('./components/PromoBanner'));
-const Chatbot = lazy(() => import('./components/Chatbot'));
 const FloatingActions = lazy(() => import('./components/FloatingActions'));
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
@@ -94,7 +93,6 @@ function App() {
             </main>
             <Suspense fallback={null}>
               <Footer />
-              <Chatbot />
               <FloatingActions />
             </Suspense>
           </div>

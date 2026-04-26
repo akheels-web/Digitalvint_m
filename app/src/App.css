@@ -215,27 +215,4 @@ html {
 
 
 
-/* Flowise Chatbot Custom Styles */
-flowise-chatbot {
-  position: fixed !important;
-  z-index: 99999 !important;
-  pointer-events: none !important;
-}
 
-/* Allow interaction with the internal elements */
-flowise-chatbot::part(button) {
-  display: none !important;
-}
-
-flowise-chatbot::part(window) {
-  pointer-events: auto !important;
-}
-
-@media (max-width: 768px) {
-  flowise-chatbot {
-    bottom: 0 !important;
-    right: 0 !important;
-    --chatbot-mobile-width: 100vw !important;
-    --chatbot-mobile-height: 85vh !important;
-  }
-}
