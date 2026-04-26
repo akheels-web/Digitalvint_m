@@ -1,10 +1,6 @@
 import { MessageCircle, Phone } from 'lucide-react';
 
 const FloatingActions = () => {
-  const openWhatsApp = () => {
-    window.open('https://wa.me/919391795320', '_blank');
-  };
-
   return (
     <div className="fixed bottom-6 z-50 flex gap-3 pointer-events-none left-1/2 -translate-x-1/2 flex-row md:left-auto md:right-6 md:translate-x-0 md:flex-col-reverse">
       <a
