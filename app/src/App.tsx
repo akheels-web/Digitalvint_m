@@ -22,15 +22,18 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    // If there's a hash, don't scroll to top as the component will handle it
+    if (hash) return;
+
     // Wrap in timeout to let Lenis settle if active
     setTimeout(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
     }, 10);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 
