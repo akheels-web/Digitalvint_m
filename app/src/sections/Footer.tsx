@@ -147,10 +147,16 @@ const Footer = () => {
                 const finalLinks = [...baseLinks];
                 
                 // Ensure requested social platforms are present
-                const platforms = ['Facebook', 'X', 'YouTube'];
-                platforms.forEach(p => {
+                const platformDefaults: Record<string, string> = {
+                  'Facebook': 'https://www.facebook.com/DigitalVint',
+                  'Instagram': 'https://www.instagram.com/digital.vint/',
+                  'X': 'https://x.com/DigitalVint/',
+                  'YouTube': '#'
+                };
+                
+                Object.entries(platformDefaults).forEach(([p, url]) => {
                   if (!finalLinks.find(link => link.platform === p)) {
-                    finalLinks.push({ platform: p, url: '#', _key: `default-${p.toLowerCase()}` });
+                    finalLinks.push({ platform: p, url: url, _key: `default-${p.toLowerCase()}` });
                   }
                 });
 
